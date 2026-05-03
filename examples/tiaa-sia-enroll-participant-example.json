@@ -1,0 +1,32 @@
+{
+  "request": {
+    "method": "POST",
+    "url": "https://api.tiaa.org/sia/v1/plans/PLAN-403B-001/participants",
+    "headers": {
+      "Authorization": "Bearer eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCJ9...",
+      "Content-Type": "application/json"
+    },
+    "body": {
+      "firstName": "Jane",
+      "lastName": "Smith",
+      "dateOfBirth": "1975-06-15",
+      "ssn": "ENCRYPTED_SSN_VALUE",
+      "email": "jane.smith@university.edu",
+      "allocationPercentage": 10.0
+    }
+  },
+  "response": {
+    "status": 201,
+    "body": {
+      "participantId": "PART-20260503-00847",
+      "planId": "PLAN-403B-001",
+      "firstName": "Jane",
+      "lastName": "Smith",
+      "dateOfBirth": "1975-06-15",
+      "enrollmentDate": "2026-05-03",
+      "accountBalance": 0.00,
+      "vestingPercentage": 100.0,
+      "status": "ACTIVE"
+    }
+  }
+}

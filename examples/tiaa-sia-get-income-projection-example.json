@@ -1,0 +1,26 @@
+{
+  "request": {
+    "method": "GET",
+    "url": "https://api.tiaa.org/sia/v1/plans/PLAN-403B-001/participants/PART-20260503-00847/projections?retirementAge=67",
+    "headers": {
+      "Authorization": "Bearer eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCJ9...",
+      "Accept": "application/json"
+    }
+  },
+  "response": {
+    "status": 200,
+    "body": {
+      "participantId": "PART-20260503-00847",
+      "currentBalance": 87420.50,
+      "projectedRetirementAge": 67,
+      "monthlyIncomeProjection": 612.48,
+      "annualIncomeProjection": 7349.76,
+      "projectionDate": "2026-05-03",
+      "assumptions": {
+        "discountRate": 0.03,
+        "mortalityTable": "SOA-2012-IAM",
+        "inflationRate": 0.025
+      }
+    }
+  }
+}

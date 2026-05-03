@@ -1,0 +1,186 @@
+title: TIAA Vocabulary
+description: >-
+  Domain vocabulary for TIAA financial services APIs, covering retirement
+  accounts, plan administration, income products, and financial data exchange.
+provider: TIAA
+created: '2026-05-03'
+modified: '2026-05-03'
+tags:
+  - Finance
+  - Retirement
+  - Financial Data
+  - Insurance
+  - Investment Management
+
+terms:
+  - term: FDX
+    label: Financial Data Exchange
+    definition: >-
+      An industry standard (FDX API) for secure, permissioned sharing of
+      consumer financial data between financial institutions and authorized
+      third-party applications, using OAuth 2.0.
+    tags:
+      - Open Finance
+      - Standard
+
+  - term: SIA
+    label: Secure Income Account
+    definition: >-
+      TIAA's guaranteed lifetime income product designed to be used within
+      custom target-date model portfolios or managed accounts. Provides
+      participants with protected retirement savings that generate guaranteed
+      income in retirement.
+    tags:
+      - Annuity
+      - Guaranteed Income
+      - Retirement Product
+
+  - term: TIAA Gateway
+    label: TIAA Gateway
+    definition: >-
+      A cloud-based API layer that enables product portability and
+      interoperability across the retirement ecosystem, allowing partners to
+      expose TIAA account data within their own platforms.
+    tags:
+      - API
+      - Integration
+      - Platform
+
+  - term: Participant
+    label: Plan Participant
+    definition: >-
+      An individual employee enrolled in a retirement plan who is eligible for
+      or actively contributing to TIAA's retirement products, including the
+      Secure Income Account.
+    tags:
+      - Plan Administration
+      - Retirement
+
+  - term: Defined Contribution Plan
+    label: Defined Contribution Plan
+    definition: >-
+      A retirement plan (e.g., 401(k), 403(b), 457(b)) where employer and
+      employee contributions are defined by plan documents, and the final
+      benefit depends on investment performance.
+    tags:
+      - Plan Administration
+      - Retirement
+
+  - term: "403(b)"
+    label: 403(b) Plan
+    definition: >-
+      A tax-advantaged retirement plan available to employees of public schools,
+      non-profit organizations, and certain government entities. A primary
+      market for TIAA.
+    tags:
+      - Plan Type
+      - Retirement
+
+  - term: Vesting
+    label: Vesting
+    definition: >-
+      The process by which a participant earns non-forfeitable rights to employer
+      contributions over time. Expressed as a percentage (0-100%) in the SIA API.
+    tags:
+      - Plan Administration
+
+  - term: Income Projection
+    label: Lifetime Income Projection
+    definition: >-
+      An estimate of the monthly or annual lifetime income a participant would
+      receive from their SIA account upon retirement at a given age, based on
+      current balance, actuarial assumptions, and discount rates.
+    tags:
+      - Annuity
+      - Retirement Planning
+
+  - term: Contribution
+    label: Retirement Contribution
+    definition: >-
+      A payment made to a participant's retirement account, which may be an
+      employee elective deferral, employer match, rollover, or other source.
+    tags:
+      - Plan Administration
+
+  - term: Position
+    label: Investment Position
+    definition: >-
+      A holding in a specific security or fund within a retirement or investment
+      account, characterized by symbol, quantity, market value, and cost basis.
+    tags:
+      - Investment
+
+  - term: Transaction
+    label: Account Transaction
+    definition: >-
+      A financial event recorded in an account, including contributions,
+      withdrawals, dividends, interest payments, and transfers.
+    tags:
+      - Account
+
+  - term: OAuth 2.0
+    label: OAuth 2.0
+    definition: >-
+      The authorization framework used by TIAA APIs. The FDX API uses the
+      Authorization Code flow for customer-consented access, while the SIA
+      API uses Client Credentials flow for system-to-system integration.
+    tags:
+      - Authentication
+      - Security
+
+  - term: SPARK
+    label: SPARK Standard
+    definition: >-
+      An industry standard for electronic data exchange in the retirement
+      services industry. TIAA Payroll360 and Gateway support SPARK 2.0 CR.
+    tags:
+      - Standard
+      - Integration
+
+  - term: "1099-R"
+    label: Form 1099-R
+    definition: >-
+      IRS tax form used to report distributions from retirement accounts,
+      pensions, and annuities. Issued annually by TIAA to account holders
+      who received distributions.
+    tags:
+      - Tax
+      - Compliance
+
+  - term: "5498"
+    label: Form 5498
+    definition: >-
+      IRS tax form reporting IRA contributions, rollovers, and fair market value.
+      Issued by TIAA for IRAs and retirement accounts.
+    tags:
+      - Tax
+      - Compliance
+
+  - term: Recordkeeper
+    label: Plan Recordkeeper
+    definition: >-
+      A third-party administrator that maintains participant-level records for
+      defined contribution plans, including contributions, investment elections,
+      and distributions. A key integrator of the TIAA SIA API.
+    tags:
+      - Plan Administration
+      - Integration
+
+  - term: Target Date Fund
+    label: Target Date Fund
+    definition: >-
+      A fund that automatically adjusts its asset allocation based on a target
+      retirement year. The SIA product can be integrated into custom target date
+      model portfolios.
+    tags:
+      - Investment
+      - Retirement
+
+  - term: Managed Account
+    label: Managed Account
+    definition: >-
+      A professionally managed investment portfolio that can include TIAA's SIA
+      product as a guaranteed income allocation.
+    tags:
+      - Investment
+      - Retirement

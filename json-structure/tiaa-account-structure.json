@@ -1,0 +1,57 @@
+{
+  "name": "TIAA Account",
+  "description": "Structure documentation for TIAA FDX account objects",
+  "fields": [
+    {
+      "name": "accountId",
+      "type": "string",
+      "required": true,
+      "description": "Unique account identifier"
+    },
+    {
+      "name": "accountType",
+      "type": "enum",
+      "required": true,
+      "values": ["INVESTMENT", "RETIREMENT", "ANNUITY", "BROKERAGE"],
+      "description": "Classification of the account"
+    },
+    {
+      "name": "displayName",
+      "type": "string",
+      "required": true,
+      "description": "Human-readable account name (e.g., 'TIAA 403(b) Retirement Account')"
+    },
+    {
+      "name": "accountNumber",
+      "type": "string",
+      "required": false,
+      "description": "Masked account number (last 4 digits visible)"
+    },
+    {
+      "name": "balanceAsOf",
+      "type": "string (date-time)",
+      "required": false,
+      "description": "ISO 8601 timestamp indicating when the balance was last calculated"
+    },
+    {
+      "name": "currentBalance",
+      "type": "number",
+      "required": true,
+      "description": "Current account balance in the account currency"
+    },
+    {
+      "name": "currency",
+      "type": "string",
+      "required": false,
+      "default": "USD",
+      "description": "ISO 4217 currency code"
+    },
+    {
+      "name": "status",
+      "type": "enum",
+      "required": true,
+      "values": ["OPEN", "CLOSED", "PENDING"],
+      "description": "Current status of the account"
+    }
+  ]
+}

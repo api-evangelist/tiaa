@@ -1,0 +1,91 @@
+{
+  "@context": {
+    "@vocab": "https://schema.org/",
+    "tiaa": "https://developer.tiaa.org/ontology/",
+    "fdx": "https://financialdataexchange.org/ontology/",
+
+    "accountId": "tiaa:accountId",
+    "accountType": "tiaa:accountType",
+    "displayName": "name",
+    "accountNumber": "tiaa:accountNumber",
+    "balanceAsOf": "tiaa:balanceAsOf",
+    "currentBalance": {
+      "@id": "tiaa:currentBalance",
+      "@type": "xsd:decimal"
+    },
+    "currency": {
+      "@id": "tiaa:currency",
+      "@type": "@vocab"
+    },
+    "status": "tiaa:status",
+
+    "transactionId": "tiaa:transactionId",
+    "transactionType": "tiaa:transactionType",
+    "amount": {
+      "@id": "tiaa:amount",
+      "@type": "xsd:decimal"
+    },
+    "transactionDate": {
+      "@id": "tiaa:transactionDate",
+      "@type": "xsd:dateTime"
+    },
+    "postedDate": {
+      "@id": "tiaa:postedDate",
+      "@type": "xsd:dateTime"
+    },
+
+    "positionId": "tiaa:positionId",
+    "symbol": "tiaa:symbol",
+    "quantity": {
+      "@id": "tiaa:quantity",
+      "@type": "xsd:decimal"
+    },
+    "marketValue": {
+      "@id": "tiaa:marketValue",
+      "@type": "xsd:decimal"
+    },
+    "costBasis": {
+      "@id": "tiaa:costBasis",
+      "@type": "xsd:decimal"
+    },
+
+    "participantId": "tiaa:participantId",
+    "planId": "tiaa:planId",
+    "enrollmentDate": {
+      "@id": "tiaa:enrollmentDate",
+      "@type": "xsd:date"
+    },
+    "vestingPercentage": {
+      "@id": "tiaa:vestingPercentage",
+      "@type": "xsd:decimal"
+    },
+
+    "monthlyIncomeProjection": {
+      "@id": "tiaa:monthlyIncomeProjection",
+      "@type": "xsd:decimal"
+    },
+    "annualIncomeProjection": {
+      "@id": "tiaa:annualIncomeProjection",
+      "@type": "xsd:decimal"
+    },
+    "projectedRetirementAge": "tiaa:projectedRetirementAge",
+
+    "Account": "BankAccount",
+    "RetirementAccount": {
+      "@id": "tiaa:RetirementAccount",
+      "@type": "@id"
+    },
+    "Transaction": "MoneyTransfer",
+    "Customer": "Person",
+    "Plan": {
+      "@id": "tiaa:Plan",
+      "@type": "@id"
+    },
+    "Participant": {
+      "@id": "tiaa:Participant",
+      "@type": "@id"
+    },
+
+    "xsd": "http://www.w3.org/2001/XMLSchema#"
+  }
+}

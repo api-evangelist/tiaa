@@ -1,0 +1,52 @@
+{
+  "request": {
+    "method": "GET",
+    "url": "https://api.tiaa.org/fdx/v6/accounts/ACC-4829103847/transactions?startTime=2026-01-01T00:00:00Z&endTime=2026-05-01T23:59:59Z&limit=25",
+    "headers": {
+      "Authorization": "Bearer eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCJ9...",
+      "Accept": "application/json"
+    }
+  },
+  "response": {
+    "status": 200,
+    "body": {
+      "transactions": [
+        {
+          "transactionId": "TXN-20260301-00341",
+          "accountId": "ACC-4829103847",
+          "transactionType": "CONTRIBUTION",
+          "amount": 2083.33,
+          "description": "Employer 403(b) Contribution",
+          "transactionDate": "2026-03-01T00:00:00Z",
+          "postedDate": "2026-03-02T08:30:00Z",
+          "status": "POSTED"
+        },
+        {
+          "transactionId": "TXN-20260301-00342",
+          "accountId": "ACC-4829103847",
+          "transactionType": "CONTRIBUTION",
+          "amount": 1500.00,
+          "description": "Employee Elective Deferral",
+          "transactionDate": "2026-03-01T00:00:00Z",
+          "postedDate": "2026-03-02T08:30:00Z",
+          "status": "POSTED"
+        },
+        {
+          "transactionId": "TXN-20260401-00512",
+          "accountId": "ACC-4829103847",
+          "transactionType": "DIVIDEND",
+          "amount": 347.85,
+          "description": "TIAA-CREF Equity Index Fund Dividend",
+          "transactionDate": "2026-04-15T00:00:00Z",
+          "postedDate": "2026-04-16T09:00:00Z",
+          "status": "POSTED"
+        }
+      ],
+      "page": {
+        "nextOffset": null,
+        "totalElements": 3,
+        "limit": 25
+      }
+    }
+  }
+}

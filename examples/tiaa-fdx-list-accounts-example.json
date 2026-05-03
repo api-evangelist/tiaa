@@ -1,0 +1,43 @@
+{
+  "request": {
+    "method": "GET",
+    "url": "https://api.tiaa.org/fdx/v6/accounts",
+    "headers": {
+      "Authorization": "Bearer eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCJ9...",
+      "Content-Type": "application/json",
+      "Accept": "application/json"
+    }
+  },
+  "response": {
+    "status": 200,
+    "body": {
+      "accounts": [
+        {
+          "accountId": "ACC-4829103847",
+          "accountType": "RETIREMENT",
+          "displayName": "TIAA 403(b) Retirement Account",
+          "accountNumber": "****3847",
+          "balanceAsOf": "2026-05-02T18:00:00Z",
+          "currentBalance": 487350.22,
+          "currency": "USD",
+          "status": "OPEN"
+        },
+        {
+          "accountId": "ACC-9284710293",
+          "accountType": "ANNUITY",
+          "displayName": "TIAA Traditional Annuity",
+          "accountNumber": "****0293",
+          "balanceAsOf": "2026-05-02T18:00:00Z",
+          "currentBalance": 124500.00,
+          "currency": "USD",
+          "status": "OPEN"
+        }
+      ],
+      "page": {
+        "nextOffset": null,
+        "totalElements": 2,
+        "limit": 25
+      }
+    }
+  }
+}

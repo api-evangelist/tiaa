@@ -1,0 +1,295 @@
+naftiko: "1.0.0-alpha1"
+
+info:
+  label: TIAA Retirement Data Access
+  description: >-
+    Unified capability for fintech developers, financial aggregators, and plan
+    administration platforms to access TIAA retirement account data. Combines the
+    FDX API for customer-consented data sharing and the SIA API for plan
+    administration, enabling a comprehensive view of participant retirement
+    savings, income projections, and account activity.
+  tags:
+    - TIAA
+    - Financial Data
+    - FDX
+    - Open Finance
+    - Plan Administration
+    - Retirement
+  created: "2026-05-03"
+  modified: "2026-05-03"
+
+binds:
+  - namespace: env
+    keys:
+      TIAA_FDX_ACCESS_TOKEN: TIAA_FDX_ACCESS_TOKEN
+      TIAA_SIA_ACCESS_TOKEN: TIAA_SIA_ACCESS_TOKEN
+
+capability:
+  consumes:
+    - import: tiaa-fdx
+      location: ./shared/tiaa-fdx.yaml
+    - import: tiaa-sia
+      location: ./shared/tiaa-sia.yaml
+
+  exposes:
+    - type: rest
+      port: 8080
+      namespace: tiaa-retirement-api
+      description: >-
+        Unified REST API for accessing TIAA retirement account data, plan
+        administration, and income projections.
+      resources:
+        - path: /v1/accounts
+          name: accounts
+          description: Customer retirement accounts
+          operations:
+            - method: GET
+              name: list-accounts
+              description: List all TIAA retirement accounts
+              call: "tiaa-fdx.list-accounts"
+              outputParameters:
+                - type: object
+                  mapping: "$."
+
+        - path: /v1/accounts/{accountId}
+          name: account-detail
+          description: Individual account details
+          operations:
+            - method: GET
+              name: get-account
+              description: Get specific retirement account details
+              call: "tiaa-fdx.get-account"
+              with:
+                accountId: "rest.accountId"
+              outputParameters:
+                - type: object
+                  mapping: "$."
+
+        - path: /v1/accounts/{accountId}/transactions
+          name: transactions
+          description: Account transaction history
+          operations:
+            - method: GET
+              name: list-transactions
+              description: List transactions for a retirement account
+              call: "tiaa-fdx.list-transactions"
+              with:
+                accountId: "rest.accountId"
+                startTime: "rest.startTime"
+                endTime: "rest.endTime"
+              outputParameters:
+                - type: object
+                  mapping: "$."
+
+        - path: /v1/accounts/{accountId}/positions
+          name: investment-positions
+          description: Investment positions and holdings
+          operations:
+            - method: GET
+              name: list-positions
+              description: List investment positions in a retirement account
+              call: "tiaa-fdx.list-positions"
+              with:
+                accountId: "rest.accountId"
+              outputParameters:
+                - type: object
+                  mapping: "$."
+
+        - path: /v1/customer
+          name: customer
+          description: Customer profile
+          operations:
+            - method: GET
+              name: get-customer
+              description: Get customer profile information
+              call: "tiaa-fdx.get-customer"
+              outputParameters:
+                - type: object
+                  mapping: "$."
+
+        - path: /v1/tax-forms
+          name: tax-forms
+          description: Tax documents
+          operations:
+            - method: GET
+              name: list-tax-forms
+              description: List available tax forms
+              call: "tiaa-fdx.list-tax-forms"
+              with:
+                taxYear: "rest.taxYear"
+              outputParameters:
+                - type: object
+                  mapping: "$."
+
+        - path: /v1/plans/{planId}
+          name: plan
+          description: Plan configuration
+          operations:
+            - method: GET
+              name: get-plan
+              description: Get SIA plan configuration
+              call: "tiaa-sia.get-plan"
+              with:
+                planId: "rest.planId"
+              outputParameters:
+                - type: object
+                  mapping: "$."
+
+        - path: /v1/plans/{planId}/participants
+          name: participants
+          description: Plan participants
+          operations:
+            - method: GET
+              name: list-participants
+              description: List plan participants in SIA
+              call: "tiaa-sia.list-participants"
+              with:
+                planId: "rest.planId"
+              outputParameters:
+                - type: object
+                  mapping: "$."
+
+        - path: /v1/plans/{planId}/participants/{participantId}/projections
+          name: income-projections
+          description: Lifetime income projections
+          operations:
+            - method: GET
+              name: get-income-projection
+              description: Get income projection for a participant
+              call: "tiaa-sia.get-income-projection"
+              with:
+                planId: "rest.planId"
+                participantId: "rest.participantId"
+                retirementAge: "rest.retirementAge"
+              outputParameters:
+                - type: object
+                  mapping: "$."
+
+    - type: mcp
+      port: 9090
+      namespace: tiaa-retirement-mcp
+      transport: http
+      description: >-
+        MCP server for AI-assisted TIAA retirement account data access, plan
+        administration, and income planning.
+      tools:
+        - name: list-accounts
+          description: List all TIAA retirement and brokerage accounts for the authenticated customer
+          hints:
+            readOnly: true
+            openWorld: false
+          call: "tiaa-fdx.list-accounts"
+          outputParameters:
+            - type: object
+              mapping: "$."
+
+        - name: get-account
+          description: Get details for a specific TIAA account including current balance and status
+          hints:
+            readOnly: true
+            openWorld: false
+          call: "tiaa-fdx.get-account"
+          with:
+            accountId: "tools.accountId"
+          outputParameters:
+            - type: object
+              mapping: "$."
+
+        - name: list-transactions
+          description: List transaction history for a TIAA account within a date range
+          hints:
+            readOnly: true
+            openWorld: false
+          call: "tiaa-fdx.list-transactions"
+          with:
+            accountId: "tools.accountId"
+            startTime: "tools.startTime"
+            endTime: "tools.endTime"
+          outputParameters:
+            - type: object
+              mapping: "$."
+
+        - name: list-investment-positions
+          description: List current investment positions and holdings in a TIAA account
+          hints:
+            readOnly: true
+            openWorld: false
+          call: "tiaa-fdx.list-positions"
+          with:
+            accountId: "tools.accountId"
+          outputParameters:
+            - type: object
+              mapping: "$."
+
+        - name: get-customer-profile
+          description: Get the authenticated customer's TIAA profile and contact information
+          hints:
+            readOnly: true
+            openWorld: false
+          call: "tiaa-fdx.get-customer"
+          outputParameters:
+            - type: object
+              mapping: "$."
+
+        - name: list-tax-forms
+          description: List available TIAA tax forms (1099-R, 5498) for a given tax year
+          hints:
+            readOnly: true
+            openWorld: false
+          call: "tiaa-fdx.list-tax-forms"
+          with:
+            taxYear: "tools.taxYear"
+          outputParameters:
+            - type: object
+              mapping: "$."
+
+        - name: get-plan-details
+          description: Get SIA plan configuration, eligibility rules, and allocation limits
+          hints:
+            readOnly: true
+            openWorld: false
+          call: "tiaa-sia.get-plan"
+          with:
+            planId: "tools.planId"
+          outputParameters:
+            - type: object
+              mapping: "$."
+
+        - name: list-plan-participants
+          description: List participants enrolled in the Secure Income Account for a plan
+          hints:
+            readOnly: true
+            openWorld: false
+          call: "tiaa-sia.list-participants"
+          with:
+            planId: "tools.planId"
+          outputParameters:
+            - type: object
+              mapping: "$."
+
+        - name: get-participant-details
+          description: Get SIA account details and balance for a specific plan participant
+          hints:
+            readOnly: true
+            openWorld: false
+          call: "tiaa-sia.get-participant"
+          with:
+            planId: "tools.planId"
+            participantId: "tools.participantId"
+          outputParameters:
+            - type: object
+              mapping: "$."
+
+        - name: get-income-projection
+          description: Get projected lifetime monthly and annual income for a participant at a given retirement age
+          hints:
+            readOnly: true
+            openWorld: false
+          call: "tiaa-sia.get-income-projection"
+          with:
+            planId: "tools.planId"
+            participantId: "tools.participantId"
+            retirementAge: "tools.retirementAge"
+          outputParameters:
+            - type: object
+              mapping: "$."

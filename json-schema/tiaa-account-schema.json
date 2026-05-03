@@ -1,0 +1,47 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/tiaa/main/json-schema/tiaa-account-schema.json",
+  "title": "TIAA Account",
+  "description": "Schema for a TIAA retirement, annuity, or brokerage account as returned by the TIAA FDX API.",
+  "type": "object",
+  "properties": {
+    "accountId": {
+      "type": "string",
+      "description": "Unique account identifier assigned by TIAA"
+    },
+    "accountType": {
+      "type": "string",
+      "enum": ["INVESTMENT", "RETIREMENT", "ANNUITY", "BROKERAGE"],
+      "description": "Type of account"
+    },
+    "displayName": {
+      "type": "string",
+      "description": "Human-readable account name"
+    },
+    "accountNumber": {
+      "type": "string",
+      "description": "Masked account number"
+    },
+    "balanceAsOf": {
+      "type": "string",
+      "format": "date-time",
+      "description": "Timestamp of the balance"
+    },
+    "currentBalance": {
+      "type": "number",
+      "format": "double",
+      "description": "Current account balance in USD"
+    },
+    "currency": {
+      "type": "string",
+      "default": "USD",
+      "description": "Currency code (ISO 4217)"
+    },
+    "status": {
+      "type": "string",
+      "enum": ["OPEN", "CLOSED", "PENDING"],
+      "description": "Account status"
+    }
+  },
+  "required": ["accountId", "accountType", "displayName", "currentBalance", "status"]
+}

@@ -1,0 +1,53 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/tiaa/main/json-schema/tiaa-participant-schema.json",
+  "title": "TIAA SIA Participant",
+  "description": "Schema for a participant enrolled in the TIAA Secure Income Account product.",
+  "type": "object",
+  "properties": {
+    "participantId": {
+      "type": "string",
+      "description": "Unique participant identifier"
+    },
+    "planId": {
+      "type": "string",
+      "description": "Plan the participant belongs to"
+    },
+    "firstName": {
+      "type": "string",
+      "description": "Participant first name"
+    },
+    "lastName": {
+      "type": "string",
+      "description": "Participant last name"
+    },
+    "dateOfBirth": {
+      "type": "string",
+      "format": "date",
+      "description": "Date of birth (YYYY-MM-DD)"
+    },
+    "enrollmentDate": {
+      "type": "string",
+      "format": "date",
+      "description": "Date participant was enrolled in SIA"
+    },
+    "accountBalance": {
+      "type": "number",
+      "format": "double",
+      "description": "Current SIA account balance in USD"
+    },
+    "vestingPercentage": {
+      "type": "number",
+      "format": "double",
+      "minimum": 0,
+      "maximum": 100,
+      "description": "Vesting percentage (0-100)"
+    },
+    "status": {
+      "type": "string",
+      "enum": ["ACTIVE", "TERMINATED", "RETIRED", "DECEASED"],
+      "description": "Participant status"
+    }
+  },
+  "required": ["participantId", "planId", "firstName", "lastName", "status"]
+}

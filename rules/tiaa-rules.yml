@@ -1,0 +1,120 @@
+extends:
+  - spectral:oas
+
+rules:
+  tiaa-operation-ids-kebab-case:
+    description: Operation IDs must use camelCase (TIAA convention)
+    severity: warn
+    given: "$.paths[*][*].operationId"
+    then:
+      function: pattern
+      functionOptions:
+        match: "^[a-z][a-zA-Z0-9]+$"
+
+  tiaa-tags-title-case:
+    description: All tags must use Title Case
+    severity: warn
+    given: "$.tags[*].name"
+    then:
+      function: pattern
+      functionOptions:
+        match: "^[A-Z][a-zA-Z0-9 &-]+$"
+
+  tiaa-paths-kebab-case:
+    description: Path segments must use kebab-case
+    severity: error
+    given: "$.paths[*]~"
+    then:
+      function: pattern
+      functionOptions:
+        match: "^(/[a-z][a-z0-9-]*|/\\{[a-zA-Z][a-zA-Z0-9]+\\})*$"
+
+  tiaa-security-oauth2-required:
+    description: All operations must require OAuth2 security
+    severity: error
+    given: "$.paths[*][get,post,put,patch,delete]"
+    then:
+      field: security
+      function: defined
+
+  tiaa-responses-have-200:
+    description: GET operations must include a 200 response
+    severity: warn
+    given: "$.paths[*].get"
+    then:
+      field: responses.200
+      function: defined
+
+  tiaa-responses-have-content:
+    description: 200 responses should include a content schema
+    severity: warn
+    given: "$.paths[*][*].responses.200"
+    then:
+      field: content
+      function: defined
+
+  tiaa-request-bodies-have-schema:
+    description: Request bodies must define a JSON schema
+    severity: error
+    given: "$.paths[*][post,put,patch].requestBody.content.application/json"
+    then:
+      field: schema
+      function: defined
+
+  tiaa-components-schemas-defined:
+    description: All $ref references must resolve within components/schemas
+    severity: error
+    given: "$.paths[*][*].responses[*].content[*].schema.$ref"
+    then:
+      function: truthy
+
+  tiaa-sensitive-data-description:
+    description: Fields handling SSN or PII must have a description
+    severity: warn
+    given: "$.components.schemas[*].properties[ssn,socialSecurityNumber,taxId]"
+    then:
+      field: description
+      function: defined
+
+  tiaa-pagination-on-list-operations:
+    description: List operations should support pagination parameters
+    severity: info
+    given: "$.paths[*].get"
+    then:
+      function: schema
+      functionOptions:
+        schema:
+          properties:
+            operationId:
+              pattern: "^list"
+
+  tiaa-servers-https-only:
+    description: All server URLs must use HTTPS
+    severity: error
+    given: "$.servers[*].url"
+    then:
+      function: pattern
+      functionOptions:
+        match: "^https://"
+
+  tiaa-info-contact-defined:
+    description: API info must include contact information
+    severity: warn
+    given: "$.info"
+    then:
+      field: contact
+      function: defined
+
+  tiaa-financial-amount-type:
+    description: Financial amount fields should use number type with double format
+    severity: info
+    given: "$.components.schemas[*].properties[amount,balance,currentBalance,marketValue,costBasis]"
+    then:
+      function: schema
+      functionOptions:
+        schema:
+          properties:
+            type:
+              const: number
+            format:
+              const: double
