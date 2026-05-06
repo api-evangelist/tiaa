@@ -4,172 +4,39 @@ schema: https://raw.githubusercontent.com/api-evangelist/interface-research/main
 provider: TIAA
 providerId: tiaa
 created: '2026-05-04'
-modified: '2026-05-04'
+modified: '2026-05-05'
+reconciled: false
 tags:
   - Finance
-  - Financial Data
-  - Fintech
-  - Insurance
-  - Investment Management
   - Retirement
-  - Wealth Management
-description: Machine-readable plans and pricing scaffold for this API provider. Conforms to the API Commons
-  Plans schema. Tier limits and prices are scaffold defaults; replace with provider-published values.
+  - Investment Management
+  - B2B
+description: TIAA does not operate a public API marketplace or self-service developer portal. APIs (FDX
+  account aggregation, Secure Income Account, Gateway, Payroll360) are exposed to recordkeeping partners,
+  plan sponsors, payroll providers, and aggregators under bilateral B2B agreements. There is no published
+  rate card.
+sources:
+  - https://www.tiaa.org/public/about-tiaa/working-at-tiaa/api-developer
+notes: TIAA APIs are gated behind partner / plan-sponsor relationships. No public pricing, no self-serve
+  free tier. Reconciliation requires the executed master services or data-sharing agreement.
 plans:
-  - id: tiaa-free
-    name: Free
-    type: freemium
-    description: Free entry tier for the TIAA API surface. Intended for evaluation, prototyping, and low-volume
-      integrations. Real limits and pricing must be reconciled with the provider's published plan documentation.
-    entries:
-      - label: API Requests
-        description: Monthly API request quota across all included endpoints
-        name: api_requests
-        type: quota
-        metric: requests
-        limit: 1000
-        timeFrame: month
-        geo: global
-        domains:
-          - https://api.tiaa.org/fdx/v6
-          - https://api.tiaa.org/sia/v1
-          - https://api.tiaa.org/gateway/v1
-          - https://api.tiaa.org/payroll360/v1
-        unit: 1
-        price: '0.00'
-        userMultiplied: false
-      - label: Rate Limit
-        description: Maximum requests per minute on the free tier
-        name: rate_limit
-        type: rate
-        metric: requests_per_minute
-        limit: 10
-        timeFrame: minute
-        geo: global
-        domains:
-          - https://api.tiaa.org/fdx/v6
-          - https://api.tiaa.org/sia/v1
-          - https://api.tiaa.org/gateway/v1
-          - https://api.tiaa.org/payroll360/v1
-        unit: 1
-        price: '0.00'
-        userMultiplied: false
-    elements:
-      - name: Public Documentation
-      - name: Community Support
-      - name: Sandbox Access
-      - name: TIAA Financial Data Exchange API
-      - name: TIAA Secure Income Account API
-      - name: TIAA Gateway API
-      - name: TIAA Payroll360 API
-  - id: tiaa-pro
-    name: Professional
-    type: paid
-    description: Production tier for TIAA. Provides higher quotas, priority support, and access to the
-      broader API portfolio. Pricing placeholder; align with the provider's pricing page.
-    entries:
-      - label: API Requests
-        description: Monthly API request quota
-        name: api_requests
-        type: quota
-        metric: requests
-        limit: 100000
-        timeFrame: month
-        geo: global
-        domains:
-          - https://api.tiaa.org/fdx/v6
-          - https://api.tiaa.org/sia/v1
-          - https://api.tiaa.org/gateway/v1
-          - https://api.tiaa.org/payroll360/v1
-        unit: 1
-        price: TBD
-        userMultiplied: false
-      - label: Rate Limit
-        description: Maximum requests per minute on the professional tier
-        name: rate_limit
-        type: rate
-        metric: requests_per_minute
-        limit: 100
-        timeFrame: minute
-        geo: global
-        domains:
-          - https://api.tiaa.org/fdx/v6
-          - https://api.tiaa.org/sia/v1
-          - https://api.tiaa.org/gateway/v1
-          - https://api.tiaa.org/payroll360/v1
-        unit: 1
-        price: '0.00'
-        userMultiplied: false
-      - label: Overage
-        description: Per-request price after monthly quota is exceeded
-        name: overage
-        type: metered
-        metric: requests
-        limit: -1
-        timeFrame: month
-        geo: global
-        domains:
-          - https://api.tiaa.org/fdx/v6
-          - https://api.tiaa.org/sia/v1
-          - https://api.tiaa.org/gateway/v1
-          - https://api.tiaa.org/payroll360/v1
-        unit: 1000
-        price: TBD
-        userMultiplied: false
-    elements:
-      - name: All Production Endpoints
-      - name: Email Support
-      - name: SLA Targets
-      - name: Webhook Subscriptions
-      - name: TIAA Financial Data Exchange API
-      - name: TIAA Secure Income Account API
-      - name: TIAA Gateway API
-      - name: TIAA Payroll360 API
-  - id: tiaa-enterprise
-    name: Enterprise
+  - id: tiaa-contact-sales
+    name: Contact Sales
     type: enterprise
-    description: Custom-negotiated tier for TIAA. Includes dedicated capacity, contractual SLAs, security
-      review, data residency options, and named technical account management.
+    description: Bilaterally negotiated access for plan sponsors, recordkeepers, payroll providers, and
+      data aggregators. Pricing, quotas, and SLAs are set in the partner agreement.
     entries:
-      - label: API Requests
-        description: Negotiated request volume; -1 indicates uncapped subject to fair use
-        name: api_requests
-        type: quota
-        metric: requests
+      - label: Custom Quote
+        name: custom_quote
+        type: flat
+        metric: varies
         limit: -1
-        timeFrame: month
-        geo: configurable
-        domains:
-          - https://api.tiaa.org/fdx/v6
-          - https://api.tiaa.org/sia/v1
-          - https://api.tiaa.org/gateway/v1
-          - https://api.tiaa.org/payroll360/v1
+        timeFrame: usage
+        geo: US
         unit: 1
-        price: custom
-        userMultiplied: false
-      - label: Rate Limit
-        description: Negotiated burst and steady-state rate
-        name: rate_limit
-        type: rate
-        metric: requests_per_minute
-        limit: 1000
-        timeFrame: minute
-        geo: configurable
-        domains:
-          - https://api.tiaa.org/fdx/v6
-          - https://api.tiaa.org/sia/v1
-          - https://api.tiaa.org/gateway/v1
-          - https://api.tiaa.org/payroll360/v1
-        unit: 1
-        price: custom
+        price: contact sales
         userMultiplied: false
     elements:
-      - name: Unlimited / Negotiated Volume
-      - name: 24/7 Dedicated Support
-      - name: Contractual SLA
-      - name: Security & Compliance Review
-      - name: Dedicated Account Manager
-      - name: Custom Data Residency
       - name: TIAA Financial Data Exchange API
       - name: TIAA Secure Income Account API
       - name: TIAA Gateway API
