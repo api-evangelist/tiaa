@@ -134,11 +134,11 @@ common:
     url: https://www.linkedin.com/company/tiaa
   - type: Twitter
     url: https://twitter.com/tiaa
-  - type: Privacy Policy
+  - type: PrivacyPolicy
     url: https://www.tiaa.org/public/pdf/t/privacy_notice.pdf
-  - type: Terms of Service
+  - type: TermsOfService
     url: https://www.tiaa.org/public/pdf/t/tiaa_website_terms_of_use.pdf
-  - type: JSON-LD
+  - type: JSONLD
     url: json-ld/tiaa-context.jsonld
   - type: JSONSchema
     url: json-schema/tiaa-account-schema.json
