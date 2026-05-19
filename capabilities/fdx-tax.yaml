@@ -1,0 +1,79 @@
+naftiko: 1.0.0-alpha2
+info:
+  label: TIAA Financial Data Exchange API — Tax
+  description: 'TIAA Financial Data Exchange API — Tax. 1 operations. Lead operation: List Tax Forms. Self-contained Naftiko
+    capability covering one Tiaa business surface.'
+  tags:
+  - Tiaa
+  - Tax
+  created: '2026-05-19'
+  modified: '2026-05-19'
+binds:
+- namespace: env
+  keys:
+    TIAA_API_KEY: TIAA_API_KEY
+capability:
+  consumes:
+  - type: http
+    namespace: fdx-tax
+    baseUri: https://api.tiaa.org/fdx/v6
+    description: TIAA Financial Data Exchange API — Tax business capability. Self-contained, no shared references.
+    resources:
+    - name: tax-forms
+      path: /tax-forms
+      operations:
+      - name: listtaxforms
+        method: GET
+        description: List Tax Forms
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: taxYear
+          in: query
+          type: integer
+          description: Filter by tax year
+    authentication:
+      type: bearer
+      token: '{{env.TIAA_API_KEY}}'
+  exposes:
+  - type: rest
+    namespace: fdx-tax-rest
+    port: 8080
+    description: REST adapter for TIAA Financial Data Exchange API — Tax. One Spectral-compliant resource per consumed operation,
+      prefixed with /v1.
+    resources:
+    - path: /v1/tax-forms
+      name: tax-forms
+      description: REST surface for tax-forms.
+      operations:
+      - method: GET
+        name: listtaxforms
+        description: List Tax Forms
+        call: fdx-tax.listtaxforms
+        with:
+          taxYear: rest.taxYear
+        outputParameters:
+        - type: object
+          mapping: $.
+  - type: mcp
+    namespace: fdx-tax-mcp
+    port: 9090
+    transport: http
+    description: MCP adapter for TIAA Financial Data Exchange API — Tax. One tool per consumed operation, routed inline through
+      this capability's consumes block.
+    tools:
+    - name: list-tax-forms
+      description: List Tax Forms
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: fdx-tax.listtaxforms
+      with:
+        taxYear: tools.taxYear
+      outputParameters:
+      - type: object
+        mapping: $.

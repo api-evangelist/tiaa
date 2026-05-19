@@ -1,0 +1,70 @@
+naftiko: 1.0.0-alpha2
+info:
+  label: TIAA Financial Data Exchange API — Customer
+  description: 'TIAA Financial Data Exchange API — Customer. 1 operations. Lead operation: Get Customer Profile. Self-contained
+    Naftiko capability covering one Tiaa business surface.'
+  tags:
+  - Tiaa
+  - Customer
+  created: '2026-05-19'
+  modified: '2026-05-19'
+binds:
+- namespace: env
+  keys:
+    TIAA_API_KEY: TIAA_API_KEY
+capability:
+  consumes:
+  - type: http
+    namespace: fdx-customer
+    baseUri: https://api.tiaa.org/fdx/v6
+    description: TIAA Financial Data Exchange API — Customer business capability. Self-contained, no shared references.
+    resources:
+    - name: customer
+      path: /customer
+      operations:
+      - name: getcustomer
+        method: GET
+        description: Get Customer Profile
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+    authentication:
+      type: bearer
+      token: '{{env.TIAA_API_KEY}}'
+  exposes:
+  - type: rest
+    namespace: fdx-customer-rest
+    port: 8080
+    description: REST adapter for TIAA Financial Data Exchange API — Customer. One Spectral-compliant resource per consumed
+      operation, prefixed with /v1.
+    resources:
+    - path: /v1/customer
+      name: customer
+      description: REST surface for customer.
+      operations:
+      - method: GET
+        name: getcustomer
+        description: Get Customer Profile
+        call: fdx-customer.getcustomer
+        outputParameters:
+        - type: object
+          mapping: $.
+  - type: mcp
+    namespace: fdx-customer-mcp
+    port: 9090
+    transport: http
+    description: MCP adapter for TIAA Financial Data Exchange API — Customer. One tool per consumed operation, routed inline
+      through this capability's consumes block.
+    tools:
+    - name: get-customer-profile
+      description: Get Customer Profile
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: fdx-customer.getcustomer
+      outputParameters:
+      - type: object
+        mapping: $.

@@ -1,0 +1,96 @@
+naftiko: 1.0.0-alpha2
+info:
+  label: TIAA Secure Income Account API — Projections
+  description: 'TIAA Secure Income Account API — Projections. 1 operations. Lead operation: Get Income Projection. Self-contained
+    Naftiko capability covering one Tiaa business surface.'
+  tags:
+  - Tiaa
+  - Projections
+  created: '2026-05-19'
+  modified: '2026-05-19'
+binds:
+- namespace: env
+  keys:
+    TIAA_API_KEY: TIAA_API_KEY
+capability:
+  consumes:
+  - type: http
+    namespace: sia-projections
+    baseUri: https://api.tiaa.org/sia/v1
+    description: TIAA Secure Income Account API — Projections business capability. Self-contained, no shared references.
+    resources:
+    - name: plans-planId-participants-participantId-projections
+      path: /plans/{planId}/participants/{participantId}/projections
+      operations:
+      - name: getincomeprojection
+        method: GET
+        description: Get Income Projection
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: planId
+          in: path
+          type: string
+          required: true
+        - name: participantId
+          in: path
+          type: string
+          required: true
+        - name: retirementAge
+          in: query
+          type: integer
+          description: Target retirement age for projection
+        - name: projectionDate
+          in: query
+          type: string
+    authentication:
+      type: bearer
+      token: '{{env.TIAA_API_KEY}}'
+  exposes:
+  - type: rest
+    namespace: sia-projections-rest
+    port: 8080
+    description: REST adapter for TIAA Secure Income Account API — Projections. One Spectral-compliant resource per consumed
+      operation, prefixed with /v1.
+    resources:
+    - path: /v1/plans/{planid}/participants/{participantid}/projections
+      name: plans-planid-participants-participantid-projections
+      description: REST surface for plans-planId-participants-participantId-projections.
+      operations:
+      - method: GET
+        name: getincomeprojection
+        description: Get Income Projection
+        call: sia-projections.getincomeprojection
+        with:
+          planId: rest.planId
+          participantId: rest.participantId
+          retirementAge: rest.retirementAge
+          projectionDate: rest.projectionDate
+        outputParameters:
+        - type: object
+          mapping: $.
+  - type: mcp
+    namespace: sia-projections-mcp
+    port: 9090
+    transport: http
+    description: MCP adapter for TIAA Secure Income Account API — Projections. One tool per consumed operation, routed inline
+      through this capability's consumes block.
+    tools:
+    - name: get-income-projection
+      description: Get Income Projection
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: sia-projections.getincomeprojection
+      with:
+        planId: tools.planId
+        participantId: tools.participantId
+        retirementAge: tools.retirementAge
+        projectionDate: tools.projectionDate
+      outputParameters:
+      - type: object
+        mapping: $.
