@@ -3,13 +3,10 @@
   "feeds": [
     {
       "source": "https://www.tiaa.org/public/learn",
-      "error": "timeout"
-    },
-    {
-      "source": "https://developer.tiaa.org/public/fdx",
-      "error": "timeout"
+      "saved": 0,
+      "error": "TimeoutError"
     }
   ],
-  "fetched": "2026-06-14T20:42:17Z",
+  "fetched": "2026-06-27T13:18:00Z",
   "post_count": 0
 }
