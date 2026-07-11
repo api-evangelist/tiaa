@@ -1,0 +1,64 @@
+generated: '2026-07-11'
+method: derived
+source: openapi/tiaa-fdx-openapi.yml, openapi/tiaa-sia-openapi.yml
+schemes:
+- name: OAuth2
+  source: openapi/tiaa-fdx-openapi.yml
+  flows:
+  - flow: authorizationCode
+    authorizationUrl: https://auth.tiaa.org/oauth2/authorize
+    tokenUrl: https://auth.tiaa.org/oauth2/token
+- name: ClientCredentials
+  source: openapi/tiaa-sia-openapi.yml
+  flows:
+  - flow: clientCredentials
+    tokenUrl: https://auth.tiaa.org/oauth2/token
+scopes:
+- scope: accounts
+  description: Account data access
+  flows:
+  - authorizationCode
+  sources:
+  - openapi/tiaa-fdx-openapi.yml
+- scope: investments
+  description: Investment data access
+  flows:
+  - authorizationCode
+  sources:
+  - openapi/tiaa-fdx-openapi.yml
+- scope: openid
+  description: OpenID Connect
+  flows:
+  - authorizationCode
+  sources:
+  - openapi/tiaa-fdx-openapi.yml
+- scope: profile
+  description: Customer profile
+  flows:
+  - authorizationCode
+  sources:
+  - openapi/tiaa-fdx-openapi.yml
+- scope: sia:read
+  description: Read SIA data
+  flows:
+  - clientCredentials
+  sources:
+  - openapi/tiaa-sia-openapi.yml
+- scope: sia:write
+  description: Write SIA data
+  flows:
+  - clientCredentials
+  sources:
+  - openapi/tiaa-sia-openapi.yml
+- scope: tax
+  description: Tax document access
+  flows:
+  - authorizationCode
+  sources:
+  - openapi/tiaa-fdx-openapi.yml
+- scope: transactions
+  description: Transaction data access
+  flows:
+  - authorizationCode
+  sources:
+  - openapi/tiaa-fdx-openapi.yml

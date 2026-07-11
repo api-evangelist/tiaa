@@ -110,6 +110,10 @@ apis:
       - type: Documentation
         url: https://developer.tiaa.org/public/payroll360
 common:
+  - type: Authentication
+    url: authentication/tiaa-authentication.yml
+  - type: OAuthScopes
+    url: scopes/tiaa-scopes.yml
   - type: Portal
     url: https://developer.tiaa.org
   - type: Website
