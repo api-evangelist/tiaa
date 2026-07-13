@@ -2,11 +2,10 @@
   "repo": "tiaa",
   "feeds": [
     {
-      "source": "https://www.tiaa.org/public/learn",
-      "saved": 0,
+      "source": "https://developer.tiaa.org/public/fdx",
       "error": "TimeoutError"
     }
   ],
-  "fetched": "2026-06-27T13:18:00Z",
+  "fetched": "2026-07-11T11:50:51Z",
   "post_count": 0
 }
