@@ -110,6 +110,8 @@ apis:
       - type: Documentation
         url: https://developer.tiaa.org/public/payroll360
 common:
+  - type: AgenticAccess
+    url: agentic-access/tiaa-agentic-access.yml
   - type: DomainSecurity
     url: security/tiaa-domain-security.yml
   - type: Authentication
