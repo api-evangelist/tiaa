@@ -1,0 +1,90 @@
+openapi: 3.0.3
+info:
+  title: TIAA Financial Data Exchange Accounts Plans API
+  description: The TIAA Financial Data Exchange (FDX) API provides authorized fintechs and financial aggregators with secure access to customer account data, including balances, transactions, investment positions, and income information from TIAA retirement and brokerage accounts. This API is built on the FDX open standard (v6.x) and uses OAuth 2.0 for customer-consented data sharing.
+  version: '6.0'
+  contact:
+    name: TIAA Developer Support
+    url: https://developer.tiaa.org/public/fdx
+  termsOfService: https://developer.tiaa.org/public/terms
+  license:
+    name: TIAA API License
+    url: https://developer.tiaa.org/public/terms
+servers:
+- url: https://api.tiaa.org/fdx/v6
+  description: TIAA FDX Production API
+tags:
+- name: Plans
+  description: Plan configuration and eligibility
+paths:
+  /plans/{planId}:
+    get:
+      operationId: getPlan
+      summary: Get Plan Details
+      description: Returns SIA configuration and eligibility rules for a specific plan.
+      tags:
+      - Plans
+      security:
+      - ClientCredentials: []
+      parameters:
+      - name: planId
+        in: path
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: Plan details
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Plan'
+components:
+  schemas:
+    Plan:
+      type: object
+      properties:
+        planId:
+          type: string
+        planName:
+          type: string
+        planType:
+          type: string
+          enum:
+          - 401k
+          - 403b
+          - 457b
+          - QDRO
+        siaEnabled:
+          type: boolean
+        eligibilityRules:
+          type: object
+          properties:
+            minimumAge:
+              type: integer
+            minimumServiceMonths:
+              type: integer
+            employeeClassesEligible:
+              type: array
+              items:
+                type: string
+        maxAllocationPercentage:
+          type: number
+          format: double
+        minAllocationPercentage:
+          type: number
+          format: double
+  securitySchemes:
+    OAuth2:
+      type: oauth2
+      flows:
+        authorizationCode:
+          authorizationUrl: https://auth.tiaa.org/oauth2/authorize
+          tokenUrl: https://auth.tiaa.org/oauth2/token
+          scopes:
+            openid: OpenID Connect
+            profile: Customer profile
+            accounts: Account data access
+            transactions: Transaction data access
+            investments: Investment data access
+            tax: Tax document access

@@ -1,0 +1,103 @@
+openapi: 3.0.3
+info:
+  title: TIAA Financial Data Exchange Accounts Projections API
+  description: The TIAA Financial Data Exchange (FDX) API provides authorized fintechs and financial aggregators with secure access to customer account data, including balances, transactions, investment positions, and income information from TIAA retirement and brokerage accounts. This API is built on the FDX open standard (v6.x) and uses OAuth 2.0 for customer-consented data sharing.
+  version: '6.0'
+  contact:
+    name: TIAA Developer Support
+    url: https://developer.tiaa.org/public/fdx
+  termsOfService: https://developer.tiaa.org/public/terms
+  license:
+    name: TIAA API License
+    url: https://developer.tiaa.org/public/terms
+servers:
+- url: https://api.tiaa.org/fdx/v6
+  description: TIAA FDX Production API
+tags:
+- name: Projections
+  description: Income projections and illustrations
+paths:
+  /plans/{planId}/participants/{participantId}/projections:
+    get:
+      operationId: getIncomeProjection
+      summary: Get Income Projection
+      description: Returns projected lifetime income amounts for a participant based on current balance and future contributions.
+      tags:
+      - Projections
+      security:
+      - ClientCredentials: []
+      parameters:
+      - name: planId
+        in: path
+        required: true
+        schema:
+          type: string
+      - name: participantId
+        in: path
+        required: true
+        schema:
+          type: string
+      - name: retirementAge
+        in: query
+        schema:
+          type: integer
+        description: Target retirement age for projection
+      - name: projectionDate
+        in: query
+        schema:
+          type: string
+          format: date
+      responses:
+        '200':
+          description: Income projection data
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/IncomeProjection'
+components:
+  schemas:
+    IncomeProjection:
+      type: object
+      properties:
+        participantId:
+          type: string
+        currentBalance:
+          type: number
+          format: double
+        projectedRetirementAge:
+          type: integer
+        monthlyIncomeProjection:
+          type: number
+          format: double
+          description: Estimated monthly lifetime income at retirement
+        annualIncomeProjection:
+          type: number
+          format: double
+        projectionDate:
+          type: string
+          format: date
+        assumptions:
+          type: object
+          properties:
+            discountRate:
+              type: number
+              format: double
+            mortalityTable:
+              type: string
+            inflationRate:
+              type: number
+              format: double
+  securitySchemes:
+    OAuth2:
+      type: oauth2
+      flows:
+        authorizationCode:
+          authorizationUrl: https://auth.tiaa.org/oauth2/authorize
+          tokenUrl: https://auth.tiaa.org/oauth2/token
+          scopes:
+            openid: OpenID Connect
+            profile: Customer profile
+            accounts: Account data access
+            transactions: Transaction data access
+            investments: Investment data access
+            tax: Tax document access

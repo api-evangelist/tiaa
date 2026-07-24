@@ -1,0 +1,94 @@
+openapi: 3.0.3
+info:
+  title: TIAA Financial Data Exchange Accounts Investments API
+  description: The TIAA Financial Data Exchange (FDX) API provides authorized fintechs and financial aggregators with secure access to customer account data, including balances, transactions, investment positions, and income information from TIAA retirement and brokerage accounts. This API is built on the FDX open standard (v6.x) and uses OAuth 2.0 for customer-consented data sharing.
+  version: '6.0'
+  contact:
+    name: TIAA Developer Support
+    url: https://developer.tiaa.org/public/fdx
+  termsOfService: https://developer.tiaa.org/public/terms
+  license:
+    name: TIAA API License
+    url: https://developer.tiaa.org/public/terms
+servers:
+- url: https://api.tiaa.org/fdx/v6
+  description: TIAA FDX Production API
+tags:
+- name: Investments
+  description: Investment positions and holdings
+paths:
+  /accounts/{accountId}/positions:
+    get:
+      operationId: listPositions
+      summary: List Investment Positions
+      description: Returns current investment positions (holdings) for a specific account.
+      tags:
+      - Investments
+      security:
+      - OAuth2: []
+      parameters:
+      - name: accountId
+        in: path
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: Investment positions
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/PositionList'
+components:
+  schemas:
+    Position:
+      type: object
+      properties:
+        positionId:
+          type: string
+        accountId:
+          type: string
+        symbol:
+          type: string
+          description: Security symbol or ticker
+        description:
+          type: string
+        quantity:
+          type: number
+          format: double
+        marketValue:
+          type: number
+          format: double
+        costBasis:
+          type: number
+          format: double
+        priceAsOf:
+          type: string
+          format: date-time
+        price:
+          type: number
+          format: double
+        currency:
+          type: string
+          default: USD
+    PositionList:
+      type: object
+      properties:
+        positions:
+          type: array
+          items:
+            $ref: '#/components/schemas/Position'
+  securitySchemes:
+    OAuth2:
+      type: oauth2
+      flows:
+        authorizationCode:
+          authorizationUrl: https://auth.tiaa.org/oauth2/authorize
+          tokenUrl: https://auth.tiaa.org/oauth2/token
+          scopes:
+            openid: OpenID Connect
+            profile: Customer profile
+            accounts: Account data access
+            transactions: Transaction data access
+            investments: Investment data access
+            tax: Tax document access

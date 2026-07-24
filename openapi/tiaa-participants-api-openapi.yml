@@ -1,0 +1,196 @@
+openapi: 3.0.3
+info:
+  title: TIAA Financial Data Exchange Accounts Participants API
+  description: The TIAA Financial Data Exchange (FDX) API provides authorized fintechs and financial aggregators with secure access to customer account data, including balances, transactions, investment positions, and income information from TIAA retirement and brokerage accounts. This API is built on the FDX open standard (v6.x) and uses OAuth 2.0 for customer-consented data sharing.
+  version: '6.0'
+  contact:
+    name: TIAA Developer Support
+    url: https://developer.tiaa.org/public/fdx
+  termsOfService: https://developer.tiaa.org/public/terms
+  license:
+    name: TIAA API License
+    url: https://developer.tiaa.org/public/terms
+servers:
+- url: https://api.tiaa.org/fdx/v6
+  description: TIAA FDX Production API
+tags:
+- name: Participants
+  description: Participant account management
+paths:
+  /plans/{planId}/participants:
+    get:
+      operationId: listParticipants
+      summary: List Plan Participants
+      description: Returns participants enrolled in the SIA product for a given plan.
+      tags:
+      - Participants
+      security:
+      - ClientCredentials: []
+      parameters:
+      - name: planId
+        in: path
+        required: true
+        schema:
+          type: string
+        description: Unique plan identifier
+      - name: page
+        in: query
+        schema:
+          type: integer
+      - name: pageSize
+        in: query
+        schema:
+          type: integer
+      responses:
+        '200':
+          description: List of participants
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ParticipantList'
+        '401':
+          description: Unauthorized
+        '403':
+          description: Forbidden
+    post:
+      operationId: enrollParticipant
+      summary: Enroll Participant in SIA
+      description: Enrolls a new participant in the Secure Income Account product for the plan.
+      tags:
+      - Participants
+      security:
+      - ClientCredentials: []
+      parameters:
+      - name: planId
+        in: path
+        required: true
+        schema:
+          type: string
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/ParticipantEnrollment'
+      responses:
+        '201':
+          description: Participant enrolled
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Participant'
+        '400':
+          description: Invalid request
+  /plans/{planId}/participants/{participantId}:
+    get:
+      operationId: getParticipant
+      summary: Get Participant Details
+      description: Returns SIA account details for a specific participant.
+      tags:
+      - Participants
+      security:
+      - ClientCredentials: []
+      parameters:
+      - name: planId
+        in: path
+        required: true
+        schema:
+          type: string
+      - name: participantId
+        in: path
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: Participant details
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Participant'
+        '404':
+          description: Participant not found
+components:
+  schemas:
+    Participant:
+      type: object
+      properties:
+        participantId:
+          type: string
+        planId:
+          type: string
+        firstName:
+          type: string
+        lastName:
+          type: string
+        dateOfBirth:
+          type: string
+          format: date
+        enrollmentDate:
+          type: string
+          format: date
+        accountBalance:
+          type: number
+          format: double
+        vestingPercentage:
+          type: number
+          format: double
+        status:
+          type: string
+          enum:
+          - ACTIVE
+          - TERMINATED
+          - RETIRED
+          - DECEASED
+    ParticipantEnrollment:
+      type: object
+      required:
+      - firstName
+      - lastName
+      - dateOfBirth
+      - ssn
+      properties:
+        firstName:
+          type: string
+        lastName:
+          type: string
+        dateOfBirth:
+          type: string
+          format: date
+        ssn:
+          type: string
+          description: Social Security Number (encrypted)
+        email:
+          type: string
+          format: email
+        allocationPercentage:
+          type: number
+          format: double
+          description: Initial SIA allocation percentage
+    ParticipantList:
+      type: object
+      properties:
+        participants:
+          type: array
+          items:
+            $ref: '#/components/schemas/Participant'
+        totalElements:
+          type: integer
+        page:
+          type: integer
+        pageSize:
+          type: integer
+  securitySchemes:
+    OAuth2:
+      type: oauth2
+      flows:
+        authorizationCode:
+          authorizationUrl: https://auth.tiaa.org/oauth2/authorize
+          tokenUrl: https://auth.tiaa.org/oauth2/token
+          scopes:
+            openid: OpenID Connect
+            profile: Customer profile
+            accounts: Account data access
+            transactions: Transaction data access
+            investments: Investment data access
+            tax: Tax document access

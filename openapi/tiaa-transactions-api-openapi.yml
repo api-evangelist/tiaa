@@ -1,0 +1,130 @@
+openapi: 3.0.3
+info:
+  title: TIAA Financial Data Exchange Accounts Transactions API
+  description: The TIAA Financial Data Exchange (FDX) API provides authorized fintechs and financial aggregators with secure access to customer account data, including balances, transactions, investment positions, and income information from TIAA retirement and brokerage accounts. This API is built on the FDX open standard (v6.x) and uses OAuth 2.0 for customer-consented data sharing.
+  version: '6.0'
+  contact:
+    name: TIAA Developer Support
+    url: https://developer.tiaa.org/public/fdx
+  termsOfService: https://developer.tiaa.org/public/terms
+  license:
+    name: TIAA API License
+    url: https://developer.tiaa.org/public/terms
+servers:
+- url: https://api.tiaa.org/fdx/v6
+  description: TIAA FDX Production API
+tags:
+- name: Transactions
+  description: Account transaction history
+paths:
+  /accounts/{accountId}/transactions:
+    get:
+      operationId: listTransactions
+      summary: List Account Transactions
+      description: Returns transaction history for a specific account within an optional date range.
+      tags:
+      - Transactions
+      security:
+      - OAuth2: []
+      parameters:
+      - name: accountId
+        in: path
+        required: true
+        schema:
+          type: string
+      - name: startTime
+        in: query
+        schema:
+          type: string
+          format: date-time
+        description: Start of transaction date range (ISO 8601)
+      - name: endTime
+        in: query
+        schema:
+          type: string
+          format: date-time
+        description: End of transaction date range (ISO 8601)
+      - name: offset
+        in: query
+        schema:
+          type: integer
+      - name: limit
+        in: query
+        schema:
+          type: integer
+      responses:
+        '200':
+          description: Transaction list
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/TransactionList'
+        '404':
+          description: Account not found
+components:
+  schemas:
+    Transaction:
+      type: object
+      properties:
+        transactionId:
+          type: string
+        accountId:
+          type: string
+        transactionType:
+          type: string
+          enum:
+          - CREDIT
+          - DEBIT
+          - DIVIDEND
+          - INTEREST
+          - CONTRIBUTION
+          - WITHDRAWAL
+          - TRANSFER
+        amount:
+          type: number
+          format: double
+        description:
+          type: string
+        transactionDate:
+          type: string
+          format: date-time
+        postedDate:
+          type: string
+          format: date-time
+        status:
+          type: string
+          enum:
+          - PENDING
+          - POSTED
+    TransactionList:
+      type: object
+      properties:
+        transactions:
+          type: array
+          items:
+            $ref: '#/components/schemas/Transaction'
+        page:
+          $ref: '#/components/schemas/Page'
+    Page:
+      type: object
+      properties:
+        nextOffset:
+          type: integer
+        totalElements:
+          type: integer
+        limit:
+          type: integer
+  securitySchemes:
+    OAuth2:
+      type: oauth2
+      flows:
+        authorizationCode:
+          authorizationUrl: https://auth.tiaa.org/oauth2/authorize
+          tokenUrl: https://auth.tiaa.org/oauth2/token
+          scopes:
+            openid: OpenID Connect
+            profile: Customer profile
+            accounts: Account data access
+            transactions: Transaction data access
+            investments: Investment data access
+            tax: Tax document access

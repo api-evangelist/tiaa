@@ -1,0 +1,108 @@
+openapi: 3.0.3
+info:
+  title: TIAA Financial Data Exchange Accounts Contributions API
+  description: The TIAA Financial Data Exchange (FDX) API provides authorized fintechs and financial aggregators with secure access to customer account data, including balances, transactions, investment positions, and income information from TIAA retirement and brokerage accounts. This API is built on the FDX open standard (v6.x) and uses OAuth 2.0 for customer-consented data sharing.
+  version: '6.0'
+  contact:
+    name: TIAA Developer Support
+    url: https://developer.tiaa.org/public/fdx
+  termsOfService: https://developer.tiaa.org/public/terms
+  license:
+    name: TIAA API License
+    url: https://developer.tiaa.org/public/terms
+servers:
+- url: https://api.tiaa.org/fdx/v6
+  description: TIAA FDX Production API
+tags:
+- name: Contributions
+  description: Contribution and allocation management
+paths:
+  /plans/{planId}/contributions:
+    post:
+      operationId: submitContribution
+      summary: Submit Contribution
+      description: Submits a contribution or allocation to a participant's SIA account.
+      tags:
+      - Contributions
+      security:
+      - ClientCredentials: []
+      parameters:
+      - name: planId
+        in: path
+        required: true
+        schema:
+          type: string
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Contribution'
+      responses:
+        '200':
+          description: Contribution submitted
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ContributionResult'
+        '400':
+          description: Invalid contribution data
+components:
+  schemas:
+    Contribution:
+      type: object
+      required:
+      - participantId
+      - amount
+      - contributionType
+      properties:
+        participantId:
+          type: string
+        amount:
+          type: number
+          format: double
+        contributionType:
+          type: string
+          enum:
+          - EMPLOYEE
+          - EMPLOYER
+          - ROLLOVER
+        payrollDate:
+          type: string
+          format: date
+        allocationPercentage:
+          type: number
+          format: double
+    ContributionResult:
+      type: object
+      properties:
+        confirmationId:
+          type: string
+        participantId:
+          type: string
+        amount:
+          type: number
+          format: double
+        processedDate:
+          type: string
+          format: date-time
+        status:
+          type: string
+          enum:
+          - ACCEPTED
+          - PENDING
+          - REJECTED
+  securitySchemes:
+    OAuth2:
+      type: oauth2
+      flows:
+        authorizationCode:
+          authorizationUrl: https://auth.tiaa.org/oauth2/authorize
+          tokenUrl: https://auth.tiaa.org/oauth2/token
+          scopes:
+            openid: OpenID Connect
+            profile: Customer profile
+            accounts: Account data access
+            transactions: Transaction data access
+            investments: Investment data access
+            tax: Tax document access
