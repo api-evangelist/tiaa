@@ -8,6 +8,19 @@ description: >-
   individuals and institutions. TIAA operates a developer portal at developer.tiaa.org exposing APIs for financial data
   aggregation (FDX standard), secure income account management, and gateway integrations enabling plan portability and
   fintech connectivity.
+accessModel:
+  pricing: enterprise
+  onboarding: self-serve
+  trial: false
+  try_now: false
+  public: false
+  label: Enterprise · Self-serve signup
+  confidence: high
+  source:
+  - plans
+  - authentication
+  generated: '2026-07-22'
+  method: derived
 image: https://www.tiaa.org/content/dam/prod/tiaa/images/tiaa-logo.svg
 tags:
   - Finance
@@ -22,93 +35,207 @@ created: '2024'
 modified: '2026-05-19'
 specificationVersion: '0.19'
 apis:
-  - aid: tiaa:tiaa-fdx-api
-    name: TIAA Financial Data Exchange API
-    description: >-
-      The TIAA Financial Data Exchange (FDX) API provides customer account details to authorized fintechs and financial
-      aggregators with customer consent. Built on the FDX open-standard (OAuth 2.0), it offers a secure alternative to
-      screen scraping and enables third-party apps to retrieve account balances, transactions, investment positions, and
-      income data from TIAA retirement and brokerage accounts.
-    image: https://www.tiaa.org/content/dam/prod/tiaa/images/tiaa-logo.svg
-    humanURL: https://developer.tiaa.org/public/fdx
-    baseURL: https://api.tiaa.org/fdx/v6
-    tags:
-      - Account Aggregation
-      - Financial Data
-      - FDX
-      - Open Finance
-      - Retirement
-    properties:
-      - type: Documentation
-        url: https://developer.tiaa.org/public/fdx
-      - type: Authentication
-        url: https://developer.tiaa.org/public/fdx#authentication
-      - type: OpenAPI
-        url: openapi/tiaa-fdx-openapi.yml
-  - aid: tiaa:tiaa-sia-api
-    name: TIAA Secure Income Account API
-    description: >-
-      The TIAA Secure Income Account (SIA) API enables recordkeepers and plan administrators to integrate TIAA's
-      guaranteed lifetime income product into custom target-date model portfolios and managed account solutions. Built
-      using the OpenAPI Specification (OAS) and authenticated via OAuth 2.0 Client Credentials Flow, the SIA API
-      supports account setup, contribution management, and participant income projections for defined contribution plan
-      participants.
-    image: https://www.tiaa.org/content/dam/prod/tiaa/images/tiaa-logo.svg
-    humanURL: https://developer.tiaa.org/public/sia
-    baseURL: https://api.tiaa.org/sia/v1
-    tags:
-      - Annuity
-      - Guaranteed Income
-      - Plan Administration
-      - Recordkeeping
-      - Retirement
-      - Secure Income
-    properties:
-      - type: Documentation
-        url: https://developer.tiaa.org/public/sia
-      - type: Authentication
-        url: https://developer.tiaa.org/public/sia#authentication
-      - type: OpenAPI
-        url: openapi/tiaa-sia-openapi.yml
-  - aid: tiaa:tiaa-gateway-api
-    name: TIAA Gateway API
-    description: >-
-      The TIAA Gateway is a cloud-based API layer enabling product portability and interoperability across retirement
-      ecosystem partners. It allows banking institutions, financial aggregators, and plan sponsor platforms to expose
-      TIAA retirement account data within their own apps and experiences. The Gateway supports FDX, ACORD, and SPARK
-      standards and has more than 10 external partners connected.
-    image: https://www.tiaa.org/content/dam/prod/tiaa/images/tiaa-logo.svg
-    humanURL: https://www.tiaa.org/public/pdf/t/tiaa-gateway-drives-product-portability.pdf
-    baseURL: https://api.tiaa.org/gateway/v1
-    tags:
-      - Financial Data
-      - Integration
-      - Open Finance
-      - Plan Portability
-      - Retirement
-    properties:
-      - type: Documentation
-        url: https://www.tiaa.org/public/pdf/t/tiaa-gateway-drives-product-portability.pdf
-      - type: Portal
-        url: https://developer.tiaa.org
-  - aid: tiaa:tiaa-payroll360-api
-    name: TIAA Payroll360 API
-    description: >-
-      TIAA Payroll360 enables direct API connections between HR and payroll systems and TIAA's plan administration
-      platform, automating deductions management, employer onboarding, and payroll data integrity. Supports SPARK 2.0 CR
-      and TIAA-specific FLEX and OPS formats.
-    image: https://www.tiaa.org/content/dam/prod/tiaa/images/tiaa-logo.svg
-    humanURL: https://developer.tiaa.org/public/payroll360
-    baseURL: https://api.tiaa.org/payroll360/v1
-    tags:
-      - HR
-      - Payroll
-      - Plan Administration
-      - Retirement
-      - SPARK
-    properties:
-      - type: Documentation
-        url: https://developer.tiaa.org/public/payroll360
+- aid: tiaa:tiaa-gateway-api
+  name: TIAA Gateway API
+  description: >-
+    The TIAA Gateway is a cloud-based API layer enabling product portability and interoperability across
+    retirement ecosystem partners. It allows banking institutions, financial aggregators, and plan sponsor
+    platforms to expose TIAA retirement account data within their own apps and experiences. The Gateway
+    supports FDX, ACORD, and SPARK standards and has more than 10 external partners connected.
+  image: https://www.tiaa.org/content/dam/prod/tiaa/images/tiaa-logo.svg
+  humanURL: https://www.tiaa.org/public/pdf/t/tiaa-gateway-drives-product-portability.pdf
+  baseURL: https://api.tiaa.org/gateway/v1
+  tags:
+  - Financial Data
+  - Integration
+  - Open Finance
+  - Plan Portability
+  - Retirement
+  properties:
+  - type: Documentation
+    url: https://www.tiaa.org/public/pdf/t/tiaa-gateway-drives-product-portability.pdf
+  - type: Portal
+    url: https://developer.tiaa.org
+- aid: tiaa:tiaa-payroll360-api
+  name: TIAA Payroll360 API
+  description: >-
+    TIAA Payroll360 enables direct API connections between HR and payroll systems and TIAA's plan administration
+    platform, automating deductions management, employer onboarding, and payroll data integrity. Supports
+    SPARK 2.0 CR and TIAA-specific FLEX and OPS formats.
+  image: https://www.tiaa.org/content/dam/prod/tiaa/images/tiaa-logo.svg
+  humanURL: https://developer.tiaa.org/public/payroll360
+  baseURL: https://api.tiaa.org/payroll360/v1
+  tags:
+  - HR
+  - Payroll
+  - Plan Administration
+  - Retirement
+  - SPARK
+  properties:
+  - type: Documentation
+    url: https://developer.tiaa.org/public/payroll360
+- aid: tiaa:tiaa-accounts-api
+  name: TIAA Accounts API
+  description: Customer account information and balances
+  humanURL: https://developer.tiaa.org/public/fdx
+  baseURL: https://api.tiaa.org/fdx/v6
+  tags:
+  - Accounts
+  properties:
+  - type: OpenAPI
+    url: openapi/tiaa-accounts-api-openapi.yml
+  - type: Documentation
+    url: https://developer.tiaa.org/public/fdx
+  - type: Authentication
+    url: https://developer.tiaa.org/public/fdx#authentication
+  - type: Documentation
+    url: https://developer.tiaa.org/public/sia
+  - type: Authentication
+    url: https://developer.tiaa.org/public/sia#authentication
+- aid: tiaa:tiaa-contributions-api
+  name: TIAA Contributions API
+  description: Contribution and allocation management
+  humanURL: https://developer.tiaa.org/public/fdx
+  baseURL: https://api.tiaa.org/fdx/v6
+  tags:
+  - Contributions
+  properties:
+  - type: OpenAPI
+    url: openapi/tiaa-contributions-api-openapi.yml
+  - type: Documentation
+    url: https://developer.tiaa.org/public/fdx
+  - type: Authentication
+    url: https://developer.tiaa.org/public/fdx#authentication
+  - type: Documentation
+    url: https://developer.tiaa.org/public/sia
+  - type: Authentication
+    url: https://developer.tiaa.org/public/sia#authentication
+- aid: tiaa:tiaa-customer-api
+  name: TIAA Customer API
+  description: Customer profile and identity
+  humanURL: https://developer.tiaa.org/public/fdx
+  baseURL: https://api.tiaa.org/fdx/v6
+  tags:
+  - Customer
+  properties:
+  - type: OpenAPI
+    url: openapi/tiaa-customer-api-openapi.yml
+  - type: Documentation
+    url: https://developer.tiaa.org/public/fdx
+  - type: Authentication
+    url: https://developer.tiaa.org/public/fdx#authentication
+  - type: Documentation
+    url: https://developer.tiaa.org/public/sia
+  - type: Authentication
+    url: https://developer.tiaa.org/public/sia#authentication
+- aid: tiaa:tiaa-investments-api
+  name: TIAA Investments API
+  description: Investment positions and holdings
+  humanURL: https://developer.tiaa.org/public/fdx
+  baseURL: https://api.tiaa.org/fdx/v6
+  tags:
+  - Investments
+  properties:
+  - type: OpenAPI
+    url: openapi/tiaa-investments-api-openapi.yml
+  - type: Documentation
+    url: https://developer.tiaa.org/public/fdx
+  - type: Authentication
+    url: https://developer.tiaa.org/public/fdx#authentication
+  - type: Documentation
+    url: https://developer.tiaa.org/public/sia
+  - type: Authentication
+    url: https://developer.tiaa.org/public/sia#authentication
+- aid: tiaa:tiaa-participants-api
+  name: TIAA Participants API
+  description: Participant account management
+  humanURL: https://developer.tiaa.org/public/fdx
+  baseURL: https://api.tiaa.org/fdx/v6
+  tags:
+  - Participants
+  properties:
+  - type: OpenAPI
+    url: openapi/tiaa-participants-api-openapi.yml
+  - type: Documentation
+    url: https://developer.tiaa.org/public/fdx
+  - type: Authentication
+    url: https://developer.tiaa.org/public/fdx#authentication
+  - type: Documentation
+    url: https://developer.tiaa.org/public/sia
+  - type: Authentication
+    url: https://developer.tiaa.org/public/sia#authentication
+- aid: tiaa:tiaa-plans-api
+  name: TIAA Plans API
+  description: Plan configuration and eligibility
+  humanURL: https://developer.tiaa.org/public/fdx
+  baseURL: https://api.tiaa.org/fdx/v6
+  tags:
+  - Plans
+  properties:
+  - type: OpenAPI
+    url: openapi/tiaa-plans-api-openapi.yml
+  - type: Documentation
+    url: https://developer.tiaa.org/public/fdx
+  - type: Authentication
+    url: https://developer.tiaa.org/public/fdx#authentication
+  - type: Documentation
+    url: https://developer.tiaa.org/public/sia
+  - type: Authentication
+    url: https://developer.tiaa.org/public/sia#authentication
+- aid: tiaa:tiaa-projections-api
+  name: TIAA Projections API
+  description: Income projections and illustrations
+  humanURL: https://developer.tiaa.org/public/fdx
+  baseURL: https://api.tiaa.org/fdx/v6
+  tags:
+  - Projections
+  properties:
+  - type: OpenAPI
+    url: openapi/tiaa-projections-api-openapi.yml
+  - type: Documentation
+    url: https://developer.tiaa.org/public/fdx
+  - type: Authentication
+    url: https://developer.tiaa.org/public/fdx#authentication
+  - type: Documentation
+    url: https://developer.tiaa.org/public/sia
+  - type: Authentication
+    url: https://developer.tiaa.org/public/sia#authentication
+- aid: tiaa:tiaa-tax-api
+  name: TIAA Tax API
+  description: Tax document and income data
+  humanURL: https://developer.tiaa.org/public/fdx
+  baseURL: https://api.tiaa.org/fdx/v6
+  tags:
+  - Tax
+  properties:
+  - type: OpenAPI
+    url: openapi/tiaa-tax-api-openapi.yml
+  - type: Documentation
+    url: https://developer.tiaa.org/public/fdx
+  - type: Authentication
+    url: https://developer.tiaa.org/public/fdx#authentication
+  - type: Documentation
+    url: https://developer.tiaa.org/public/sia
+  - type: Authentication
+    url: https://developer.tiaa.org/public/sia#authentication
+- aid: tiaa:tiaa-transactions-api
+  name: TIAA Transactions API
+  description: Account transaction history
+  humanURL: https://developer.tiaa.org/public/fdx
+  baseURL: https://api.tiaa.org/fdx/v6
+  tags:
+  - Transactions
+  properties:
+  - type: OpenAPI
+    url: openapi/tiaa-transactions-api-openapi.yml
+  - type: Documentation
+    url: https://developer.tiaa.org/public/fdx
+  - type: Authentication
+    url: https://developer.tiaa.org/public/fdx#authentication
+  - type: Documentation
+    url: https://developer.tiaa.org/public/sia
+  - type: Authentication
+    url: https://developer.tiaa.org/public/sia#authentication
 common:
   - type: AgenticAccess
     url: agentic-access/tiaa-agentic-access.yml
