@@ -1,0 +1,408 @@
+openapi: 3.0.3
+info:
+  title: TIAA Secure Income Account API
+  description: >-
+    The TIAA Secure Income Account (SIA) API enables recordkeepers and plan
+    administrators to integrate TIAA's guaranteed lifetime income product into
+    custom target-date model portfolios and managed account solutions. The SIA
+    API supports participant account setup, contribution management, allocation
+    updates, and income projection calculations for defined contribution plans.
+    Authentication uses OAuth 2.0 Client Credentials Flow.
+  version: '1.0'
+  contact:
+    name: TIAA Developer Support
+    url: https://developer.tiaa.org/public/sia
+servers:
+  - url: https://api.tiaa.org/sia/v1
+    description: TIAA SIA Production API
+tags:
+  - name: Participants
+    description: Participant account management
+  - name: Contributions
+    description: Contribution and allocation management
+  - name: Projections
+    description: Income projections and illustrations
+  - name: Plans
+    description: Plan configuration and eligibility
+paths:
+  /plans/{planId}/participants:
+    get:
+      operationId: listParticipants
+      summary: List Plan Participants
+      description: Returns participants enrolled in the SIA product for a given plan.
+      tags:
+        - Participants
+      security:
+        - ClientCredentials: []
+      parameters:
+        - name: planId
+          in: path
+          required: true
+          schema:
+            type: string
+          description: Unique plan identifier
+        - name: page
+          in: query
+          schema:
+            type: integer
+        - name: pageSize
+          in: query
+          schema:
+            type: integer
+      responses:
+        '200':
+          description: List of participants
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ParticipantList'
+        '401':
+          description: Unauthorized
+        '403':
+          description: Forbidden
+
+    post:
+      operationId: enrollParticipant
+      summary: Enroll Participant in SIA
+      description: Enrolls a new participant in the Secure Income Account product for the plan.
+      tags:
+        - Participants
+      security:
+        - ClientCredentials: []
+      parameters:
+        - name: planId
+          in: path
+          required: true
+          schema:
+            type: string
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/ParticipantEnrollment'
+      responses:
+        '201':
+          description: Participant enrolled
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Participant'
+        '400':
+          description: Invalid request
+
+  /plans/{planId}/participants/{participantId}:
+    get:
+      operationId: getParticipant
+      summary: Get Participant Details
+      description: Returns SIA account details for a specific participant.
+      tags:
+        - Participants
+      security:
+        - ClientCredentials: []
+      parameters:
+        - name: planId
+          in: path
+          required: true
+          schema:
+            type: string
+        - name: participantId
+          in: path
+          required: true
+          schema:
+            type: string
+      responses:
+        '200':
+          description: Participant details
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Participant'
+        '404':
+          description: Participant not found
+
+  /plans/{planId}/contributions:
+    post:
+      operationId: submitContribution
+      summary: Submit Contribution
+      description: Submits a contribution or allocation to a participant's SIA account.
+      tags:
+        - Contributions
+      security:
+        - ClientCredentials: []
+      parameters:
+        - name: planId
+          in: path
+          required: true
+          schema:
+            type: string
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Contribution'
+      responses:
+        '200':
+          description: Contribution submitted
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ContributionResult'
+        '400':
+          description: Invalid contribution data
+
+  /plans/{planId}/participants/{participantId}/projections:
+    get:
+      operationId: getIncomeProjection
+      summary: Get Income Projection
+      description: Returns projected lifetime income amounts for a participant based on current balance and future contributions.
+      tags:
+        - Projections
+      security:
+        - ClientCredentials: []
+      parameters:
+        - name: planId
+          in: path
+          required: true
+          schema:
+            type: string
+        - name: participantId
+          in: path
+          required: true
+          schema:
+            type: string
+        - name: retirementAge
+          in: query
+          schema:
+            type: integer
+          description: Target retirement age for projection
+        - name: projectionDate
+          in: query
+          schema:
+            type: string
+            format: date
+      responses:
+        '200':
+          description: Income projection data
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/IncomeProjection'
+
+  /plans/{planId}:
+    get:
+      operationId: getPlan
+      summary: Get Plan Details
+      description: Returns SIA configuration and eligibility rules for a specific plan.
+      tags:
+        - Plans
+      security:
+        - ClientCredentials: []
+      parameters:
+        - name: planId
+          in: path
+          required: true
+          schema:
+            type: string
+      responses:
+        '200':
+          description: Plan details
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Plan'
+
+components:
+  securitySchemes:
+    ClientCredentials:
+      type: oauth2
+      flows:
+        clientCredentials:
+          tokenUrl: https://auth.tiaa.org/oauth2/token
+          scopes:
+            sia:read: Read SIA data
+            sia:write: Write SIA data
+
+  schemas:
+    ParticipantList:
+      type: object
+      properties:
+        participants:
+          type: array
+          items:
+            $ref: '#/components/schemas/Participant'
+        totalElements:
+          type: integer
+        page:
+          type: integer
+        pageSize:
+          type: integer
+
+    Participant:
+      type: object
+      properties:
+        participantId:
+          type: string
+        planId:
+          type: string
+        firstName:
+          type: string
+        lastName:
+          type: string
+        dateOfBirth:
+          type: string
+          format: date
+        enrollmentDate:
+          type: string
+          format: date
+        accountBalance:
+          type: number
+          format: double
+        vestingPercentage:
+          type: number
+          format: double
+        status:
+          type: string
+          enum:
+            - ACTIVE
+            - TERMINATED
+            - RETIRED
+            - DECEASED
+
+    ParticipantEnrollment:
+      type: object
+      required:
+        - firstName
+        - lastName
+        - dateOfBirth
+        - ssn
+      properties:
+        firstName:
+          type: string
+        lastName:
+          type: string
+        dateOfBirth:
+          type: string
+          format: date
+        ssn:
+          type: string
+          description: Social Security Number (encrypted)
+        email:
+          type: string
+          format: email
+        allocationPercentage:
+          type: number
+          format: double
+          description: Initial SIA allocation percentage
+
+    Contribution:
+      type: object
+      required:
+        - participantId
+        - amount
+        - contributionType
+      properties:
+        participantId:
+          type: string
+        amount:
+          type: number
+          format: double
+        contributionType:
+          type: string
+          enum:
+            - EMPLOYEE
+            - EMPLOYER
+            - ROLLOVER
+        payrollDate:
+          type: string
+          format: date
+        allocationPercentage:
+          type: number
+          format: double
+
+    ContributionResult:
+      type: object
+      properties:
+        confirmationId:
+          type: string
+        participantId:
+          type: string
+        amount:
+          type: number
+          format: double
+        processedDate:
+          type: string
+          format: date-time
+        status:
+          type: string
+          enum:
+            - ACCEPTED
+            - PENDING
+            - REJECTED
+
+    IncomeProjection:
+      type: object
+      properties:
+        participantId:
+          type: string
+        currentBalance:
+          type: number
+          format: double
+        projectedRetirementAge:
+          type: integer
+        monthlyIncomeProjection:
+          type: number
+          format: double
+          description: Estimated monthly lifetime income at retirement
+        annualIncomeProjection:
+          type: number
+          format: double
+        projectionDate:
+          type: string
+          format: date
+        assumptions:
+          type: object
+          properties:
+            discountRate:
+              type: number
+              format: double
+            mortalityTable:
+              type: string
+            inflationRate:
+              type: number
+              format: double
+
+    Plan:
+      type: object
+      properties:
+        planId:
+          type: string
+        planName:
+          type: string
+        planType:
+          type: string
+          enum:
+            - 401k
+            - 403b
+            - 457b
+            - QDRO
+        siaEnabled:
+          type: boolean
+        eligibilityRules:
+          type: object
+          properties:
+            minimumAge:
+              type: integer
+            minimumServiceMonths:
+              type: integer
+            employeeClassesEligible:
+              type: array
+              items:
+                type: string
+        maxAllocationPercentage:
+          type: number
+          format: double
+        minAllocationPercentage:
+          type: number
+          format: double

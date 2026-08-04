@@ -1,0 +1,30 @@
+{
+  "provider": "tiaa",
+  "sources": [
+    "tiaa-accounts-api-openapi.yml",
+    "tiaa-contributions-api-openapi.yml",
+    "tiaa-customer-api-openapi.yml",
+    "tiaa-investments-api-openapi.yml",
+    "tiaa-participants-api-openapi.yml",
+    "tiaa-plans-api-openapi.yml",
+    "tiaa-projections-api-openapi.yml",
+    "tiaa-tax-api-openapi.yml",
+    "tiaa-transactions-api-openapi.yml"
+  ],
+  "outputs": [
+    "tiaa-accounts-api-openapi.yml",
+    "tiaa-contributions-api-openapi.yml",
+    "tiaa-customer-api-openapi.yml",
+    "tiaa-investments-api-openapi.yml",
+    "tiaa-participants-api-openapi.yml",
+    "tiaa-plans-api-openapi.yml",
+    "tiaa-projections-api-openapi.yml",
+    "tiaa-tax-api-openapi.yml",
+    "tiaa-transactions-api-openapi.yml"
+  ],
+  "archived": [],
+  "errors": [],
+  "warnings": [],
+  "notes": [],
+  "skipped": []
+}
