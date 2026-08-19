@@ -33,7 +33,7 @@ tags:
   - Fortune 100
 created: '2024'
 modified: '2026-05-19'
-specificationVersion: '0.19'
+specificationVersion: '0.23'
 apis:
 - aid: tiaa:tiaa-gateway-api
   name: TIAA Gateway API
