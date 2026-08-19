@@ -1,0 +1,92 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "TIAA Financial Data Exchange Accounts Participants API",
+    "version": "6.0"
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Participants",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "List Plan Participants",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.tiaa.org/fdx/v6/plans/:planId/participants",
+            "params": [
+              {
+                "name": "planId",
+                "value": "",
+                "type": "path",
+                "description": "Unique plan identifier"
+              },
+              {
+                "name": "page",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "pageSize",
+                "value": "",
+                "type": "query"
+              }
+            ]
+          },
+          "docs": "Returns participants enrolled in the SIA product for a given plan."
+        },
+        {
+          "info": {
+            "name": "Enroll Participant in SIA",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.tiaa.org/fdx/v6/plans/:planId/participants",
+            "params": [
+              {
+                "name": "planId",
+                "value": "",
+                "type": "path"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Enrolls a new participant in the Secure Income Account product for the plan."
+        },
+        {
+          "info": {
+            "name": "Get Participant Details",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.tiaa.org/fdx/v6/plans/:planId/participants/:participantId",
+            "params": [
+              {
+                "name": "planId",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "participantId",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "Returns SIA account details for a specific participant."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

@@ -1,0 +1,142 @@
+{
+  "item": [
+    {
+      "id": "57396d59-6984-4854-9bb0-437e77d61110",
+      "name": "Tax",
+      "description": {
+        "content": "Tax document and income data",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "4fc3b294-40f7-48c3-ad1e-4ededaa17517",
+          "name": "List Tax Forms",
+          "request": {
+            "name": "List Tax Forms",
+            "description": {
+              "content": "Returns available tax documents (1099-R, 5498, etc.) for the customer.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "tax-forms"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "taxYear",
+                  "value": "<integer>",
+                  "description": "Filter by tax year"
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": {
+              "type": "oauth2",
+              "oauth2": [
+                {
+                  "key": "scope",
+                  "value": "openid profile accounts transactions investments tax"
+                },
+                {
+                  "key": "accessTokenUrl",
+                  "value": "https://auth.tiaa.org/oauth2/token"
+                },
+                {
+                  "key": "authUrl",
+                  "value": "https://auth.tiaa.org/oauth2/authorize"
+                },
+                {
+                  "key": "grant_type",
+                  "value": "authorization_code"
+                }
+              ]
+            }
+          },
+          "response": [
+            {
+              "id": "8d4ac1a3-341f-45d5-9eca-12f9ec4a51a0",
+              "name": "Tax form list",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "tax-forms"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "taxYear",
+                      "value": "<integer>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"taxForms\": [\n    {\n      \"taxFormId\": \"string\",\n      \"formType\": \"1099-DIV\",\n      \"taxYear\": 4123,\n      \"accountId\": \"string\",\n      \"issuedDate\": \"2000-11-29\",\n      \"downloadUrl\": \"http://MNmWTWI.lgSuSP4f3SvaQJVdl.\"\n    },\n    {\n      \"taxFormId\": \"string\",\n      \"formType\": \"1099-DIV\",\n      \"taxYear\": 1197,\n      \"accountId\": \"string\",\n      \"issuedDate\": \"1993-07-02\",\n      \"downloadUrl\": \"https://UyVwdnyTRXalVUlADTtdrwQbIWQxsAeqW.jhiVZL8qhVzJNNNAZzPZ,DbWShUS3hL0DxFcUfU\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://api.tiaa.org/fdx/v6",
+      "key": "baseUrl"
+    }
+  ],
+  "info": {
+    "_postman_id": "5605cd13-4930-42fe-9649-d84e9568aaed",
+    "name": "TIAA Financial Data Exchange Accounts Tax API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "The TIAA Financial Data Exchange (FDX) API provides authorized fintechs and financial aggregators with secure access to customer account data, including balances, transactions, investment positions, and income information from TIAA retirement and brokerage accounts. This API is built on the FDX open standard (v6.x) and uses OAuth 2.0 for customer-consented data sharing.\n\nContact Support:\n Name: TIAA Developer Support",
+      "type": "text/plain"
+    }
+  }
+}

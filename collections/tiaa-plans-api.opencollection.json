@@ -1,0 +1,36 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "TIAA Financial Data Exchange Accounts Plans API",
+    "version": "6.0"
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Plans",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Get Plan Details",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.tiaa.org/fdx/v6/plans/:planId",
+            "params": [
+              {
+                "name": "planId",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "Returns SIA configuration and eligibility rules for a specific plan."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

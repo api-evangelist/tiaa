@@ -1,0 +1,160 @@
+{
+  "item": [
+    {
+      "id": "ff7202ae-5b5b-414c-9fd7-cf670a63b0bd",
+      "name": "Projections",
+      "description": {
+        "content": "Income projections and illustrations",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "c2c6c18e-6dc2-4cf9-ad90-344edd5e885b",
+          "name": "Get Income Projection",
+          "request": {
+            "name": "Get Income Projection",
+            "description": {
+              "content": "Returns projected lifetime income amounts for a participant based on current balance and future contributions.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "plans",
+                ":planId",
+                "participants",
+                ":participantId",
+                "projections"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "retirementAge",
+                  "value": "<integer>",
+                  "description": "Target retirement age for projection"
+                },
+                {
+                  "disabled": false,
+                  "key": "projectionDate",
+                  "value": "<date>"
+                }
+              ],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "planId",
+                  "description": "(Required) "
+                },
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "participantId",
+                  "description": "(Required) "
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET"
+          },
+          "response": [
+            {
+              "id": "2c3bbfaa-c908-4a34-b30f-cb65644e386d",
+              "name": "Income projection data",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "plans",
+                    ":planId",
+                    "participants",
+                    ":participantId",
+                    "projections"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "retirementAge",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "projectionDate",
+                      "value": "<date>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "planId",
+                      "description": "(Required) "
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "participantId",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"participantId\": \"string\",\n  \"currentBalance\": 521.137524527413,\n  \"projectedRetirementAge\": 7088,\n  \"monthlyIncomeProjection\": 1199.8105992742503,\n  \"annualIncomeProjection\": 2529.180922843184,\n  \"projectionDate\": \"2005-09-12\",\n  \"assumptions\": {\n    \"discountRate\": 4033.21660702595,\n    \"mortalityTable\": \"string\",\n    \"inflationRate\": 3134.7247299172222\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://api.tiaa.org/fdx/v6",
+      "key": "baseUrl"
+    }
+  ],
+  "info": {
+    "_postman_id": "98ca93b3-a39d-4150-b174-c02afe71ec94",
+    "name": "TIAA Financial Data Exchange Accounts Projections API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "The TIAA Financial Data Exchange (FDX) API provides authorized fintechs and financial aggregators with secure access to customer account data, including balances, transactions, investment positions, and income information from TIAA retirement and brokerage accounts. This API is built on the FDX open standard (v6.x) and uses OAuth 2.0 for customer-consented data sharing.\n\nContact Support:\n Name: TIAA Developer Support",
+      "type": "text/plain"
+    }
+  }
+}

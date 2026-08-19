@@ -1,0 +1,546 @@
+{
+  "item": [
+    {
+      "id": "a3fdf700-cb67-4ff5-a3a3-26b1f7a5d20d",
+      "name": "Participants",
+      "description": {
+        "content": "Participant account management",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "ae62287f-980a-4cb0-8942-5b39de20500f",
+          "name": "List Plan Participants",
+          "request": {
+            "name": "List Plan Participants",
+            "description": {
+              "content": "Returns participants enrolled in the SIA product for a given plan.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "plans",
+                ":planId",
+                "participants"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "page",
+                  "value": "<integer>"
+                },
+                {
+                  "disabled": false,
+                  "key": "pageSize",
+                  "value": "<integer>"
+                }
+              ],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "planId",
+                  "description": "(Required) Unique plan identifier"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET"
+          },
+          "response": [
+            {
+              "id": "ee8d2292-9a1d-40fc-85d1-43f77a778ab2",
+              "name": "List of participants",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "plans",
+                    ":planId",
+                    "participants"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "page",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "pageSize",
+                      "value": "<integer>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "planId",
+                      "description": "(Required) Unique plan identifier"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"participants\": [\n    {\n      \"participantId\": \"string\",\n      \"planId\": \"string\",\n      \"firstName\": \"string\",\n      \"lastName\": \"string\",\n      \"dateOfBirth\": \"1956-02-03\",\n      \"enrollmentDate\": \"1994-10-19\",\n      \"accountBalance\": 5145.2767280382395,\n      \"vestingPercentage\": 281.5568367041543,\n      \"status\": \"RETIRED\"\n    },\n    {\n      \"participantId\": \"string\",\n      \"planId\": \"string\",\n      \"firstName\": \"string\",\n      \"lastName\": \"string\",\n      \"dateOfBirth\": \"2002-08-13\",\n      \"enrollmentDate\": \"2014-05-10\",\n      \"accountBalance\": 3053.7044288110715,\n      \"vestingPercentage\": 314.1767357418834,\n      \"status\": \"DECEASED\"\n    }\n  ],\n  \"totalElements\": 4623,\n  \"page\": 817,\n  \"pageSize\": 3512\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "9a2b7b57-1a0b-4761-b34b-358b097918ca",
+              "name": "Unauthorized",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "plans",
+                    ":planId",
+                    "participants"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "page",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "pageSize",
+                      "value": "<integer>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "planId",
+                      "description": "(Required) Unique plan identifier"
+                    }
+                  ]
+                },
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "de3a781a-a91d-4c9d-bbdc-b9c33a5274b4",
+              "name": "Forbidden",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "plans",
+                    ":planId",
+                    "participants"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "page",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "pageSize",
+                      "value": "<integer>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "planId",
+                      "description": "(Required) Unique plan identifier"
+                    }
+                  ]
+                },
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Forbidden",
+              "code": 403,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "29267df2-d1ed-45e5-bdbb-45e6904787bb",
+          "name": "Enroll Participant in SIA",
+          "request": {
+            "name": "Enroll Participant in SIA",
+            "description": {
+              "content": "Enrolls a new participant in the Secure Income Account product for the plan.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "plans",
+                ":planId",
+                "participants"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "planId",
+                  "description": "(Required) "
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"firstName\": \"<string>\",\n  \"lastName\": \"<string>\",\n  \"dateOfBirth\": \"<date>\",\n  \"ssn\": \"<string>\",\n  \"email\": \"<email>\",\n  \"allocationPercentage\": \"<double>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "3c79ae95-a77d-4061-9bb1-b29f14472c35",
+              "name": "Participant enrolled",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "plans",
+                    ":planId",
+                    "participants"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "planId",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"firstName\": \"<string>\",\n  \"lastName\": \"<string>\",\n  \"dateOfBirth\": \"<date>\",\n  \"ssn\": \"<string>\",\n  \"email\": \"<email>\",\n  \"allocationPercentage\": \"<double>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Created",
+              "code": 201,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"participantId\": \"string\",\n  \"planId\": \"string\",\n  \"firstName\": \"string\",\n  \"lastName\": \"string\",\n  \"dateOfBirth\": \"1959-05-09\",\n  \"enrollmentDate\": \"2003-01-11\",\n  \"accountBalance\": 7508.779084834569,\n  \"vestingPercentage\": 455.5240995527188,\n  \"status\": \"TERMINATED\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "11cbdf52-1c2b-4737-bd3e-67ef81c30450",
+              "name": "Invalid request",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "plans",
+                    ":planId",
+                    "participants"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "planId",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"firstName\": \"<string>\",\n  \"lastName\": \"<string>\",\n  \"dateOfBirth\": \"<date>\",\n  \"ssn\": \"<string>\",\n  \"email\": \"<email>\",\n  \"allocationPercentage\": \"<double>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "31480cee-08b6-41cb-aee8-b326051f99ba",
+          "name": "Get Participant Details",
+          "request": {
+            "name": "Get Participant Details",
+            "description": {
+              "content": "Returns SIA account details for a specific participant.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "plans",
+                ":planId",
+                "participants",
+                ":participantId"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "planId",
+                  "description": "(Required) "
+                },
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "participantId",
+                  "description": "(Required) "
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET"
+          },
+          "response": [
+            {
+              "id": "0f2b0164-f701-442b-84d8-095e0af74528",
+              "name": "Participant details",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "plans",
+                    ":planId",
+                    "participants",
+                    ":participantId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "planId",
+                      "description": "(Required) "
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "participantId",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"participantId\": \"string\",\n  \"planId\": \"string\",\n  \"firstName\": \"string\",\n  \"lastName\": \"string\",\n  \"dateOfBirth\": \"1959-05-09\",\n  \"enrollmentDate\": \"2003-01-11\",\n  \"accountBalance\": 7508.779084834569,\n  \"vestingPercentage\": 455.5240995527188,\n  \"status\": \"TERMINATED\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "f206d17e-405c-4509-91d6-198f9138b0a1",
+              "name": "Participant not found",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "plans",
+                    ":planId",
+                    "participants",
+                    ":participantId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "planId",
+                      "description": "(Required) "
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "participantId",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://api.tiaa.org/fdx/v6",
+      "key": "baseUrl"
+    }
+  ],
+  "info": {
+    "_postman_id": "b359f052-4bbf-4ca5-a92f-a1a1d70971f0",
+    "name": "TIAA Financial Data Exchange Accounts Participants API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "The TIAA Financial Data Exchange (FDX) API provides authorized fintechs and financial aggregators with secure access to customer account data, including balances, transactions, investment positions, and income information from TIAA retirement and brokerage accounts. This API is built on the FDX open standard (v6.x) and uses OAuth 2.0 for customer-consented data sharing.\n\nContact Support:\n Name: TIAA Developer Support",
+      "type": "text/plain"
+    }
+  }
+}

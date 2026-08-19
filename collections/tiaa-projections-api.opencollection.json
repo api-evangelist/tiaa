@@ -1,0 +1,52 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "TIAA Financial Data Exchange Accounts Projections API",
+    "version": "6.0"
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Projections",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Get Income Projection",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.tiaa.org/fdx/v6/plans/:planId/participants/:participantId/projections",
+            "params": [
+              {
+                "name": "planId",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "participantId",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "retirementAge",
+                "value": "",
+                "type": "query",
+                "description": "Target retirement age for projection"
+              },
+              {
+                "name": "projectionDate",
+                "value": "",
+                "type": "query"
+              }
+            ]
+          },
+          "docs": "Returns projected lifetime income amounts for a participant based on current balance and future contributions."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

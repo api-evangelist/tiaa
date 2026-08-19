@@ -1,0 +1,119 @@
+{
+  "item": [
+    {
+      "id": "bf0fdb1c-9dff-4503-843e-01a665eb3294",
+      "name": "Plans",
+      "description": {
+        "content": "Plan configuration and eligibility",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "5e05c2ce-d067-4f72-8fe2-b1460eb99f7d",
+          "name": "Get Plan Details",
+          "request": {
+            "name": "Get Plan Details",
+            "description": {
+              "content": "Returns SIA configuration and eligibility rules for a specific plan.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "plans",
+                ":planId"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "planId",
+                  "description": "(Required) "
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET"
+          },
+          "response": [
+            {
+              "id": "3ad0d4e2-5112-4854-bea0-667642014b06",
+              "name": "Plan details",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "plans",
+                    ":planId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "planId",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"planId\": \"string\",\n  \"planName\": \"string\",\n  \"planType\": \"457b\",\n  \"siaEnabled\": true,\n  \"eligibilityRules\": {\n    \"minimumAge\": 643,\n    \"minimumServiceMonths\": 9831,\n    \"employeeClassesEligible\": [\n      \"string\",\n      \"string\"\n    ]\n  },\n  \"maxAllocationPercentage\": 320.335259753497,\n  \"minAllocationPercentage\": 9218.676776286386\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://api.tiaa.org/fdx/v6",
+      "key": "baseUrl"
+    }
+  ],
+  "info": {
+    "_postman_id": "a1cdf25f-1ce2-4177-aef6-a7d574a3d8eb",
+    "name": "TIAA Financial Data Exchange Accounts Plans API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "The TIAA Financial Data Exchange (FDX) API provides authorized fintechs and financial aggregators with secure access to customer account data, including balances, transactions, investment positions, and income information from TIAA retirement and brokerage accounts. This API is built on the FDX open standard (v6.x) and uses OAuth 2.0 for customer-consented data sharing.\n\nContact Support:\n Name: TIAA Developer Support",
+      "type": "text/plain"
+    }
+  }
+}
