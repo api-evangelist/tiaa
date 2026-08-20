@@ -70,6 +70,12 @@ apis:
   - Payroll
   - Plan Administration
   - Retirement
+  - Spark
+  tags_raw:
+  - HR
+  - Payroll
+  - Plan Administration
+  - Retirement
   - SPARK
   properties:
   - type: Documentation
@@ -80,6 +86,8 @@ apis:
   humanURL: https://developer.tiaa.org/public/fdx
   baseURL: https://api.tiaa.org/fdx/v6
   tags:
+  - Account
+  tags_raw:
   - Accounts
   properties:
   - type: OpenAPI
@@ -116,6 +124,8 @@ apis:
   humanURL: https://developer.tiaa.org/public/fdx
   baseURL: https://api.tiaa.org/fdx/v6
   tags:
+  - Customers
+  tags_raw:
   - Customer
   properties:
   - type: OpenAPI
@@ -224,6 +234,8 @@ apis:
   humanURL: https://developer.tiaa.org/public/fdx
   baseURL: https://api.tiaa.org/fdx/v6
   tags:
+  - Transaction
+  tags_raw:
   - Transactions
   properties:
   - type: OpenAPI
