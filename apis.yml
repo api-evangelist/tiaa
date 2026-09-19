@@ -78,7 +78,7 @@ apis:
   humanURL: https://developer.tiaa.org/public/payroll360
   baseURL: https://api.tiaa.org/payroll360/v1
   tags:
-  - HR
+  - Human Resources
   - Payroll
   - Plan Administration
   - Retirement
@@ -156,6 +156,8 @@ apis:
   humanURL: https://developer.tiaa.org/public/fdx
   baseURL: https://api.tiaa.org/fdx/v6
   tags:
+  - Investment
+  tags_raw:
   - Investments
   properties:
   - type: OpenAPI
