@@ -1,6 +1,6 @@
-openapi: 3.0.3
+openapi: 3.2.0
 info:
-  title: TIAA Financial Data Exchange Accounts Investments API
+  title: TIAA Financial Data Exchange Investments API
   description: The TIAA Financial Data Exchange (FDX) API provides authorized fintechs and financial aggregators with secure access to customer account data, including balances, transactions, investment positions, and income information from TIAA retirement and brokerage accounts. This API is built on the FDX open standard (v6.x) and uses OAuth 2.0 for customer-consented data sharing.
   version: '6.0'
   contact:
@@ -41,6 +41,13 @@ paths:
                 $ref: '#/components/schemas/PositionList'
 components:
   schemas:
+    PositionList:
+      type: object
+      properties:
+        positions:
+          type: array
+          items:
+            $ref: '#/components/schemas/Position'
     Position:
       type: object
       properties:
@@ -71,13 +78,6 @@ components:
         currency:
           type: string
           default: USD
-    PositionList:
-      type: object
-      properties:
-        positions:
-          type: array
-          items:
-            $ref: '#/components/schemas/Position'
   securitySchemes:
     OAuth2:
       type: oauth2

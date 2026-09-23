@@ -1,30 +1,38 @@
 {
   "provider": "tiaa",
   "sources": [
-    "tiaa-accounts-api-openapi.yml",
-    "tiaa-contributions-api-openapi.yml",
-    "tiaa-customer-api-openapi.yml",
-    "tiaa-investments-api-openapi.yml",
-    "tiaa-participants-api-openapi.yml",
-    "tiaa-plans-api-openapi.yml",
-    "tiaa-projections-api-openapi.yml",
-    "tiaa-tax-api-openapi.yml",
-    "tiaa-transactions-api-openapi.yml"
+    "_original/tiaa-fdx-openapi.yml",
+    "_original/tiaa-sia-openapi.yml"
   ],
   "outputs": [
     "tiaa-accounts-api-openapi.yml",
-    "tiaa-contributions-api-openapi.yml",
     "tiaa-customer-api-openapi.yml",
     "tiaa-investments-api-openapi.yml",
+    "tiaa-tax-api-openapi.yml",
+    "tiaa-transactions-api-openapi.yml",
+    "tiaa-contributions-api-openapi.yml",
     "tiaa-participants-api-openapi.yml",
     "tiaa-plans-api-openapi.yml",
-    "tiaa-projections-api-openapi.yml",
-    "tiaa-tax-api-openapi.yml",
-    "tiaa-transactions-api-openapi.yml"
+    "tiaa-projections-api-openapi.yml"
   ],
   "archived": [],
   "errors": [],
   "warnings": [],
-  "notes": [],
-  "skipped": []
+  "notes": [
+    "sourced from openapi/_original/ (2 archived document(s)); previously refined output at the top level was skipped rather than re-split",
+    "tiaa-fdx-openapi.yml: upgraded openapi 3.0.3 -> OpenAPI 3.2.0",
+    "tiaa-sia-openapi.yml: upgraded openapi 3.0.3 -> OpenAPI 3.2.0",
+    "apis.yml register: already-registered"
+  ],
+  "skipped": [
+    "tiaa-accounts-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "tiaa-contributions-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "tiaa-customer-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "tiaa-investments-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "tiaa-participants-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "tiaa-plans-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "tiaa-projections-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "tiaa-tax-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "tiaa-transactions-api-openapi.yml: previously refined output, superseded by openapi/_original/"
+  ]
 }

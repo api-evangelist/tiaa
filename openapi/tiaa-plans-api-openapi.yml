@@ -1,18 +1,14 @@
-openapi: 3.0.3
+openapi: 3.2.0
 info:
-  title: TIAA Financial Data Exchange Accounts Plans API
-  description: The TIAA Financial Data Exchange (FDX) API provides authorized fintechs and financial aggregators with secure access to customer account data, including balances, transactions, investment positions, and income information from TIAA retirement and brokerage accounts. This API is built on the FDX open standard (v6.x) and uses OAuth 2.0 for customer-consented data sharing.
-  version: '6.0'
+  title: TIAA Secure Income Account Plans API
+  description: The TIAA Secure Income Account (SIA) API enables recordkeepers and plan administrators to integrate TIAA's guaranteed lifetime income product into custom target-date model portfolios and managed account solutions. The SIA API supports participant account setup, contribution management, allocation updates, and income projection calculations for defined contribution plans. Authentication uses OAuth 2.0 Client Credentials Flow.
+  version: '1.0'
   contact:
     name: TIAA Developer Support
-    url: https://developer.tiaa.org/public/fdx
-  termsOfService: https://developer.tiaa.org/public/terms
-  license:
-    name: TIAA API License
-    url: https://developer.tiaa.org/public/terms
+    url: https://developer.tiaa.org/public/sia
 servers:
-- url: https://api.tiaa.org/fdx/v6
-  description: TIAA FDX Production API
+- url: https://api.tiaa.org/sia/v1
+  description: TIAA SIA Production API
 tags:
 - name: Plans
   description: Plan configuration and eligibility
@@ -75,16 +71,11 @@ components:
           type: number
           format: double
   securitySchemes:
-    OAuth2:
+    ClientCredentials:
       type: oauth2
       flows:
-        authorizationCode:
-          authorizationUrl: https://auth.tiaa.org/oauth2/authorize
+        clientCredentials:
           tokenUrl: https://auth.tiaa.org/oauth2/token
           scopes:
-            openid: OpenID Connect
-            profile: Customer profile
-            accounts: Account data access
-            transactions: Transaction data access
-            investments: Investment data access
-            tax: Tax document access
+            sia:read: Read SIA data
+            sia:write: Write SIA data
