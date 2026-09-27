@@ -41,6 +41,13 @@ paths:
                 $ref: '#/components/schemas/TaxFormList'
 components:
   schemas:
+    TaxFormList:
+      type: object
+      properties:
+        taxForms:
+          type: array
+          items:
+            $ref: '#/components/schemas/TaxForm'
     TaxForm:
       type: object
       properties:
@@ -63,13 +70,6 @@ components:
         downloadUrl:
           type: string
           format: uri
-    TaxFormList:
-      type: object
-      properties:
-        taxForms:
-          type: array
-          items:
-            $ref: '#/components/schemas/TaxForm'
   securitySchemes:
     OAuth2:
       type: oauth2

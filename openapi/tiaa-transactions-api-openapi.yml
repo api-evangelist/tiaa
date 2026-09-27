@@ -63,15 +63,6 @@ paths:
           description: Account not found
 components:
   schemas:
-    Page:
-      type: object
-      properties:
-        nextOffset:
-          type: integer
-        totalElements:
-          type: integer
-        limit:
-          type: integer
     TransactionList:
       type: object
       properties:
@@ -114,6 +105,15 @@ components:
           enum:
           - PENDING
           - POSTED
+    Page:
+      type: object
+      properties:
+        nextOffset:
+          type: integer
+        totalElements:
+          type: integer
+        limit:
+          type: integer
   securitySchemes:
     OAuth2:
       type: oauth2

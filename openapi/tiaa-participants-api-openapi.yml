@@ -108,6 +108,19 @@ paths:
           description: Participant not found
 components:
   schemas:
+    ParticipantList:
+      type: object
+      properties:
+        participants:
+          type: array
+          items:
+            $ref: '#/components/schemas/Participant'
+        totalElements:
+          type: integer
+        page:
+          type: integer
+        pageSize:
+          type: integer
     ParticipantEnrollment:
       type: object
       required:
@@ -163,19 +176,6 @@ components:
           - TERMINATED
           - RETIRED
           - DECEASED
-    ParticipantList:
-      type: object
-      properties:
-        participants:
-          type: array
-          items:
-            $ref: '#/components/schemas/Participant'
-        totalElements:
-          type: integer
-        page:
-          type: integer
-        pageSize:
-          type: integer
   securitySchemes:
     ClientCredentials:
       type: oauth2
