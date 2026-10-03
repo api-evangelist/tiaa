@@ -77,6 +77,15 @@ paths:
           description: Account not found
 components:
   schemas:
+    AccountList:
+      type: object
+      properties:
+        accounts:
+          type: array
+          items:
+            $ref: '#/components/schemas/Account'
+        page:
+          $ref: '#/components/schemas/Page'
     Account:
       type: object
       properties:
@@ -114,15 +123,6 @@ components:
           - OPEN
           - CLOSED
           - PENDING
-    AccountList:
-      type: object
-      properties:
-        accounts:
-          type: array
-          items:
-            $ref: '#/components/schemas/Account'
-        page:
-          $ref: '#/components/schemas/Page'
     Page:
       type: object
       properties:
