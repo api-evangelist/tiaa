@@ -86,6 +86,15 @@ components:
             $ref: '#/components/schemas/Account'
         page:
           $ref: '#/components/schemas/Page'
+    Page:
+      type: object
+      properties:
+        nextOffset:
+          type: integer
+        totalElements:
+          type: integer
+        limit:
+          type: integer
     Account:
       type: object
       properties:
@@ -123,15 +132,6 @@ components:
           - OPEN
           - CLOSED
           - PENDING
-    Page:
-      type: object
-      properties:
-        nextOffset:
-          type: integer
-        totalElements:
-          type: integer
-        limit:
-          type: integer
   securitySchemes:
     OAuth2:
       type: oauth2

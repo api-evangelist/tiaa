@@ -108,19 +108,6 @@ paths:
           description: Participant not found
 components:
   schemas:
-    ParticipantList:
-      type: object
-      properties:
-        participants:
-          type: array
-          items:
-            $ref: '#/components/schemas/Participant'
-        totalElements:
-          type: integer
-        page:
-          type: integer
-        pageSize:
-          type: integer
     ParticipantEnrollment:
       type: object
       required:
@@ -146,6 +133,19 @@ components:
           type: number
           format: double
           description: Initial SIA allocation percentage
+    ParticipantList:
+      type: object
+      properties:
+        participants:
+          type: array
+          items:
+            $ref: '#/components/schemas/Participant'
+        totalElements:
+          type: integer
+        page:
+          type: integer
+        pageSize:
+          type: integer
     Participant:
       type: object
       properties:
