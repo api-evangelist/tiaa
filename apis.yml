@@ -263,6 +263,12 @@ apis:
   - type: Authentication
     url: https://developer.tiaa.org/public/sia#authentication
 common:
+  - type: Plans
+    url: plans/tiaa-plans-pricing.yml
+  - type: RateLimits
+    url: rate-limits/tiaa-rate-limits.yml
+  - type: FinOps
+    url: finops/tiaa-finops.yml
   - type: AgenticAccess
     url: agentic-access/tiaa-agentic-access.yml
   - type: DomainSecurity
