@@ -35,6 +35,24 @@ paths:
                 $ref: '#/components/schemas/Customer'
 components:
   schemas:
+    Customer:
+      type: object
+      properties:
+        customerId:
+          type: string
+        firstName:
+          type: string
+        lastName:
+          type: string
+        email:
+          type: string
+          format: email
+        phone:
+          type: string
+        addresses:
+          type: array
+          items:
+            $ref: '#/components/schemas/Address'
     Address:
       type: object
       properties:
@@ -55,24 +73,6 @@ components:
           type: string
         country:
           type: string
-    Customer:
-      type: object
-      properties:
-        customerId:
-          type: string
-        firstName:
-          type: string
-        lastName:
-          type: string
-        email:
-          type: string
-          format: email
-        phone:
-          type: string
-        addresses:
-          type: array
-          items:
-            $ref: '#/components/schemas/Address'
   securitySchemes:
     OAuth2:
       type: oauth2

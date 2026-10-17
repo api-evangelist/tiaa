@@ -133,19 +133,6 @@ components:
           type: number
           format: double
           description: Initial SIA allocation percentage
-    ParticipantList:
-      type: object
-      properties:
-        participants:
-          type: array
-          items:
-            $ref: '#/components/schemas/Participant'
-        totalElements:
-          type: integer
-        page:
-          type: integer
-        pageSize:
-          type: integer
     Participant:
       type: object
       properties:
@@ -176,6 +163,19 @@ components:
           - TERMINATED
           - RETIRED
           - DECEASED
+    ParticipantList:
+      type: object
+      properties:
+        participants:
+          type: array
+          items:
+            $ref: '#/components/schemas/Participant'
+        totalElements:
+          type: integer
+        page:
+          type: integer
+        pageSize:
+          type: integer
   securitySchemes:
     ClientCredentials:
       type: oauth2
