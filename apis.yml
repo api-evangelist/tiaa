@@ -263,6 +263,8 @@ apis:
   - type: Authentication
     url: https://developer.tiaa.org/public/sia#authentication
 common:
+  - type: PostmanWorkspace
+    url: https://www.postman.com/kinlaneapi/tiaa/overview
   - type: Plans
     url: plans/tiaa-plans-pricing.yml
   - type: RateLimits
