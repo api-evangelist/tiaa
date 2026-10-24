@@ -1,130 +1,127 @@
 {
+  "info": {
+    "_postman_id": "8afa9084-db47-4ce1-8fd0-2e2ce6ea0505",
+    "name": "TIAA Financial Data Exchange Customer API",
+    "description": "The TIAA Financial Data Exchange (FDX) API provides authorized fintechs and financial aggregators with secure access to customer account data, including balances, transactions, investment positions, and income information from TIAA retirement and brokerage accounts. This API is built on the FDX open standard (v6.x) and uses OAuth 2.0 for customer-consented data sharing.\n\nContact Support:\n Name: TIAA Developer Support",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "createdAt": "2026-10-22T02:07:35.000Z",
+    "updatedAt": "2026-10-22T02:07:35.000Z",
+    "lastUpdatedBy": "35240",
+    "uid": "35240-8afa9084-db47-4ce1-8fd0-2e2ce6ea0505"
+  },
   "item": [
     {
-      "id": "cd241b22-4468-4bcc-8dff-fea4df314e67",
-      "name": "Customer",
-      "description": {
-        "content": "Customer profile and identity",
-        "type": "text/plain"
-      },
+      "name": "customer",
       "item": [
         {
-          "id": "c3f66f4f-3019-4261-bc98-e4817f0ea392",
           "name": "Get Customer Profile",
+          "id": "2d24b4e2-c673-4217-b45b-231001a575b0",
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          },
           "request": {
-            "name": "Get Customer Profile",
-            "description": {
-              "content": "Returns the authenticated customer's profile information.",
-              "type": "text/plain"
+            "auth": {
+              "type": "oauth2",
+              "oauth2": [
+                {
+                  "key": "scope",
+                  "value": "openid profile accounts transactions investments tax",
+                  "type": "string"
+                },
+                {
+                  "key": "accessTokenUrl",
+                  "value": "https://auth.tiaa.org/oauth2/token",
+                  "type": "string"
+                },
+                {
+                  "key": "authUrl",
+                  "value": "https://auth.tiaa.org/oauth2/authorize",
+                  "type": "string"
+                },
+                {
+                  "key": "grant_type",
+                  "value": "authorization_code",
+                  "type": "string"
+                }
+              ]
             },
-            "url": {
-              "path": [
-                "customer"
-              ],
-              "host": [
-                "{{baseUrl}}"
-              ],
-              "query": [],
-              "variable": []
-            },
+            "method": "GET",
             "header": [
               {
                 "key": "Accept",
                 "value": "application/json"
               }
             ],
-            "method": "GET",
-            "auth": {
-              "type": "oauth2",
-              "oauth2": [
-                {
-                  "key": "scope",
-                  "value": "openid profile accounts transactions investments tax"
-                },
-                {
-                  "key": "accessTokenUrl",
-                  "value": "https://auth.tiaa.org/oauth2/token"
-                },
-                {
-                  "key": "authUrl",
-                  "value": "https://auth.tiaa.org/oauth2/authorize"
-                },
-                {
-                  "key": "grant_type",
-                  "value": "authorization_code"
-                }
+            "url": {
+              "raw": "{{baseUrl}}/customer",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "customer"
               ]
-            }
+            },
+            "description": "Returns the authenticated customer's profile information."
           },
           "response": [
             {
-              "id": "ca690aca-9a21-4fe6-9275-cb31fd1baf6a",
+              "id": "edd9c5ed-34b0-4761-9c40-90ab92f91903",
               "name": "Customer profile",
               "originalRequest": {
-                "url": {
-                  "path": [
-                    "customer"
-                  ],
-                  "host": [
-                    "{{baseUrl}}"
-                  ],
-                  "query": [],
-                  "variable": []
-                },
+                "method": "GET",
                 "header": [
-                  {
-                    "description": {
-                      "content": "Added as a part of security scheme: oauth2",
-                      "type": "text/plain"
-                    },
-                    "key": "Authorization",
-                    "value": "<token>"
-                  },
                   {
                     "key": "Accept",
                     "value": "application/json"
+                  },
+                  {
+                    "description": "Added as a part of security scheme: oauth2",
+                    "key": "Authorization",
+                    "value": "<token>"
                   }
                 ],
-                "method": "GET",
-                "body": {}
+                "url": {
+                  "raw": "{{baseUrl}}/customer",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "customer"
+                  ]
+                }
               },
               "status": "OK",
               "code": 200,
+              "_postman_previewlanguage": "json",
               "header": [
                 {
                   "key": "Content-Type",
                   "value": "application/json"
                 }
               ],
-              "body": "{\n  \"customerId\": \"string\",\n  \"firstName\": \"string\",\n  \"lastName\": \"string\",\n  \"email\": \"r0nZFQVpfTx@dehgZZIeWeegW.otg\",\n  \"phone\": \"string\",\n  \"addresses\": [\n    {\n      \"addressType\": \"MAILING\",\n      \"line1\": \"string\",\n      \"line2\": \"string\",\n      \"city\": \"string\",\n      \"state\": \"string\",\n      \"postalCode\": \"string\",\n      \"country\": \"string\"\n    },\n    {\n      \"addressType\": \"HOME\",\n      \"line1\": \"string\",\n      \"line2\": \"string\",\n      \"city\": \"string\",\n      \"state\": \"string\",\n      \"postalCode\": \"string\",\n      \"country\": \"string\"\n    }\n  ]\n}",
               "cookie": [],
-              "_postman_previewlanguage": "json"
+              "responseTime": null,
+              "body": "{\n  \"customerId\": \"<string>\",\n  \"firstName\": \"<string>\",\n  \"lastName\": \"<string>\",\n  \"email\": \"<email>\",\n  \"phone\": \"<string>\",\n  \"addresses\": [\n    {\n      \"addressType\": \"MAILING\",\n      \"line1\": \"<string>\",\n      \"line2\": \"<string>\",\n      \"city\": \"<string>\",\n      \"state\": \"<string>\",\n      \"postalCode\": \"<string>\",\n      \"country\": \"<string>\"\n    },\n    {\n      \"addressType\": \"MAILING\",\n      \"line1\": \"<string>\",\n      \"line2\": \"<string>\",\n      \"city\": \"<string>\",\n      \"state\": \"<string>\",\n      \"postalCode\": \"<string>\",\n      \"country\": \"<string>\"\n    }\n  ]\n}",
+              "createdAt": "2026-10-22T02:07:35.000Z",
+              "updatedAt": "2026-10-22T02:07:35.000Z",
+              "uid": "35240-edd9c5ed-34b0-4761-9c40-90ab92f91903"
             }
           ],
-          "event": [],
-          "protocolProfileBehavior": {
-            "disableBodyPruning": true
-          }
+          "createdAt": "2026-10-22T02:07:35.000Z",
+          "updatedAt": "2026-10-22T02:07:35.000Z",
+          "uid": "35240-2d24b4e2-c673-4217-b45b-231001a575b0"
         }
       ],
-      "event": []
+      "id": "ba603ea8-0a86-428f-a41c-0234c8bfb0d3",
+      "createdAt": "2026-10-22T02:07:35.000Z",
+      "updatedAt": "2026-10-22T02:07:35.000Z",
+      "uid": "35240-ba603ea8-0a86-428f-a41c-0234c8bfb0d3"
     }
   ],
-  "event": [],
   "variable": [
     {
-      "type": "string",
-      "value": "https://api.tiaa.org/fdx/v6",
-      "key": "baseUrl"
+      "key": "baseUrl",
+      "value": "https://api.tiaa.org/fdx/v6"
     }
-  ],
-  "info": {
-    "_postman_id": "50f79148-f0b8-457a-8852-d9bec1ce5ce7",
-    "name": "TIAA Financial Data Exchange Accounts Customer API",
-    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
-    "description": {
-      "content": "The TIAA Financial Data Exchange (FDX) API provides authorized fintechs and financial aggregators with secure access to customer account data, including balances, transactions, investment positions, and income information from TIAA retirement and brokerage accounts. This API is built on the FDX open standard (v6.x) and uses OAuth 2.0 for customer-consented data sharing.\n\nContact Support:\n Name: TIAA Developer Support",
-      "type": "text/plain"
-    }
-  }
+  ]
 }

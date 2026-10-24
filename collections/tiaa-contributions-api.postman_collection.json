@@ -1,189 +1,239 @@
 {
+  "info": {
+    "_postman_id": "e9095c7c-ccae-4506-8c6c-cef4841abb9f",
+    "name": "TIAA Secure Income Account Contributions API",
+    "description": "The TIAA Secure Income Account (SIA) API enables recordkeepers and plan administrators to integrate TIAA's guaranteed lifetime income product into custom target-date model portfolios and managed account solutions. The SIA API supports participant account setup, contribution management, allocation updates, and income projection calculations for defined contribution plans. Authentication uses OAuth 2.0 Client Credentials Flow.\n\nContact Support:\n Name: TIAA Developer Support",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "createdAt": "2026-10-22T02:07:30.000Z",
+    "updatedAt": "2026-10-22T02:07:30.000Z",
+    "lastUpdatedBy": "35240",
+    "uid": "35240-e9095c7c-ccae-4506-8c6c-cef4841abb9f"
+  },
   "item": [
     {
-      "id": "ee3bf15c-56c9-4129-97e0-f44a4cda6fc1",
-      "name": "Contributions",
-      "description": {
-        "content": "Contribution and allocation management",
-        "type": "text/plain"
-      },
+      "name": "plans",
       "item": [
         {
-          "id": "76bc3984-bc81-4ae8-a86d-23e655c880cf",
-          "name": "Submit Contribution",
-          "request": {
-            "name": "Submit Contribution",
-            "description": {
-              "content": "Submits a contribution or allocation to a participant's SIA account.",
-              "type": "text/plain"
-            },
-            "url": {
-              "path": [
-                "plans",
-                ":planId",
-                "contributions"
-              ],
-              "host": [
-                "{{baseUrl}}"
-              ],
-              "query": [],
-              "variable": [
-                {
-                  "disabled": false,
-                  "type": "any",
-                  "value": "<string>",
-                  "key": "planId",
-                  "description": "(Required) "
-                }
-              ]
-            },
-            "header": [
-              {
-                "key": "Content-Type",
-                "value": "application/json"
-              },
-              {
-                "key": "Accept",
-                "value": "application/json"
-              }
-            ],
-            "method": "POST",
-            "body": {
-              "mode": "raw",
-              "raw": "{\n  \"participantId\": \"<string>\",\n  \"amount\": \"<double>\",\n  \"contributionType\": \"<string>\",\n  \"payrollDate\": \"<date>\",\n  \"allocationPercentage\": \"<double>\"\n}",
-              "options": {
-                "raw": {
-                  "language": "json"
-                }
-              }
-            }
-          },
-          "response": [
+          "name": "{planId}",
+          "item": [
             {
-              "id": "8ef431a9-7b07-499b-ba09-317dca11706a",
-              "name": "Contribution submitted",
-              "originalRequest": {
-                "url": {
-                  "path": [
-                    "plans",
-                    ":planId",
-                    "contributions"
-                  ],
-                  "host": [
-                    "{{baseUrl}}"
-                  ],
-                  "query": [],
-                  "variable": [
-                    {
-                      "disabled": false,
-                      "type": "any",
-                      "value": "<string>",
-                      "key": "planId",
-                      "description": "(Required) "
-                    }
-                  ]
-                },
-                "header": [
-                  {
-                    "key": "Accept",
-                    "value": "application/json"
-                  }
-                ],
-                "method": "POST",
-                "body": {
-                  "mode": "raw",
-                  "raw": "{\n  \"participantId\": \"<string>\",\n  \"amount\": \"<double>\",\n  \"contributionType\": \"<string>\",\n  \"payrollDate\": \"<date>\",\n  \"allocationPercentage\": \"<double>\"\n}",
-                  "options": {
-                    "raw": {
-                      "language": "json"
-                    }
-                  }
-                }
-              },
-              "status": "OK",
-              "code": 200,
-              "header": [
+              "name": "contributions",
+              "item": [
                 {
-                  "key": "Content-Type",
-                  "value": "application/json"
+                  "name": "Submit Contribution",
+                  "id": "d94facff-afc5-466b-a3ba-7ecc9baaafb5",
+                  "protocolProfileBehavior": {
+                    "disableBodyPruning": true
+                  },
+                  "request": {
+                    "auth": {
+                      "type": "oauth2",
+                      "oauth2": [
+                        {
+                          "key": "scope",
+                          "value": "sia:read sia:write",
+                          "type": "string"
+                        },
+                        {
+                          "key": "accessTokenUrl",
+                          "value": "https://auth.tiaa.org/oauth2/token",
+                          "type": "string"
+                        },
+                        {
+                          "key": "grant_type",
+                          "value": "client_credentials",
+                          "type": "string"
+                        }
+                      ]
+                    },
+                    "method": "POST",
+                    "header": [
+                      {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                      },
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      }
+                    ],
+                    "body": {
+                      "mode": "raw",
+                      "raw": "{\n  \"participantId\": \"<string>\",\n  \"amount\": \"<double>\",\n  \"contributionType\": \"EMPLOYER\",\n  \"payrollDate\": \"<date>\",\n  \"allocationPercentage\": \"<double>\"\n}",
+                      "options": {
+                        "raw": {
+                          "headerFamily": "json",
+                          "language": "json"
+                        }
+                      }
+                    },
+                    "url": {
+                      "raw": "{{baseUrl}}/plans/:planId/contributions",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "plans",
+                        ":planId",
+                        "contributions"
+                      ],
+                      "variable": [
+                        {
+                          "id": "f3260d8e-0e18-4bd3-a36b-91b2be037da6",
+                          "key": "planId",
+                          "value": "<string>",
+                          "description": "(Required) "
+                        }
+                      ]
+                    },
+                    "description": "Submits a contribution or allocation to a participant's SIA account."
+                  },
+                  "response": [
+                    {
+                      "id": "c0b19d20-bd00-4984-81e4-0c8949550871",
+                      "name": "Contribution submitted",
+                      "originalRequest": {
+                        "method": "POST",
+                        "header": [
+                          {
+                            "key": "Content-Type",
+                            "value": "application/json"
+                          },
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: oauth2",
+                            "key": "Authorization",
+                            "value": "<token>"
+                          }
+                        ],
+                        "body": {
+                          "mode": "raw",
+                          "raw": "{\n  \"participantId\": \"<string>\",\n  \"amount\": \"<double>\",\n  \"contributionType\": \"EMPLOYER\",\n  \"payrollDate\": \"<date>\",\n  \"allocationPercentage\": \"<double>\"\n}",
+                          "options": {
+                            "raw": {
+                              "headerFamily": "json",
+                              "language": "json"
+                            }
+                          }
+                        },
+                        "url": {
+                          "raw": "{{baseUrl}}/plans/:planId/contributions",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "plans",
+                            ":planId",
+                            "contributions"
+                          ],
+                          "variable": [
+                            {
+                              "key": "planId"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "OK",
+                      "code": 200,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"confirmationId\": \"<string>\",\n  \"participantId\": \"<string>\",\n  \"amount\": \"<double>\",\n  \"processedDate\": \"<dateTime>\",\n  \"status\": \"REJECTED\"\n}",
+                      "createdAt": "2026-10-22T02:07:30.000Z",
+                      "updatedAt": "2026-10-22T02:07:30.000Z",
+                      "uid": "35240-c0b19d20-bd00-4984-81e4-0c8949550871"
+                    },
+                    {
+                      "id": "54afd12b-cb29-43b1-b1d5-bddd6cd4ffe7",
+                      "name": "Invalid contribution data",
+                      "originalRequest": {
+                        "method": "POST",
+                        "header": [
+                          {
+                            "key": "Content-Type",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: oauth2",
+                            "key": "Authorization",
+                            "value": "<token>"
+                          }
+                        ],
+                        "body": {
+                          "mode": "raw",
+                          "raw": "{\n  \"participantId\": \"<string>\",\n  \"amount\": \"<double>\",\n  \"contributionType\": \"EMPLOYER\",\n  \"payrollDate\": \"<date>\",\n  \"allocationPercentage\": \"<double>\"\n}",
+                          "options": {
+                            "raw": {
+                              "headerFamily": "json",
+                              "language": "json"
+                            }
+                          }
+                        },
+                        "url": {
+                          "raw": "{{baseUrl}}/plans/:planId/contributions",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "plans",
+                            ":planId",
+                            "contributions"
+                          ],
+                          "variable": [
+                            {
+                              "key": "planId"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "Bad Request",
+                      "code": 400,
+                      "_postman_previewlanguage": "text",
+                      "header": [],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": null,
+                      "createdAt": "2026-10-22T02:07:30.000Z",
+                      "updatedAt": "2026-10-22T02:07:30.000Z",
+                      "uid": "35240-54afd12b-cb29-43b1-b1d5-bddd6cd4ffe7"
+                    }
+                  ],
+                  "createdAt": "2026-10-22T02:07:30.000Z",
+                  "updatedAt": "2026-10-22T02:07:30.000Z",
+                  "uid": "35240-d94facff-afc5-466b-a3ba-7ecc9baaafb5"
                 }
               ],
-              "body": "{\n  \"confirmationId\": \"string\",\n  \"participantId\": \"string\",\n  \"amount\": 7252.249026945101,\n  \"processedDate\": \"2008-12-25T19:18:29.564Z\",\n  \"status\": \"REJECTED\"\n}",
-              "cookie": [],
-              "_postman_previewlanguage": "json"
-            },
-            {
-              "id": "4ddea76e-3235-446a-b599-b2985390ced3",
-              "name": "Invalid contribution data",
-              "originalRequest": {
-                "url": {
-                  "path": [
-                    "plans",
-                    ":planId",
-                    "contributions"
-                  ],
-                  "host": [
-                    "{{baseUrl}}"
-                  ],
-                  "query": [],
-                  "variable": [
-                    {
-                      "disabled": false,
-                      "type": "any",
-                      "value": "<string>",
-                      "key": "planId",
-                      "description": "(Required) "
-                    }
-                  ]
-                },
-                "method": "POST",
-                "body": {
-                  "mode": "raw",
-                  "raw": "{\n  \"participantId\": \"<string>\",\n  \"amount\": \"<double>\",\n  \"contributionType\": \"<string>\",\n  \"payrollDate\": \"<date>\",\n  \"allocationPercentage\": \"<double>\"\n}",
-                  "options": {
-                    "raw": {
-                      "language": "json"
-                    }
-                  }
-                }
-              },
-              "status": "Bad Request",
-              "code": 400,
-              "header": [
-                {
-                  "key": "Content-Type",
-                  "value": "text/plain"
-                }
-              ],
-              "body": "",
-              "cookie": [],
-              "_postman_previewlanguage": "text"
+              "id": "587be2d1-7bed-4e9e-b215-a7aea33e519f",
+              "createdAt": "2026-10-22T02:07:30.000Z",
+              "updatedAt": "2026-10-22T02:07:30.000Z",
+              "uid": "35240-587be2d1-7bed-4e9e-b215-a7aea33e519f"
             }
           ],
-          "event": [],
-          "protocolProfileBehavior": {
-            "disableBodyPruning": true
-          }
+          "id": "46753104-3c2b-41e0-962b-89b3393a655d",
+          "createdAt": "2026-10-22T02:07:30.000Z",
+          "updatedAt": "2026-10-22T02:07:30.000Z",
+          "uid": "35240-46753104-3c2b-41e0-962b-89b3393a655d"
         }
       ],
-      "event": []
+      "id": "2a9d3287-58ec-44a0-b1e6-194edece2380",
+      "createdAt": "2026-10-22T02:07:30.000Z",
+      "updatedAt": "2026-10-22T02:07:30.000Z",
+      "uid": "35240-2a9d3287-58ec-44a0-b1e6-194edece2380"
     }
   ],
-  "event": [],
   "variable": [
     {
-      "type": "string",
-      "value": "https://api.tiaa.org/fdx/v6",
-      "key": "baseUrl"
+      "key": "baseUrl",
+      "value": "https://api.tiaa.org/sia/v1"
     }
-  ],
-  "info": {
-    "_postman_id": "a771543c-ba62-44c1-8771-f6a06df9f00f",
-    "name": "TIAA Financial Data Exchange Accounts Contributions API",
-    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
-    "description": {
-      "content": "The TIAA Financial Data Exchange (FDX) API provides authorized fintechs and financial aggregators with secure access to customer account data, including balances, transactions, investment positions, and income information from TIAA retirement and brokerage accounts. This API is built on the FDX open standard (v6.x) and uses OAuth 2.0 for customer-consented data sharing.\n\nContact Support:\n Name: TIAA Developer Support",
-      "type": "text/plain"
-    }
-  }
+  ]
 }

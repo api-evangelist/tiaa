@@ -1,256 +1,262 @@
 {
+  "info": {
+    "_postman_id": "7235de8c-1b8d-4503-a6a7-0e5fcb1c088a",
+    "name": "TIAA Financial Data Exchange Transactions API",
+    "description": "The TIAA Financial Data Exchange (FDX) API provides authorized fintechs and financial aggregators with secure access to customer account data, including balances, transactions, investment positions, and income information from TIAA retirement and brokerage accounts. This API is built on the FDX open standard (v6.x) and uses OAuth 2.0 for customer-consented data sharing.\n\nContact Support:\n Name: TIAA Developer Support",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "createdAt": "2026-10-22T02:08:13.000Z",
+    "updatedAt": "2026-10-22T02:08:14.000Z",
+    "lastUpdatedBy": "35240",
+    "uid": "35240-7235de8c-1b8d-4503-a6a7-0e5fcb1c088a"
+  },
   "item": [
     {
-      "id": "e6f5ffe7-729b-4df1-97a2-855023259765",
-      "name": "Transactions",
-      "description": {
-        "content": "Account transaction history",
-        "type": "text/plain"
-      },
+      "name": "accounts",
       "item": [
         {
-          "id": "9b602f6f-3823-4df0-8f9c-8a88c43443a3",
-          "name": "List Account Transactions",
-          "request": {
-            "name": "List Account Transactions",
-            "description": {
-              "content": "Returns transaction history for a specific account within an optional date range.",
-              "type": "text/plain"
-            },
-            "url": {
-              "path": [
-                "accounts",
-                ":accountId",
-                "transactions"
-              ],
-              "host": [
-                "{{baseUrl}}"
-              ],
-              "query": [
-                {
-                  "disabled": false,
-                  "key": "startTime",
-                  "value": "<dateTime>",
-                  "description": "Start of transaction date range (ISO 8601)"
-                },
-                {
-                  "disabled": false,
-                  "key": "endTime",
-                  "value": "<dateTime>",
-                  "description": "End of transaction date range (ISO 8601)"
-                },
-                {
-                  "disabled": false,
-                  "key": "offset",
-                  "value": "<integer>"
-                },
-                {
-                  "disabled": false,
-                  "key": "limit",
-                  "value": "<integer>"
-                }
-              ],
-              "variable": [
-                {
-                  "disabled": false,
-                  "type": "any",
-                  "value": "<string>",
-                  "key": "accountId",
-                  "description": "(Required) "
-                }
-              ]
-            },
-            "header": [
-              {
-                "key": "Accept",
-                "value": "application/json"
-              }
-            ],
-            "method": "GET",
-            "auth": {
-              "type": "oauth2",
-              "oauth2": [
-                {
-                  "key": "scope",
-                  "value": "openid profile accounts transactions investments tax"
-                },
-                {
-                  "key": "accessTokenUrl",
-                  "value": "https://auth.tiaa.org/oauth2/token"
-                },
-                {
-                  "key": "authUrl",
-                  "value": "https://auth.tiaa.org/oauth2/authorize"
-                },
-                {
-                  "key": "grant_type",
-                  "value": "authorization_code"
-                }
-              ]
-            }
-          },
-          "response": [
+          "name": "{accountId}",
+          "item": [
             {
-              "id": "359b3275-3a3c-44fe-8e7e-1f7f0d3c0dbb",
-              "name": "Transaction list",
-              "originalRequest": {
-                "url": {
-                  "path": [
-                    "accounts",
-                    ":accountId",
-                    "transactions"
-                  ],
-                  "host": [
-                    "{{baseUrl}}"
-                  ],
-                  "query": [
-                    {
-                      "key": "startTime",
-                      "value": "<dateTime>"
-                    },
-                    {
-                      "key": "endTime",
-                      "value": "<dateTime>"
-                    },
-                    {
-                      "key": "offset",
-                      "value": "<integer>"
-                    },
-                    {
-                      "key": "limit",
-                      "value": "<integer>"
-                    }
-                  ],
-                  "variable": [
-                    {
-                      "disabled": false,
-                      "type": "any",
-                      "value": "<string>",
-                      "key": "accountId",
-                      "description": "(Required) "
-                    }
-                  ]
-                },
-                "header": [
-                  {
-                    "description": {
-                      "content": "Added as a part of security scheme: oauth2",
-                      "type": "text/plain"
-                    },
-                    "key": "Authorization",
-                    "value": "<token>"
+              "name": "transactions",
+              "item": [
+                {
+                  "name": "List Account Transactions",
+                  "id": "c0ab43ef-59a9-400c-9f02-d3a9ccf24b0c",
+                  "protocolProfileBehavior": {
+                    "disableBodyPruning": true
                   },
-                  {
-                    "key": "Accept",
-                    "value": "application/json"
-                  }
-                ],
-                "method": "GET",
-                "body": {}
-              },
-              "status": "OK",
-              "code": 200,
-              "header": [
-                {
-                  "key": "Content-Type",
-                  "value": "application/json"
-                }
-              ],
-              "body": "{\n  \"transactions\": [\n    {\n      \"transactionId\": \"string\",\n      \"accountId\": \"string\",\n      \"transactionType\": \"WITHDRAWAL\",\n      \"amount\": 3660.5630478123985,\n      \"description\": \"string\",\n      \"transactionDate\": \"2021-03-08T09:59:17.643Z\",\n      \"postedDate\": \"1972-11-27T21:20:04.909Z\",\n      \"status\": \"PENDING\"\n    },\n    {\n      \"transactionId\": \"string\",\n      \"accountId\": \"string\",\n      \"transactionType\": \"DEBIT\",\n      \"amount\": 3810.7222309083777,\n      \"description\": \"string\",\n      \"transactionDate\": \"2007-08-31T00:01:27.368Z\",\n      \"postedDate\": \"1978-12-21T10:54:45.766Z\",\n      \"status\": \"PENDING\"\n    }\n  ],\n  \"page\": {\n    \"nextOffset\": 1838,\n    \"totalElements\": 1340,\n    \"limit\": 3103\n  }\n}",
-              "cookie": [],
-              "_postman_previewlanguage": "json"
-            },
-            {
-              "id": "81a7ff1f-54d3-43c6-9a0c-60266ce6dd66",
-              "name": "Account not found",
-              "originalRequest": {
-                "url": {
-                  "path": [
-                    "accounts",
-                    ":accountId",
-                    "transactions"
-                  ],
-                  "host": [
-                    "{{baseUrl}}"
-                  ],
-                  "query": [
+                  "request": {
+                    "auth": {
+                      "type": "oauth2",
+                      "oauth2": [
+                        {
+                          "key": "scope",
+                          "value": "openid profile accounts transactions investments tax",
+                          "type": "string"
+                        },
+                        {
+                          "key": "accessTokenUrl",
+                          "value": "https://auth.tiaa.org/oauth2/token",
+                          "type": "string"
+                        },
+                        {
+                          "key": "authUrl",
+                          "value": "https://auth.tiaa.org/oauth2/authorize",
+                          "type": "string"
+                        },
+                        {
+                          "key": "grant_type",
+                          "value": "authorization_code",
+                          "type": "string"
+                        }
+                      ]
+                    },
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/accounts/:accountId/transactions?startTime=<dateTime>&endTime=<dateTime>&offset=<integer>&limit=<integer>",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "accounts",
+                        ":accountId",
+                        "transactions"
+                      ],
+                      "query": [
+                        {
+                          "description": "Start of transaction date range (ISO 8601)",
+                          "key": "startTime",
+                          "value": "<dateTime>"
+                        },
+                        {
+                          "description": "End of transaction date range (ISO 8601)",
+                          "key": "endTime",
+                          "value": "<dateTime>"
+                        },
+                        {
+                          "key": "offset",
+                          "value": "<integer>"
+                        },
+                        {
+                          "key": "limit",
+                          "value": "<integer>"
+                        }
+                      ],
+                      "variable": [
+                        {
+                          "id": "b12a00e2-1a6b-4208-9a91-83a09aa67486",
+                          "key": "accountId",
+                          "value": "<string>",
+                          "description": "(Required) "
+                        }
+                      ]
+                    },
+                    "description": "Returns transaction history for a specific account within an optional date range."
+                  },
+                  "response": [
                     {
-                      "key": "startTime",
-                      "value": "<dateTime>"
+                      "id": "b871ac30-c85e-437e-b7ad-30a7495b599d",
+                      "name": "Transaction list",
+                      "originalRequest": {
+                        "method": "GET",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: oauth2",
+                            "key": "Authorization",
+                            "value": "<token>"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/accounts/:accountId/transactions?startTime=<dateTime>&endTime=<dateTime>&offset=<integer>&limit=<integer>",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "accounts",
+                            ":accountId",
+                            "transactions"
+                          ],
+                          "query": [
+                            {
+                              "description": "Start of transaction date range (ISO 8601)",
+                              "key": "startTime",
+                              "value": "<dateTime>"
+                            },
+                            {
+                              "description": "End of transaction date range (ISO 8601)",
+                              "key": "endTime",
+                              "value": "<dateTime>"
+                            },
+                            {
+                              "key": "offset",
+                              "value": "<integer>"
+                            },
+                            {
+                              "key": "limit",
+                              "value": "<integer>"
+                            }
+                          ],
+                          "variable": [
+                            {
+                              "key": "accountId"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "OK",
+                      "code": 200,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"transactions\": [\n    {\n      \"transactionId\": \"<string>\",\n      \"accountId\": \"<string>\",\n      \"transactionType\": \"DEBIT\",\n      \"amount\": \"<double>\",\n      \"description\": \"<string>\",\n      \"transactionDate\": \"<dateTime>\",\n      \"postedDate\": \"<dateTime>\",\n      \"status\": \"PENDING\"\n    },\n    {\n      \"transactionId\": \"<string>\",\n      \"accountId\": \"<string>\",\n      \"transactionType\": \"DEBIT\",\n      \"amount\": \"<double>\",\n      \"description\": \"<string>\",\n      \"transactionDate\": \"<dateTime>\",\n      \"postedDate\": \"<dateTime>\",\n      \"status\": \"POSTED\"\n    }\n  ],\n  \"page\": {\n    \"nextOffset\": \"<integer>\",\n    \"totalElements\": \"<integer>\",\n    \"limit\": \"<integer>\"\n  }\n}",
+                      "createdAt": "2026-10-22T02:08:14.000Z",
+                      "updatedAt": "2026-10-22T02:08:14.000Z",
+                      "uid": "35240-b871ac30-c85e-437e-b7ad-30a7495b599d"
                     },
                     {
-                      "key": "endTime",
-                      "value": "<dateTime>"
-                    },
-                    {
-                      "key": "offset",
-                      "value": "<integer>"
-                    },
-                    {
-                      "key": "limit",
-                      "value": "<integer>"
+                      "id": "510bde37-f583-447e-a930-967633f56ceb",
+                      "name": "Account not found",
+                      "originalRequest": {
+                        "method": "GET",
+                        "header": [
+                          {
+                            "description": "Added as a part of security scheme: oauth2",
+                            "key": "Authorization",
+                            "value": "<token>"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/accounts/:accountId/transactions?startTime=<dateTime>&endTime=<dateTime>&offset=<integer>&limit=<integer>",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "accounts",
+                            ":accountId",
+                            "transactions"
+                          ],
+                          "query": [
+                            {
+                              "description": "Start of transaction date range (ISO 8601)",
+                              "key": "startTime",
+                              "value": "<dateTime>"
+                            },
+                            {
+                              "description": "End of transaction date range (ISO 8601)",
+                              "key": "endTime",
+                              "value": "<dateTime>"
+                            },
+                            {
+                              "key": "offset",
+                              "value": "<integer>"
+                            },
+                            {
+                              "key": "limit",
+                              "value": "<integer>"
+                            }
+                          ],
+                          "variable": [
+                            {
+                              "key": "accountId"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "Not Found",
+                      "code": 404,
+                      "_postman_previewlanguage": "text",
+                      "header": [],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": null,
+                      "createdAt": "2026-10-22T02:08:14.000Z",
+                      "updatedAt": "2026-10-22T02:08:14.000Z",
+                      "uid": "35240-510bde37-f583-447e-a930-967633f56ceb"
                     }
                   ],
-                  "variable": [
-                    {
-                      "disabled": false,
-                      "type": "any",
-                      "value": "<string>",
-                      "key": "accountId",
-                      "description": "(Required) "
-                    }
-                  ]
-                },
-                "header": [
-                  {
-                    "description": {
-                      "content": "Added as a part of security scheme: oauth2",
-                      "type": "text/plain"
-                    },
-                    "key": "Authorization",
-                    "value": "<token>"
-                  }
-                ],
-                "method": "GET",
-                "body": {}
-              },
-              "status": "Not Found",
-              "code": 404,
-              "header": [
-                {
-                  "key": "Content-Type",
-                  "value": "text/plain"
+                  "createdAt": "2026-10-22T02:08:14.000Z",
+                  "updatedAt": "2026-10-22T02:08:14.000Z",
+                  "uid": "35240-c0ab43ef-59a9-400c-9f02-d3a9ccf24b0c"
                 }
               ],
-              "body": "",
-              "cookie": [],
-              "_postman_previewlanguage": "text"
+              "id": "456df7ae-39dc-4896-a014-2f00fd60f9b2",
+              "createdAt": "2026-10-22T02:08:14.000Z",
+              "updatedAt": "2026-10-22T02:08:14.000Z",
+              "uid": "35240-456df7ae-39dc-4896-a014-2f00fd60f9b2"
             }
           ],
-          "event": [],
-          "protocolProfileBehavior": {
-            "disableBodyPruning": true
-          }
+          "id": "2660f7d2-d3b0-493a-926d-aa96e9193298",
+          "createdAt": "2026-10-22T02:08:14.000Z",
+          "updatedAt": "2026-10-22T02:08:14.000Z",
+          "uid": "35240-2660f7d2-d3b0-493a-926d-aa96e9193298"
         }
       ],
-      "event": []
+      "id": "ea20b386-c7c7-4afa-b77a-3af6945697d8",
+      "createdAt": "2026-10-22T02:08:14.000Z",
+      "updatedAt": "2026-10-22T02:08:14.000Z",
+      "uid": "35240-ea20b386-c7c7-4afa-b77a-3af6945697d8"
     }
   ],
-  "event": [],
   "variable": [
     {
-      "type": "string",
-      "value": "https://api.tiaa.org/fdx/v6",
-      "key": "baseUrl"
+      "key": "baseUrl",
+      "value": "https://api.tiaa.org/fdx/v6"
     }
-  ],
-  "info": {
-    "_postman_id": "7c9d927f-269c-4f93-9c68-5daa6a885239",
-    "name": "TIAA Financial Data Exchange Accounts Transactions API",
-    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
-    "description": {
-      "content": "The TIAA Financial Data Exchange (FDX) API provides authorized fintechs and financial aggregators with secure access to customer account data, including balances, transactions, investment positions, and income information from TIAA retirement and brokerage accounts. This API is built on the FDX open standard (v6.x) and uses OAuth 2.0 for customer-consented data sharing.\n\nContact Support:\n Name: TIAA Developer Support",
-      "type": "text/plain"
-    }
-  }
+  ]
 }

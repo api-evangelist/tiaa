@@ -1,150 +1,162 @@
 {
+  "info": {
+    "_postman_id": "9c7e1316-4d87-4891-97d0-bf499a26c69f",
+    "name": "TIAA Financial Data Exchange Investments API",
+    "description": "The TIAA Financial Data Exchange (FDX) API provides authorized fintechs and financial aggregators with secure access to customer account data, including balances, transactions, investment positions, and income information from TIAA retirement and brokerage accounts. This API is built on the FDX open standard (v6.x) and uses OAuth 2.0 for customer-consented data sharing.\n\nContact Support:\n Name: TIAA Developer Support",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "createdAt": "2026-10-22T02:07:39.000Z",
+    "updatedAt": "2026-10-22T02:07:39.000Z",
+    "lastUpdatedBy": "35240",
+    "uid": "35240-9c7e1316-4d87-4891-97d0-bf499a26c69f"
+  },
   "item": [
     {
-      "id": "9fa4216b-939c-48f7-8c11-4d6858a44f3d",
-      "name": "Investments",
-      "description": {
-        "content": "Investment positions and holdings",
-        "type": "text/plain"
-      },
+      "name": "accounts",
       "item": [
         {
-          "id": "69601975-8b91-45af-860e-c862658acf86",
-          "name": "List Investment Positions",
-          "request": {
-            "name": "List Investment Positions",
-            "description": {
-              "content": "Returns current investment positions (holdings) for a specific account.",
-              "type": "text/plain"
-            },
-            "url": {
-              "path": [
-                "accounts",
-                ":accountId",
-                "positions"
-              ],
-              "host": [
-                "{{baseUrl}}"
-              ],
-              "query": [],
-              "variable": [
-                {
-                  "disabled": false,
-                  "type": "any",
-                  "value": "<string>",
-                  "key": "accountId",
-                  "description": "(Required) "
-                }
-              ]
-            },
-            "header": [
-              {
-                "key": "Accept",
-                "value": "application/json"
-              }
-            ],
-            "method": "GET",
-            "auth": {
-              "type": "oauth2",
-              "oauth2": [
-                {
-                  "key": "scope",
-                  "value": "openid profile accounts transactions investments tax"
-                },
-                {
-                  "key": "accessTokenUrl",
-                  "value": "https://auth.tiaa.org/oauth2/token"
-                },
-                {
-                  "key": "authUrl",
-                  "value": "https://auth.tiaa.org/oauth2/authorize"
-                },
-                {
-                  "key": "grant_type",
-                  "value": "authorization_code"
-                }
-              ]
-            }
-          },
-          "response": [
+          "name": "{accountId}",
+          "item": [
             {
-              "id": "1a2f36ef-426e-4375-85e5-db6d3eaebc8f",
-              "name": "Investment positions",
-              "originalRequest": {
-                "url": {
-                  "path": [
-                    "accounts",
-                    ":accountId",
-                    "positions"
-                  ],
-                  "host": [
-                    "{{baseUrl}}"
-                  ],
-                  "query": [],
-                  "variable": [
-                    {
-                      "disabled": false,
-                      "type": "any",
-                      "value": "<string>",
-                      "key": "accountId",
-                      "description": "(Required) "
-                    }
-                  ]
-                },
-                "header": [
-                  {
-                    "description": {
-                      "content": "Added as a part of security scheme: oauth2",
-                      "type": "text/plain"
-                    },
-                    "key": "Authorization",
-                    "value": "<token>"
-                  },
-                  {
-                    "key": "Accept",
-                    "value": "application/json"
-                  }
-                ],
-                "method": "GET",
-                "body": {}
-              },
-              "status": "OK",
-              "code": 200,
-              "header": [
+              "name": "positions",
+              "item": [
                 {
-                  "key": "Content-Type",
-                  "value": "application/json"
+                  "name": "List Investment Positions",
+                  "id": "b7eb10ea-8888-4bb9-949a-b786ea6327d2",
+                  "protocolProfileBehavior": {
+                    "disableBodyPruning": true
+                  },
+                  "request": {
+                    "auth": {
+                      "type": "oauth2",
+                      "oauth2": [
+                        {
+                          "key": "scope",
+                          "value": "openid profile accounts transactions investments tax",
+                          "type": "string"
+                        },
+                        {
+                          "key": "accessTokenUrl",
+                          "value": "https://auth.tiaa.org/oauth2/token",
+                          "type": "string"
+                        },
+                        {
+                          "key": "authUrl",
+                          "value": "https://auth.tiaa.org/oauth2/authorize",
+                          "type": "string"
+                        },
+                        {
+                          "key": "grant_type",
+                          "value": "authorization_code",
+                          "type": "string"
+                        }
+                      ]
+                    },
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/accounts/:accountId/positions",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "accounts",
+                        ":accountId",
+                        "positions"
+                      ],
+                      "variable": [
+                        {
+                          "id": "373bc6d7-f8b1-4735-9f41-e382f98b1080",
+                          "key": "accountId",
+                          "value": "<string>",
+                          "description": "(Required) "
+                        }
+                      ]
+                    },
+                    "description": "Returns current investment positions (holdings) for a specific account."
+                  },
+                  "response": [
+                    {
+                      "id": "fa8d7f2d-0099-441b-802d-d2ca25b76b8f",
+                      "name": "Investment positions",
+                      "originalRequest": {
+                        "method": "GET",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: oauth2",
+                            "key": "Authorization",
+                            "value": "<token>"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/accounts/:accountId/positions",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "accounts",
+                            ":accountId",
+                            "positions"
+                          ],
+                          "variable": [
+                            {
+                              "key": "accountId"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "OK",
+                      "code": 200,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"positions\": [\n    {\n      \"positionId\": \"<string>\",\n      \"accountId\": \"<string>\",\n      \"symbol\": \"<string>\",\n      \"description\": \"<string>\",\n      \"quantity\": \"<double>\",\n      \"marketValue\": \"<double>\",\n      \"costBasis\": \"<double>\",\n      \"priceAsOf\": \"<dateTime>\",\n      \"price\": \"<double>\",\n      \"currency\": \"USD\"\n    },\n    {\n      \"positionId\": \"<string>\",\n      \"accountId\": \"<string>\",\n      \"symbol\": \"<string>\",\n      \"description\": \"<string>\",\n      \"quantity\": \"<double>\",\n      \"marketValue\": \"<double>\",\n      \"costBasis\": \"<double>\",\n      \"priceAsOf\": \"<dateTime>\",\n      \"price\": \"<double>\",\n      \"currency\": \"USD\"\n    }\n  ]\n}",
+                      "createdAt": "2026-10-22T02:07:39.000Z",
+                      "updatedAt": "2026-10-22T02:07:39.000Z",
+                      "uid": "35240-fa8d7f2d-0099-441b-802d-d2ca25b76b8f"
+                    }
+                  ],
+                  "createdAt": "2026-10-22T02:07:39.000Z",
+                  "updatedAt": "2026-10-22T02:07:39.000Z",
+                  "uid": "35240-b7eb10ea-8888-4bb9-949a-b786ea6327d2"
                 }
               ],
-              "body": "{\n  \"positions\": [\n    {\n      \"positionId\": \"string\",\n      \"accountId\": \"string\",\n      \"symbol\": \"string\",\n      \"description\": \"string\",\n      \"quantity\": 2056.42281183143,\n      \"marketValue\": 5121.83422991726,\n      \"costBasis\": 939.4166620877298,\n      \"priceAsOf\": \"1984-11-18T02:45:06.298Z\",\n      \"price\": 7508.124763065449,\n      \"currency\": \"USD\"\n    },\n    {\n      \"positionId\": \"string\",\n      \"accountId\": \"string\",\n      \"symbol\": \"string\",\n      \"description\": \"string\",\n      \"quantity\": 1075.0994090948275,\n      \"marketValue\": 374.52446520692797,\n      \"costBasis\": 7846.303776553832,\n      \"priceAsOf\": \"1990-05-25T09:53:03.202Z\",\n      \"price\": 9095.427919971162,\n      \"currency\": \"USD\"\n    }\n  ]\n}",
-              "cookie": [],
-              "_postman_previewlanguage": "json"
+              "id": "c7190ffd-f3af-4ef5-8912-ab2a8494ceb9",
+              "createdAt": "2026-10-22T02:07:39.000Z",
+              "updatedAt": "2026-10-22T02:07:39.000Z",
+              "uid": "35240-c7190ffd-f3af-4ef5-8912-ab2a8494ceb9"
             }
           ],
-          "event": [],
-          "protocolProfileBehavior": {
-            "disableBodyPruning": true
-          }
+          "id": "b49191d1-ccb1-4c89-b1a0-a2773f54f8d1",
+          "createdAt": "2026-10-22T02:07:39.000Z",
+          "updatedAt": "2026-10-22T02:07:39.000Z",
+          "uid": "35240-b49191d1-ccb1-4c89-b1a0-a2773f54f8d1"
         }
       ],
-      "event": []
+      "id": "169714c7-a6d1-4f4f-a127-285caaaa00ac",
+      "createdAt": "2026-10-22T02:07:39.000Z",
+      "updatedAt": "2026-10-22T02:07:39.000Z",
+      "uid": "35240-169714c7-a6d1-4f4f-a127-285caaaa00ac"
     }
   ],
-  "event": [],
   "variable": [
     {
-      "type": "string",
-      "value": "https://api.tiaa.org/fdx/v6",
-      "key": "baseUrl"
+      "key": "baseUrl",
+      "value": "https://api.tiaa.org/fdx/v6"
     }
-  ],
-  "info": {
-    "_postman_id": "ab285fa6-42c7-4659-a5f9-82d3945e98f8",
-    "name": "TIAA Financial Data Exchange Accounts Investments API",
-    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
-    "description": {
-      "content": "The TIAA Financial Data Exchange (FDX) API provides authorized fintechs and financial aggregators with secure access to customer account data, including balances, transactions, investment positions, and income information from TIAA retirement and brokerage accounts. This API is built on the FDX open standard (v6.x) and uses OAuth 2.0 for customer-consented data sharing.\n\nContact Support:\n Name: TIAA Developer Support",
-      "type": "text/plain"
-    }
-  }
+  ]
 }

@@ -1,119 +1,146 @@
 {
+  "info": {
+    "_postman_id": "0bb236f9-17a9-4fa9-b2bc-e339ac55ed83",
+    "name": "TIAA Secure Income Account Plans API",
+    "description": "The TIAA Secure Income Account (SIA) API enables recordkeepers and plan administrators to integrate TIAA's guaranteed lifetime income product into custom target-date model portfolios and managed account solutions. The SIA API supports participant account setup, contribution management, allocation updates, and income projection calculations for defined contribution plans. Authentication uses OAuth 2.0 Client Credentials Flow.\n\nContact Support:\n Name: TIAA Developer Support",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "createdAt": "2026-10-22T02:07:50.000Z",
+    "updatedAt": "2026-10-22T02:07:51.000Z",
+    "lastUpdatedBy": "35240",
+    "uid": "35240-0bb236f9-17a9-4fa9-b2bc-e339ac55ed83"
+  },
   "item": [
     {
-      "id": "bf0fdb1c-9dff-4503-843e-01a665eb3294",
-      "name": "Plans",
-      "description": {
-        "content": "Plan configuration and eligibility",
-        "type": "text/plain"
-      },
+      "name": "plans",
       "item": [
         {
-          "id": "5e05c2ce-d067-4f72-8fe2-b1460eb99f7d",
-          "name": "Get Plan Details",
-          "request": {
-            "name": "Get Plan Details",
-            "description": {
-              "content": "Returns SIA configuration and eligibility rules for a specific plan.",
-              "type": "text/plain"
-            },
-            "url": {
-              "path": [
-                "plans",
-                ":planId"
-              ],
-              "host": [
-                "{{baseUrl}}"
-              ],
-              "query": [],
-              "variable": [
-                {
-                  "disabled": false,
-                  "type": "any",
-                  "value": "<string>",
-                  "key": "planId",
-                  "description": "(Required) "
-                }
-              ]
-            },
-            "header": [
-              {
-                "key": "Accept",
-                "value": "application/json"
-              }
-            ],
-            "method": "GET"
-          },
-          "response": [
+          "name": "{planId}",
+          "item": [
             {
-              "id": "3ad0d4e2-5112-4854-bea0-667642014b06",
-              "name": "Plan details",
-              "originalRequest": {
-                "url": {
-                  "path": [
-                    "plans",
-                    ":planId"
-                  ],
-                  "host": [
-                    "{{baseUrl}}"
-                  ],
-                  "query": [],
-                  "variable": [
+              "name": "Get Plan Details",
+              "id": "dc0e679b-15ff-443a-b9e8-43d49f6a1b55",
+              "protocolProfileBehavior": {
+                "disableBodyPruning": true
+              },
+              "request": {
+                "auth": {
+                  "type": "oauth2",
+                  "oauth2": [
                     {
-                      "disabled": false,
-                      "type": "any",
-                      "value": "<string>",
-                      "key": "planId",
-                      "description": "(Required) "
+                      "key": "scope",
+                      "value": "sia:read sia:write",
+                      "type": "string"
+                    },
+                    {
+                      "key": "accessTokenUrl",
+                      "value": "https://auth.tiaa.org/oauth2/token",
+                      "type": "string"
+                    },
+                    {
+                      "key": "grant_type",
+                      "value": "client_credentials",
+                      "type": "string"
                     }
                   ]
                 },
+                "method": "GET",
                 "header": [
                   {
                     "key": "Accept",
                     "value": "application/json"
                   }
                 ],
-                "method": "GET",
-                "body": {}
+                "url": {
+                  "raw": "{{baseUrl}}/plans/:planId",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "plans",
+                    ":planId"
+                  ],
+                  "variable": [
+                    {
+                      "id": "67c83ab0-fc20-44dd-96a7-2416c47f4a16",
+                      "key": "planId",
+                      "value": "<string>",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "description": "Returns SIA configuration and eligibility rules for a specific plan."
               },
-              "status": "OK",
-              "code": 200,
-              "header": [
+              "response": [
                 {
-                  "key": "Content-Type",
-                  "value": "application/json"
+                  "id": "20ca5c58-30df-4451-adf4-da5dd3d3b129",
+                  "name": "Plan details",
+                  "originalRequest": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: oauth2",
+                        "key": "Authorization",
+                        "value": "<token>"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/plans/:planId",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "plans",
+                        ":planId"
+                      ],
+                      "variable": [
+                        {
+                          "key": "planId"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "OK",
+                  "code": 200,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"planId\": \"<string>\",\n  \"planName\": \"<string>\",\n  \"planType\": \"457b\",\n  \"siaEnabled\": \"<boolean>\",\n  \"eligibilityRules\": {\n    \"minimumAge\": \"<integer>\",\n    \"minimumServiceMonths\": \"<integer>\",\n    \"employeeClassesEligible\": [\n      \"<string>\",\n      \"<string>\"\n    ]\n  },\n  \"maxAllocationPercentage\": \"<double>\",\n  \"minAllocationPercentage\": \"<double>\"\n}",
+                  "createdAt": "2026-10-22T02:07:51.000Z",
+                  "updatedAt": "2026-10-22T02:07:51.000Z",
+                  "uid": "35240-20ca5c58-30df-4451-adf4-da5dd3d3b129"
                 }
               ],
-              "body": "{\n  \"planId\": \"string\",\n  \"planName\": \"string\",\n  \"planType\": \"457b\",\n  \"siaEnabled\": true,\n  \"eligibilityRules\": {\n    \"minimumAge\": 643,\n    \"minimumServiceMonths\": 9831,\n    \"employeeClassesEligible\": [\n      \"string\",\n      \"string\"\n    ]\n  },\n  \"maxAllocationPercentage\": 320.335259753497,\n  \"minAllocationPercentage\": 9218.676776286386\n}",
-              "cookie": [],
-              "_postman_previewlanguage": "json"
+              "createdAt": "2026-10-22T02:07:51.000Z",
+              "updatedAt": "2026-10-22T02:07:51.000Z",
+              "uid": "35240-dc0e679b-15ff-443a-b9e8-43d49f6a1b55"
             }
           ],
-          "event": [],
-          "protocolProfileBehavior": {
-            "disableBodyPruning": true
-          }
+          "id": "fe9b3f05-973a-453e-a593-fb0815ec3455",
+          "createdAt": "2026-10-22T02:07:51.000Z",
+          "updatedAt": "2026-10-22T02:07:51.000Z",
+          "uid": "35240-fe9b3f05-973a-453e-a593-fb0815ec3455"
         }
       ],
-      "event": []
+      "id": "0530566e-545b-4e2b-bfaf-b9a073947681",
+      "createdAt": "2026-10-22T02:07:51.000Z",
+      "updatedAt": "2026-10-22T02:07:51.000Z",
+      "uid": "35240-0530566e-545b-4e2b-bfaf-b9a073947681"
     }
   ],
-  "event": [],
   "variable": [
     {
-      "type": "string",
-      "value": "https://api.tiaa.org/fdx/v6",
-      "key": "baseUrl"
+      "key": "baseUrl",
+      "value": "https://api.tiaa.org/sia/v1"
     }
-  ],
-  "info": {
-    "_postman_id": "a1cdf25f-1ce2-4177-aef6-a7d574a3d8eb",
-    "name": "TIAA Financial Data Exchange Accounts Plans API",
-    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
-    "description": {
-      "content": "The TIAA Financial Data Exchange (FDX) API provides authorized fintechs and financial aggregators with secure access to customer account data, including balances, transactions, investment positions, and income information from TIAA retirement and brokerage accounts. This API is built on the FDX open standard (v6.x) and uses OAuth 2.0 for customer-consented data sharing.\n\nContact Support:\n Name: TIAA Developer Support",
-      "type": "text/plain"
-    }
-  }
+  ]
 }

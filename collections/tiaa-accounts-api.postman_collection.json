@@ -1,412 +1,402 @@
 {
+  "info": {
+    "_postman_id": "ef66f052-174e-4bde-afc9-0195a9103fb8",
+    "name": "TIAA Financial Data Exchange Accounts API",
+    "description": "The TIAA Financial Data Exchange (FDX) API provides authorized fintechs and financial aggregators with secure access to customer account data, including balances, transactions, investment positions, and income information from TIAA retirement and brokerage accounts. This API is built on the FDX open standard (v6.x) and uses OAuth 2.0 for customer-consented data sharing.\n\nContact Support:\n Name: TIAA Developer Support",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "createdAt": "2026-10-22T02:07:25.000Z",
+    "updatedAt": "2026-10-22T02:07:25.000Z",
+    "lastUpdatedBy": "35240",
+    "uid": "35240-ef66f052-174e-4bde-afc9-0195a9103fb8"
+  },
   "item": [
     {
-      "id": "a99106bd-9260-4900-a108-8a1afae7e581",
-      "name": "Accounts",
-      "description": {
-        "content": "Customer account information and balances",
-        "type": "text/plain"
-      },
+      "name": "accounts",
       "item": [
         {
-          "id": "5306291a-728d-4a29-9eeb-fe0bdb8581da",
+          "name": "{accountId}",
+          "item": [
+            {
+              "name": "Get Account Details",
+              "id": "9433c0d4-2d74-46c3-a333-4c70389e3f4e",
+              "protocolProfileBehavior": {
+                "disableBodyPruning": true
+              },
+              "request": {
+                "auth": {
+                  "type": "oauth2",
+                  "oauth2": [
+                    {
+                      "key": "scope",
+                      "value": "openid profile accounts transactions investments tax",
+                      "type": "string"
+                    },
+                    {
+                      "key": "accessTokenUrl",
+                      "value": "https://auth.tiaa.org/oauth2/token",
+                      "type": "string"
+                    },
+                    {
+                      "key": "authUrl",
+                      "value": "https://auth.tiaa.org/oauth2/authorize",
+                      "type": "string"
+                    },
+                    {
+                      "key": "grant_type",
+                      "value": "authorization_code",
+                      "type": "string"
+                    }
+                  ]
+                },
+                "method": "GET",
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "url": {
+                  "raw": "{{baseUrl}}/accounts/:accountId",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "accounts",
+                    ":accountId"
+                  ],
+                  "variable": [
+                    {
+                      "id": "c2b64bc0-ea9e-476c-ba75-18577e03b7e1",
+                      "key": "accountId",
+                      "value": "<string>",
+                      "description": "(Required) Unique account identifier"
+                    }
+                  ]
+                },
+                "description": "Returns details for a specific account by account ID."
+              },
+              "response": [
+                {
+                  "id": "20b2ee80-487a-444b-86b8-8699a89764e6",
+                  "name": "Account details",
+                  "originalRequest": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: oauth2",
+                        "key": "Authorization",
+                        "value": "<token>"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/accounts/:accountId",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "accounts",
+                        ":accountId"
+                      ],
+                      "variable": [
+                        {
+                          "key": "accountId"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "OK",
+                  "code": 200,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"accountId\": \"<string>\",\n  \"accountType\": \"RETIREMENT\",\n  \"displayName\": \"<string>\",\n  \"accountNumber\": \"<string>\",\n  \"balanceAsOf\": \"<dateTime>\",\n  \"currentBalance\": \"<double>\",\n  \"currency\": \"USD\",\n  \"status\": \"PENDING\"\n}",
+                  "createdAt": "2026-10-22T02:07:25.000Z",
+                  "updatedAt": "2026-10-22T02:07:25.000Z",
+                  "uid": "35240-20b2ee80-487a-444b-86b8-8699a89764e6"
+                },
+                {
+                  "id": "c1436d27-e0c2-4e5a-a791-bed4fd1c9ec3",
+                  "name": "Account not found",
+                  "originalRequest": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "description": "Added as a part of security scheme: oauth2",
+                        "key": "Authorization",
+                        "value": "<token>"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/accounts/:accountId",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "accounts",
+                        ":accountId"
+                      ],
+                      "variable": [
+                        {
+                          "key": "accountId"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "Not Found",
+                  "code": 404,
+                  "_postman_previewlanguage": "text",
+                  "header": [],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": null,
+                  "createdAt": "2026-10-22T02:07:25.000Z",
+                  "updatedAt": "2026-10-22T02:07:25.000Z",
+                  "uid": "35240-c1436d27-e0c2-4e5a-a791-bed4fd1c9ec3"
+                }
+              ],
+              "createdAt": "2026-10-22T02:07:25.000Z",
+              "updatedAt": "2026-10-22T02:07:25.000Z",
+              "uid": "35240-9433c0d4-2d74-46c3-a333-4c70389e3f4e"
+            }
+          ],
+          "id": "fe46f971-9c4e-4e07-a33c-df0ea14533f4",
+          "createdAt": "2026-10-22T02:07:25.000Z",
+          "updatedAt": "2026-10-22T02:07:25.000Z",
+          "uid": "35240-fe46f971-9c4e-4e07-a33c-df0ea14533f4"
+        },
+        {
           "name": "List Customer Accounts",
+          "id": "f591ce87-1481-4880-b3ee-c26cf0d22cd3",
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          },
           "request": {
-            "name": "List Customer Accounts",
-            "description": {
-              "content": "Returns all accounts to which the customer has granted consent.",
-              "type": "text/plain"
+            "auth": {
+              "type": "oauth2",
+              "oauth2": [
+                {
+                  "key": "scope",
+                  "value": "openid profile accounts transactions investments tax",
+                  "type": "string"
+                },
+                {
+                  "key": "accessTokenUrl",
+                  "value": "https://auth.tiaa.org/oauth2/token",
+                  "type": "string"
+                },
+                {
+                  "key": "authUrl",
+                  "value": "https://auth.tiaa.org/oauth2/authorize",
+                  "type": "string"
+                },
+                {
+                  "key": "grant_type",
+                  "value": "authorization_code",
+                  "type": "string"
+                }
+              ]
             },
+            "method": "GET",
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
             "url": {
+              "raw": "{{baseUrl}}/accounts?offset=<integer>&limit=<integer>",
+              "host": [
+                "{{baseUrl}}"
+              ],
               "path": [
                 "accounts"
               ],
-              "host": [
-                "{{baseUrl}}"
-              ],
               "query": [
                 {
-                  "disabled": false,
+                  "description": "Pagination offset",
                   "key": "offset",
-                  "value": "<integer>",
-                  "description": "Pagination offset"
+                  "value": "<integer>"
                 },
                 {
-                  "disabled": false,
+                  "description": "Maximum number of accounts to return",
                   "key": "limit",
-                  "value": "<integer>",
-                  "description": "Maximum number of accounts to return"
-                }
-              ],
-              "variable": []
-            },
-            "header": [
-              {
-                "key": "Accept",
-                "value": "application/json"
-              }
-            ],
-            "method": "GET",
-            "auth": {
-              "type": "oauth2",
-              "oauth2": [
-                {
-                  "key": "scope",
-                  "value": "openid profile accounts transactions investments tax"
-                },
-                {
-                  "key": "accessTokenUrl",
-                  "value": "https://auth.tiaa.org/oauth2/token"
-                },
-                {
-                  "key": "authUrl",
-                  "value": "https://auth.tiaa.org/oauth2/authorize"
-                },
-                {
-                  "key": "grant_type",
-                  "value": "authorization_code"
+                  "value": "<integer>"
                 }
               ]
-            }
+            },
+            "description": "Returns all accounts to which the customer has granted consent."
           },
           "response": [
             {
-              "id": "fff08281-5dfe-49ed-94a9-c70a172d8b6f",
+              "id": "9b07a8b0-0c56-4014-bb0e-b59cac852428",
               "name": "A list of accounts",
               "originalRequest": {
+                "method": "GET",
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  },
+                  {
+                    "description": "Added as a part of security scheme: oauth2",
+                    "key": "Authorization",
+                    "value": "<token>"
+                  }
+                ],
                 "url": {
-                  "path": [
-                    "accounts"
-                  ],
+                  "raw": "{{baseUrl}}/accounts?offset=<integer>&limit=<integer>",
                   "host": [
                     "{{baseUrl}}"
                   ],
+                  "path": [
+                    "accounts"
+                  ],
                   "query": [
                     {
+                      "description": "Pagination offset",
                       "key": "offset",
                       "value": "<integer>"
                     },
                     {
+                      "description": "Maximum number of accounts to return",
                       "key": "limit",
                       "value": "<integer>"
                     }
-                  ],
-                  "variable": []
-                },
-                "header": [
-                  {
-                    "description": {
-                      "content": "Added as a part of security scheme: oauth2",
-                      "type": "text/plain"
-                    },
-                    "key": "Authorization",
-                    "value": "<token>"
-                  },
-                  {
-                    "key": "Accept",
-                    "value": "application/json"
-                  }
-                ],
-                "method": "GET",
-                "body": {}
+                  ]
+                }
               },
               "status": "OK",
               "code": 200,
+              "_postman_previewlanguage": "json",
               "header": [
                 {
                   "key": "Content-Type",
                   "value": "application/json"
                 }
               ],
-              "body": "{\n  \"accounts\": [\n    {\n      \"accountId\": \"string\",\n      \"accountType\": \"ANNUITY\",\n      \"displayName\": \"string\",\n      \"accountNumber\": \"string\",\n      \"balanceAsOf\": \"2017-12-31T20:10:48.110Z\",\n      \"currentBalance\": 1679.3311659628152,\n      \"currency\": \"USD\",\n      \"status\": \"OPEN\"\n    },\n    {\n      \"accountId\": \"string\",\n      \"accountType\": \"BROKERAGE\",\n      \"displayName\": \"string\",\n      \"accountNumber\": \"string\",\n      \"balanceAsOf\": \"2013-04-07T18:49:19.224Z\",\n      \"currentBalance\": 7707.598552392507,\n      \"currency\": \"USD\",\n      \"status\": \"OPEN\"\n    }\n  ],\n  \"page\": {\n    \"nextOffset\": 7127,\n    \"totalElements\": 3519,\n    \"limit\": 9505\n  }\n}",
               "cookie": [],
-              "_postman_previewlanguage": "json"
+              "responseTime": null,
+              "body": "{\n  \"accounts\": [\n    {\n      \"accountId\": \"<string>\",\n      \"accountType\": \"RETIREMENT\",\n      \"displayName\": \"<string>\",\n      \"accountNumber\": \"<string>\",\n      \"balanceAsOf\": \"<dateTime>\",\n      \"currentBalance\": \"<double>\",\n      \"currency\": \"USD\",\n      \"status\": \"OPEN\"\n    },\n    {\n      \"accountId\": \"<string>\",\n      \"accountType\": \"BROKERAGE\",\n      \"displayName\": \"<string>\",\n      \"accountNumber\": \"<string>\",\n      \"balanceAsOf\": \"<dateTime>\",\n      \"currentBalance\": \"<double>\",\n      \"currency\": \"USD\",\n      \"status\": \"CLOSED\"\n    }\n  ],\n  \"page\": {\n    \"nextOffset\": \"<integer>\",\n    \"totalElements\": \"<integer>\",\n    \"limit\": \"<integer>\"\n  }\n}",
+              "createdAt": "2026-10-22T02:07:25.000Z",
+              "updatedAt": "2026-10-22T02:07:25.000Z",
+              "uid": "35240-9b07a8b0-0c56-4014-bb0e-b59cac852428"
             },
             {
-              "id": "c5c9daf1-72a8-48f4-aaa8-9ace88b64063",
+              "id": "39de9beb-54a6-466f-b634-c3f42fa42eda",
               "name": "Unauthorized",
               "originalRequest": {
-                "url": {
-                  "path": [
-                    "accounts"
-                  ],
-                  "host": [
-                    "{{baseUrl}}"
-                  ],
-                  "query": [
-                    {
-                      "key": "offset",
-                      "value": "<integer>"
-                    },
-                    {
-                      "key": "limit",
-                      "value": "<integer>"
-                    }
-                  ],
-                  "variable": []
-                },
+                "method": "GET",
                 "header": [
                   {
-                    "description": {
-                      "content": "Added as a part of security scheme: oauth2",
-                      "type": "text/plain"
-                    },
+                    "description": "Added as a part of security scheme: oauth2",
                     "key": "Authorization",
                     "value": "<token>"
                   }
                 ],
-                "method": "GET",
-                "body": {}
+                "url": {
+                  "raw": "{{baseUrl}}/accounts?offset=<integer>&limit=<integer>",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "accounts"
+                  ],
+                  "query": [
+                    {
+                      "description": "Pagination offset",
+                      "key": "offset",
+                      "value": "<integer>"
+                    },
+                    {
+                      "description": "Maximum number of accounts to return",
+                      "key": "limit",
+                      "value": "<integer>"
+                    }
+                  ]
+                }
               },
               "status": "Unauthorized",
               "code": 401,
-              "header": [
-                {
-                  "key": "Content-Type",
-                  "value": "text/plain"
-                }
-              ],
-              "body": "",
+              "_postman_previewlanguage": "text",
+              "header": [],
               "cookie": [],
-              "_postman_previewlanguage": "text"
+              "responseTime": null,
+              "body": null,
+              "createdAt": "2026-10-22T02:07:25.000Z",
+              "updatedAt": "2026-10-22T02:07:25.000Z",
+              "uid": "35240-39de9beb-54a6-466f-b634-c3f42fa42eda"
             },
             {
-              "id": "d024191d-cd10-4584-8b99-ea51f7cfc540",
+              "id": "e6d3b775-7d0a-493f-8552-306fd7ba69d4",
               "name": "Forbidden",
               "originalRequest": {
+                "method": "GET",
+                "header": [
+                  {
+                    "description": "Added as a part of security scheme: oauth2",
+                    "key": "Authorization",
+                    "value": "<token>"
+                  }
+                ],
                 "url": {
-                  "path": [
-                    "accounts"
-                  ],
+                  "raw": "{{baseUrl}}/accounts?offset=<integer>&limit=<integer>",
                   "host": [
                     "{{baseUrl}}"
                   ],
+                  "path": [
+                    "accounts"
+                  ],
                   "query": [
                     {
+                      "description": "Pagination offset",
                       "key": "offset",
                       "value": "<integer>"
                     },
                     {
+                      "description": "Maximum number of accounts to return",
                       "key": "limit",
                       "value": "<integer>"
                     }
-                  ],
-                  "variable": []
-                },
-                "header": [
-                  {
-                    "description": {
-                      "content": "Added as a part of security scheme: oauth2",
-                      "type": "text/plain"
-                    },
-                    "key": "Authorization",
-                    "value": "<token>"
-                  }
-                ],
-                "method": "GET",
-                "body": {}
+                  ]
+                }
               },
               "status": "Forbidden",
               "code": 403,
-              "header": [
-                {
-                  "key": "Content-Type",
-                  "value": "text/plain"
-                }
-              ],
-              "body": "",
+              "_postman_previewlanguage": "text",
+              "header": [],
               "cookie": [],
-              "_postman_previewlanguage": "text"
+              "responseTime": null,
+              "body": null,
+              "createdAt": "2026-10-22T02:07:25.000Z",
+              "updatedAt": "2026-10-22T02:07:25.000Z",
+              "uid": "35240-e6d3b775-7d0a-493f-8552-306fd7ba69d4"
             }
           ],
-          "event": [],
-          "protocolProfileBehavior": {
-            "disableBodyPruning": true
-          }
-        },
-        {
-          "id": "12fc770b-1a30-4f34-9f64-e3dd8c8a7fa7",
-          "name": "Get Account Details",
-          "request": {
-            "name": "Get Account Details",
-            "description": {
-              "content": "Returns details for a specific account by account ID.",
-              "type": "text/plain"
-            },
-            "url": {
-              "path": [
-                "accounts",
-                ":accountId"
-              ],
-              "host": [
-                "{{baseUrl}}"
-              ],
-              "query": [],
-              "variable": [
-                {
-                  "disabled": false,
-                  "type": "any",
-                  "value": "<string>",
-                  "key": "accountId",
-                  "description": "(Required) Unique account identifier"
-                }
-              ]
-            },
-            "header": [
-              {
-                "key": "Accept",
-                "value": "application/json"
-              }
-            ],
-            "method": "GET",
-            "auth": {
-              "type": "oauth2",
-              "oauth2": [
-                {
-                  "key": "scope",
-                  "value": "openid profile accounts transactions investments tax"
-                },
-                {
-                  "key": "accessTokenUrl",
-                  "value": "https://auth.tiaa.org/oauth2/token"
-                },
-                {
-                  "key": "authUrl",
-                  "value": "https://auth.tiaa.org/oauth2/authorize"
-                },
-                {
-                  "key": "grant_type",
-                  "value": "authorization_code"
-                }
-              ]
-            }
-          },
-          "response": [
-            {
-              "id": "1f684a5a-5312-4559-a0a5-3df9878a09a3",
-              "name": "Account details",
-              "originalRequest": {
-                "url": {
-                  "path": [
-                    "accounts",
-                    ":accountId"
-                  ],
-                  "host": [
-                    "{{baseUrl}}"
-                  ],
-                  "query": [],
-                  "variable": [
-                    {
-                      "disabled": false,
-                      "type": "any",
-                      "value": "<string>",
-                      "key": "accountId",
-                      "description": "(Required) Unique account identifier"
-                    }
-                  ]
-                },
-                "header": [
-                  {
-                    "description": {
-                      "content": "Added as a part of security scheme: oauth2",
-                      "type": "text/plain"
-                    },
-                    "key": "Authorization",
-                    "value": "<token>"
-                  },
-                  {
-                    "key": "Accept",
-                    "value": "application/json"
-                  }
-                ],
-                "method": "GET",
-                "body": {}
-              },
-              "status": "OK",
-              "code": 200,
-              "header": [
-                {
-                  "key": "Content-Type",
-                  "value": "application/json"
-                }
-              ],
-              "body": "{\n  \"accountId\": \"string\",\n  \"accountType\": \"INVESTMENT\",\n  \"displayName\": \"string\",\n  \"accountNumber\": \"string\",\n  \"balanceAsOf\": \"1954-11-26T18:53:55.571Z\",\n  \"currentBalance\": 9362.447281265915,\n  \"currency\": \"USD\",\n  \"status\": \"PENDING\"\n}",
-              "cookie": [],
-              "_postman_previewlanguage": "json"
-            },
-            {
-              "id": "c57f35ea-093f-4946-b8c4-6f690f23caa7",
-              "name": "Account not found",
-              "originalRequest": {
-                "url": {
-                  "path": [
-                    "accounts",
-                    ":accountId"
-                  ],
-                  "host": [
-                    "{{baseUrl}}"
-                  ],
-                  "query": [],
-                  "variable": [
-                    {
-                      "disabled": false,
-                      "type": "any",
-                      "value": "<string>",
-                      "key": "accountId",
-                      "description": "(Required) Unique account identifier"
-                    }
-                  ]
-                },
-                "header": [
-                  {
-                    "description": {
-                      "content": "Added as a part of security scheme: oauth2",
-                      "type": "text/plain"
-                    },
-                    "key": "Authorization",
-                    "value": "<token>"
-                  }
-                ],
-                "method": "GET",
-                "body": {}
-              },
-              "status": "Not Found",
-              "code": 404,
-              "header": [
-                {
-                  "key": "Content-Type",
-                  "value": "text/plain"
-                }
-              ],
-              "body": "",
-              "cookie": [],
-              "_postman_previewlanguage": "text"
-            }
-          ],
-          "event": [],
-          "protocolProfileBehavior": {
-            "disableBodyPruning": true
-          }
+          "createdAt": "2026-10-22T02:07:25.000Z",
+          "updatedAt": "2026-10-22T02:07:25.000Z",
+          "uid": "35240-f591ce87-1481-4880-b3ee-c26cf0d22cd3"
         }
       ],
-      "event": []
+      "id": "54257f18-5689-491a-b661-ea46bb5aa92f",
+      "createdAt": "2026-10-22T02:07:25.000Z",
+      "updatedAt": "2026-10-22T02:07:25.000Z",
+      "uid": "35240-54257f18-5689-491a-b661-ea46bb5aa92f"
     }
   ],
-  "event": [],
   "variable": [
     {
-      "type": "string",
-      "value": "https://api.tiaa.org/fdx/v6",
-      "key": "baseUrl"
+      "key": "baseUrl",
+      "value": "https://api.tiaa.org/fdx/v6"
     }
-  ],
-  "info": {
-    "_postman_id": "bea44671-aef5-467d-acf1-3bfcb0882141",
-    "name": "TIAA Financial Data Exchange Accounts API",
-    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
-    "description": {
-      "content": "The TIAA Financial Data Exchange (FDX) API provides authorized fintechs and financial aggregators with secure access to customer account data, including balances, transactions, investment positions, and income information from TIAA retirement and brokerage accounts. This API is built on the FDX open standard (v6.x) and uses OAuth 2.0 for customer-consented data sharing.\n\nContact Support:\n Name: TIAA Developer Support",
-      "type": "text/plain"
-    }
-  }
+  ]
 }
