@@ -1,4 +1,4 @@
-# TIAA (tiaa)
+# TIAA
 
 <!-- API-EVANGELIST-PROVENANCE:BEGIN -->
 > ### About this repository
@@ -66,134 +66,183 @@
 
 TIAA (Teachers Insurance and Annuity Association of America) is a leading provider of financial services in the academic, research, medical, cultural, and government fields. Originally founded to provide retirement security for educators, TIAA now offers retirement services, insurance, brokerage, and investment management products to individuals and institutions. TIAA operates a developer portal at developer.tiaa.org exposing APIs for financial data aggregation (FDX standard), secure income account management, and gateway integrations enabling plan portability and fintech connectivity.
 
-**APIs.json:** [https://raw.githubusercontent.com/api-evangelist/tiaa/refs/heads/main/apis.yml](https://raw.githubusercontent.com/api-evangelist/tiaa/refs/heads/main/apis.yml)
+**Areas:** Finance · Financial Data · Fintech · Insurance · Investment Management · Retirement · Wealth Management · Fortune 100
 
-## Tags
+## TIAA on APIs.io
 
-- Finance
-- Financial Data
-- Fintech
-- Insurance
-- Investment Management
-- Retirement
-- Wealth Management
+Everything profiled for TIAA is published on APIs.io rather than in this repository. Start at the provider page — **[apis.io/providers/tiaa/](https://apis.io/providers/tiaa/)** — or go straight to one of the APIs or properties below.
 
-## Timestamps
+### APIs (11)
 
-- **Created:** 2024
-- **Modified:** 2026-05-19
+- [TIAA Gateway API](https://apis.io/apis/tiaa/tiaa-gateway-api/) — The TIAA Gateway is a cloud-based API layer enabling product portability and interoperability across retirement ecosystem partners. It allows banking…
+- [TIAA Payroll360 API](https://apis.io/apis/tiaa/tiaa-payroll360-api/) — TIAA Payroll360 enables direct API connections between HR and payroll systems and TIAA's plan administration platform, automating deductions management,…
+- [TIAA Accounts API](https://apis.io/apis/tiaa/tiaa-accounts-api/) — Customer account information and balances
+- [TIAA Contributions API](https://apis.io/apis/tiaa/tiaa-contributions-api/) — Contribution and allocation management
+- [TIAA Customer API](https://apis.io/apis/tiaa/tiaa-customer-api/) — Customer profile and identity
+- [TIAA Investments API](https://apis.io/apis/tiaa/tiaa-investments-api/) — Investment positions and holdings
+- [TIAA Participants API](https://apis.io/apis/tiaa/tiaa-participants-api/) — Participant account management
+- [TIAA Plans API](https://apis.io/apis/tiaa/tiaa-plans-api/) — Plan configuration and eligibility
+- [TIAA Projections API](https://apis.io/apis/tiaa/tiaa-projections-api/) — Income projections and illustrations
+- [TIAA Tax API](https://apis.io/apis/tiaa/tiaa-tax-api/) — Tax document and income data
+- [TIAA Transactions API](https://apis.io/apis/tiaa/tiaa-transactions-api/) — Account transaction history
 
-## APIs
+### Published properties
 
-### TIAA Financial Data Exchange API
+Each property below is a page on APIs.io carrying the machine-readable artifact and what it says.
 
-The TIAA Financial Data Exchange (FDX) API provides customer account details to authorized fintechs and financial aggregators with customer consent. Built on the FDX open-standard (OAuth 2.0), it offers a secure alternative to screen scraping and enables third-party apps to retrieve account balances, transactions, investment positions, and income data from TIAA retirement and brokerage accounts.
+#### Agentic access (1)
 
-- **Human URL:** [https://developer.tiaa.org/public/fdx](https://developer.tiaa.org/public/fdx)
-- **Base URL:** `https://api.tiaa.org/fdx/v6`
+Which operations an agent can call, which act, and which need a human in the loop.
 
-#### Tags
+- [Tiaa Agentic Access](https://apis.io/agentic-access/tiaa/tiaa-agentic-access/)
 
-- Account Aggregation
-- Financial Data
-- FDX
-- Open Finance
-- Retirement
+#### JSON Schema (2)
 
-#### Properties
+The data models the API reads and writes.
 
-- [Documentation](https://developer.tiaa.org/public/fdx)
-- [Authentication](https://developer.tiaa.org/public/fdx#authentication)
-- [OpenAPI](openapi/tiaa-fdx-openapi.yml) — [OpenAPI Specification](https://spec.openapis.org/oas/latest.html)
-- [Postman Collection](collections/tiaa-fdx.postman_collection.json) — [Postman Collection 2.1](https://schema.getpostman.com/json/collection/v2.1.0/collection.json)
-- [Open Collection](collections/tiaa-fdx.opencollection.json) — [Open Collection 1.0](https://schema.opencollection.com/opencollection/v1.0.0.json)
+- [TIAA Account](https://apis.io/schemas/tiaa/tiaa-account/)
+- [TIAA SIA Participant](https://apis.io/schemas/tiaa/tiaa-participant/)
 
-### TIAA Secure Income Account API
+#### JSON Structure (1)
 
-The TIAA Secure Income Account (SIA) API enables recordkeepers and plan administrators to integrate TIAA's guaranteed lifetime income product into custom target-date model portfolios and managed account solutions. Built using the OpenAPI Specification (OAS) and authenticated via OAuth 2.0 Client Credentials Flow, the SIA API supports account setup, contribution management, and participant income projections for defined contribution plan participants.
+Data models expressed in JSON Structure.
 
-- **Human URL:** [https://developer.tiaa.org/public/sia](https://developer.tiaa.org/public/sia)
-- **Base URL:** `https://api.tiaa.org/sia/v1`
+- [Tiaa Account Structure](https://apis.io/json-structure/tiaa/tiaa-account-structure/)
 
-#### Tags
+#### JSON-LD (1)
 
-- Annuity
-- Guaranteed Income
-- Plan Administration
-- Recordkeeping
-- Retirement
-- Secure Income
+Linked-data contexts for the provider's vocabulary.
 
-#### Properties
+- [Tiaa Context](https://apis.io/jsonld/tiaa/tiaa-context/)
 
-- [Documentation](https://developer.tiaa.org/public/sia)
-- [Authentication](https://developer.tiaa.org/public/sia#authentication)
-- [OpenAPI](openapi/tiaa-sia-openapi.yml) — [OpenAPI Specification](https://spec.openapis.org/oas/latest.html)
-- [Postman Collection](collections/tiaa-sia.postman_collection.json) — [Postman Collection 2.1](https://schema.getpostman.com/json/collection/v2.1.0/collection.json)
-- [Open Collection](collections/tiaa-sia.opencollection.json) — [Open Collection 1.0](https://schema.opencollection.com/opencollection/v1.0.0.json)
+#### Vocabulary (1)
 
-### TIAA Gateway API
+The provider's domain terms, defined.
 
-The TIAA Gateway is a cloud-based API layer enabling product portability and interoperability across retirement ecosystem partners. It allows banking institutions, financial aggregators, and plan sponsor platforms to expose TIAA retirement account data within their own apps and experiences. The Gateway supports FDX, ACORD, and SPARK standards and has more than 10 external partners connected.
+- [TIAA Vocabulary](https://apis.io/vocabularies/tiaa/tiaa-vocabulary/)
 
-- **Human URL:** [https://www.tiaa.org/public/pdf/t/tiaa-gateway-drives-product-portability.pdf](https://www.tiaa.org/public/pdf/t/tiaa-gateway-drives-product-portability.pdf)
-- **Base URL:** `https://api.tiaa.org/gateway/v1`
+#### Examples (4)
 
-#### Tags
+Example requests and responses.
 
-- Financial Data
-- Integration
-- Open Finance
-- Plan Portability
-- Retirement
+- [Tiaa Fdx List Accounts Example](https://apis.io/examples/tiaa/tiaa-fdx-list-accounts-example/)
+- [Tiaa Fdx List Transactions Example](https://apis.io/examples/tiaa/tiaa-fdx-list-transactions-example/)
+- [Tiaa Sia Enroll Participant Example](https://apis.io/examples/tiaa/tiaa-sia-enroll-participant-example/)
+- [Tiaa Sia Get Income Projection Example](https://apis.io/examples/tiaa/tiaa-sia-get-income-projection-example/)
 
-#### Properties
+#### Collections (11)
 
-- [Documentation](https://www.tiaa.org/public/pdf/t/tiaa-gateway-drives-product-portability.pdf)
-- [Portal](https://developer.tiaa.org)
-- [Postman Collection](collections/tiaa-fdx.postman_collection.json) — [Postman Collection 2.1](https://schema.getpostman.com/json/collection/v2.1.0/collection.json)
-- [Open Collection](collections/tiaa-fdx.opencollection.json) — [Open Collection 1.0](https://schema.opencollection.com/opencollection/v1.0.0.json)
-- [Postman Collection](collections/tiaa-sia.postman_collection.json) — [Postman Collection 2.1](https://schema.getpostman.com/json/collection/v2.1.0/collection.json)
-- [Open Collection](collections/tiaa-sia.opencollection.json) — [Open Collection 1.0](https://schema.opencollection.com/opencollection/v1.0.0.json)
+Postman and Open Collection request collections.
 
-### TIAA Payroll360 API
+- [TIAA Financial Data Exchange Accounts API](https://apis.io/collections/tiaa/open-tiaa-accounts-api/)
+- [TIAA Financial Data Exchange Accounts Contributions API](https://apis.io/collections/tiaa/open-tiaa-contributions-api/)
+- [TIAA Financial Data Exchange Accounts Customer API](https://apis.io/collections/tiaa/open-tiaa-customer-api/)
+- [TIAA Financial Data Exchange API](https://apis.io/collections/tiaa/open-tiaa-fdx/)
+- [TIAA Financial Data Exchange Accounts Investments API](https://apis.io/collections/tiaa/open-tiaa-investments-api/)
+- [TIAA Financial Data Exchange Accounts Participants API](https://apis.io/collections/tiaa/open-tiaa-participants-api/)
+- [TIAA Financial Data Exchange Accounts Plans API](https://apis.io/collections/tiaa/open-tiaa-plans-api/)
+- [TIAA Financial Data Exchange Accounts Projections API](https://apis.io/collections/tiaa/open-tiaa-projections-api/)
+- [TIAA Secure Income Account API](https://apis.io/collections/tiaa/open-tiaa-sia/)
+- [TIAA Financial Data Exchange Accounts Tax API](https://apis.io/collections/tiaa/open-tiaa-tax-api/)
+- [TIAA Financial Data Exchange Accounts Transactions API](https://apis.io/collections/tiaa/open-tiaa-transactions-api/)
 
-TIAA Payroll360 enables direct API connections between HR and payroll systems and TIAA's plan administration platform, automating deductions management, employer onboarding, and payroll data integrity. Supports SPARK 2.0 CR and TIAA-specific FLEX and OPS formats.
+#### Governance rules (2)
 
-- **Human URL:** [https://developer.tiaa.org/public/payroll360](https://developer.tiaa.org/public/payroll360)
-- **Base URL:** `https://api.tiaa.org/payroll360/v1`
+Spectral rulesets for the provider's contracts.
 
-#### Tags
+- [TIAA — jsonschema rules](https://apis.io/rules/tiaa/tiaa-jsonschema-spectral-rules/)
+- [TIAA API Rules](https://apis.io/rules/tiaa/tiaa-rules/)
 
-- HR
-- Payroll
-- Plan Administration
-- Retirement
-- SPARK
+#### Security (2)
 
-#### Properties
+Authentication, trust centre, and vulnerability disclosure.
 
-- [Documentation](https://developer.tiaa.org/public/payroll360)
-- [Postman Collection](collections/tiaa-fdx.postman_collection.json) — [Postman Collection 2.1](https://schema.getpostman.com/json/collection/v2.1.0/collection.json)
-- [Open Collection](collections/tiaa-fdx.opencollection.json) — [Open Collection 1.0](https://schema.opencollection.com/opencollection/v1.0.0.json)
-- [Postman Collection](collections/tiaa-sia.postman_collection.json) — [Postman Collection 2.1](https://schema.getpostman.com/json/collection/v2.1.0/collection.json)
-- [Open Collection](collections/tiaa-sia.opencollection.json) — [Open Collection 1.0](https://schema.opencollection.com/opencollection/v1.0.0.json)
+- [Tiaa Authentication](https://apis.io/security/tiaa/tiaa-authentication/)
+- [Tiaa Domain Security](https://apis.io/security/tiaa/tiaa-domain-security/)
 
-## Common Properties
+#### OAuth scopes (1)
 
-- [Portal](https://developer.tiaa.org)
+The permissions the API asks for.
+
+- [Tiaa Scopes](https://apis.io/scopes/tiaa/tiaa-scopes/)
+
+#### Plans and pricing (1)
+
+Published plans, tiers and prices.
+
+- [Tiaa Plans Pricing](https://apis.io/plans/tiaa/tiaa-plans-pricing/)
+
+#### Rate limits (1)
+
+Published request limits.
+
+- [Tiaa Rate Limits](https://apis.io/rate-limits/tiaa/tiaa-rate-limits/)
+
+#### FinOps (1)
+
+What the API costs to run, by operation.
+
+- [Tiaa Finops](https://apis.io/finops/tiaa/tiaa-finops/)
+
+## Where to find this API
+
+Links to the company's own pages. This repository publishes no copy of their specifications — the canonical document is theirs and lives at the URLs below.
+
 - [Website](https://www.tiaa.org)
 - [Documentation](https://developer.tiaa.org/public/fdx)
 - [Blog](https://www.tiaa.org/public/learn)
-- [LinkedIn](https://www.linkedin.com/company/tiaa)
-- [Twitter](https://twitter.com/tiaa)
-- [Privacy Policy](https://www.tiaa.org/public/pdf/t/privacy_notice.pdf)
-- [Terms of Service](https://www.tiaa.org/public/pdf/t/tiaa_website_terms_of_use.pdf)
-- [JSON-LD](json-ld/tiaa-context.jsonld) — [JSON-LD](https://www.w3.org/TR/json-ld11/)
-- [JSON Schema](json-schema/tiaa-account-schema.json) — [JSON Schema](https://json-schema.org/specification)
-- [JSON Schema](json-schema/tiaa-participant-schema.json) — [JSON Schema](https://json-schema.org/specification)
+- [Terms of service](https://www.tiaa.org/public/pdf/t/tiaa_website_terms_of_use.pdf)
+- [Privacy policy](https://www.tiaa.org/public/pdf/t/privacy_notice.pdf)
 
-## Maintainers
+## API Evangelist rating
 
-**FN:** Kin Lane
-**Email:** kin@apievangelist.com
+**Kin Score 32.2** — thin · rubric 0.24.0 · scored 2026-10-17
+
+| Facet | Score |
+|---|---|
+| Discoverability | 66.1 |
+| Contract quality | 56.3 |
+| Contract governance | 13.6 |
+| Operational transparency | 5.3 |
+| Developer ergonomics | 21.4 |
+| Access clarity | 15.8 |
+
+**Agent readiness 22.9** — agent-aware
+
+| Agent-readiness dimension | Result |
+|---|---|
+| Spec Presence | yes |
+| Agentic Access | derived (partial credit) |
+| Reversibility Documented | — |
+| MCP Server | — |
+| Auth Clarity | negotiable (partial credit) |
+| Idempotency | — |
+| Error Semantics | — |
+| OpenAPI Examples | — |
+| Rate Limit Signal | derived (partial credit) |
+| Event Surface Described | — |
+| Agent Skills | — |
+| Well Known Catalog | — |
+| Consent Identity | — |
+| Agent Card | — |
+| Dry Run Mode | — |
+| Delegated Identity | documented (partial credit) |
+| Protected Resource Metadata | — |
+| Dynamic Client Registration | — |
+| Agentic Commerce | — |
+
+**Regulatory alignment 33.3** — Insurance
+
+The rubric is published at [github.com/api-evangelist/kin-score](https://github.com/api-evangelist/kin-score). The per-check breakdown behind these numbers — which checks were earned, partial or missed — along with score history and how this provider compares to its peers, is available at [apis.io/providers/tiaa/](https://apis.io/providers/tiaa/).
+
+## How this profile is made
+
+API Evangelist profiles a company's public API surface the way a developer would find it: the website, developer portal and documentation, the specifications it publishes, its public repositories, and its pricing, status and changelog pages. From that it derives the properties above — contracts split per API, workflows, schemas, collections, governance rules, plans and rate limits — and scores them against the published [Kin Score rubric](https://github.com/api-evangelist/kin-score).
+
+The artifacts are published on [APIs.io](https://apis.io), not in this repository. This repository is the public record for TIAA: the place to say something is wrong, missing or out of date, and to ask for a re-score or a removal.
+
+## Open an issue
+
+- **Something about this listing** — a wrong description, a missing API, a stale artifact or a question about the rating: [open an issue on this repository](https://github.com/api-evangelist/tiaa/issues/new).
+- **A new API, or one that is not in the catalog yet** — [submit it on APIs.io](https://apis.io/add/).
+- **Anything else** — [the APIs.io inbox](https://github.com/api-search/inbox/issues/new) or [info@apievangelist.com](mailto:info@apievangelist.com).
